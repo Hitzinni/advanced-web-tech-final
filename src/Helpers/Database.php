@@ -33,7 +33,7 @@ class Database
                     $host = 'localhost';
                     $name = $username;
                     $user = $username;
-                    $pass = $username;
+                    $pass = $username . $username; // Username twice for teaching server password
                 } else {
                     // Default/local development settings
                     $host = $_ENV['DB_HOST'] ?? 'localhost';

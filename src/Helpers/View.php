@@ -19,20 +19,33 @@ class View
     public static function getBaseUrl(): string
     {
         if (self::$baseUrl === null) {
-            // Get the script path
-            $scriptPath = $_SERVER['SCRIPT_NAME'] ?? '';
+            // Get the script path and name
+            $scriptName = $_SERVER['SCRIPT_NAME'] ?? '';
+            $requestUri = $_SERVER['REQUEST_URI'] ?? '';
             
-            // For the teaching server environment
-            if (strpos($scriptPath, '/prin/') !== false) {
-                // Extract up to /public/ in the path
-                if (preg_match('|(.*?/public)|', $scriptPath, $matches)) {
-                    self::$baseUrl = $matches[1];
+            // Log the paths for debugging
+            error_log("Script Name: $scriptName");
+            error_log("Request URI: $requestUri");
+            
+            // Get the URI path from HTTP_HOST and REQUEST_URI
+            $httpHost = $_SERVER['HTTP_HOST'] ?? '';
+            $scheme = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+            $fullUrl = "$scheme://$httpHost$requestUri";
+            
+            // Handle the teaching server environment specifically
+            if (strpos($requestUri, '/prin/') !== false) {
+                // Extract the base path up to 'public/'
+                $publicPos = strpos($requestUri, '/public/');
+                if ($publicPos !== false) {
+                    // Get everything up to and including '/public/'
+                    $basePath = substr($requestUri, 0, $publicPos + 8); // +8 to include '/public/'
+                    self::$baseUrl = "$scheme://$httpHost$basePath";
                 } else {
-                    // Fallback to script directory
-                    self::$baseUrl = dirname($scriptPath);
+                    // If '/public/' is not in the path, use the directory of the script
+                    self::$baseUrl = "$scheme://$httpHost" . dirname($requestUri) . '/';
                 }
             } else {
-                // Local development environment - just use relative base
+                // Local development environment - use relative URLs
                 self::$baseUrl = '';
             }
             
@@ -58,7 +71,12 @@ class View
     {
         // Remove leading slash if present
         $path = ltrim($path, '/');
-        return self::getBaseUrl() . $path;
+        $url = self::getBaseUrl() . $path;
+        
+        // Log the generated asset URL
+        error_log("Asset URL generated: $url for path: $path");
+        
+        return $url;
     }
     
     /**

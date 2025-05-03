@@ -18,24 +18,24 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="<?= \App\Helpers\View::asset('css/styles.css') ?>">
     
     <!-- SEO Tags -->
     <meta property="og:title" content="<?= $pageTitle ?? 'Online Grocery Store' ?>">
     <meta property="og:description" content="<?= $metaDescription ?? 'Browse and order fresh vegetables and meats from our online grocery store.' ?>">
     <meta property="og:type" content="website">
     <meta property="og:url" content="<?= htmlspecialchars((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]") ?>">
-    <meta property="og:image" content="<?= htmlspecialchars((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]") ?>/images/grocery-store.jpg">
+    <meta property="og:image" content="<?= htmlspecialchars((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]") ?><?= \App\Helpers\View::asset('images/grocery-store.jpg') ?>">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="<?= $pageTitle ?? 'Online Grocery Store' ?>">
     <meta name="twitter:description" content="<?= $metaDescription ?? 'Browse and order fresh vegetables and meats from our online grocery store.' ?>">
-    <meta name="twitter:image" content="<?= htmlspecialchars((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]") ?>/images/grocery-store.jpg">
+    <meta name="twitter:image" content="<?= htmlspecialchars((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]") ?><?= \App\Helpers\View::asset('images/grocery-store.jpg') ?>">
     
     <!-- Favicon -->
-    <link rel="icon" href="/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <link rel="icon" href="<?= \App\Helpers\View::asset('favicon.ico') ?>">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?= \App\Helpers\View::asset('images/apple-touch-icon.png') ?>">
     
     <!-- CSRF Token for AJAX -->
     <meta name="csrf-token" content="<?= $_SESSION['csrf_token'] ?? '' ?>">
@@ -47,7 +47,7 @@
         "@type": "Organization",
         "name": "Grocery Store",
         "url": "<?= htmlspecialchars((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]") ?>",
-        "logo": "<?= htmlspecialchars((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]") ?>/images/logo.png",
+        "logo": "<?= htmlspecialchars((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]") ?><?= \App\Helpers\View::asset('images/logo.png') ?>",
         "description": "Browse and order fresh vegetables and meats from our online grocery store."
     }
     </script>
@@ -58,7 +58,7 @@
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">
                 <a href="home" class="text-decoration-none">
-                    <img src="images/logo.svg" alt="Grocery Store" height="40" class="d-inline-block align-top">
+                    <img src="<?= \App\Helpers\View::asset('images/logo.svg') ?>" alt="Grocery Store" height="40" class="d-inline-block align-top">
                 </a>
                 <nav>
                     <ul class="nav">
@@ -150,8 +150,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <!-- Custom JavaScript -->
-    <script src="assets/js/main.js"></script>
-    <script src="js/catalog.js"></script>
-    <script src="js/form-validation.js"></script>
+    <script src="<?= \App\Helpers\View::asset('assets/js/main.js') ?>"></script>
+    <script src="<?= \App\Helpers\View::asset('js/catalog.js') ?>"></script>
+    <script src="<?= \App\Helpers\View::asset('js/form-validation.js') ?>"></script>
 </body>
 </html> 

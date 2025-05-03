@@ -6,6 +6,62 @@ namespace App\Helpers;
 class View
 {
     /**
+     * Base URL for the application
+     * This will be calculated the first time it's needed
+     */
+    private static $baseUrl = null;
+    
+    /**
+     * Get the base URL for the application
+     * 
+     * @return string The base URL
+     */
+    public static function getBaseUrl(): string
+    {
+        if (self::$baseUrl === null) {
+            // Get the script path
+            $scriptPath = $_SERVER['SCRIPT_NAME'] ?? '';
+            
+            // For the teaching server environment
+            if (strpos($scriptPath, '/prin/') !== false) {
+                // Extract up to /public/ in the path
+                if (preg_match('|(.*?/public)|', $scriptPath, $matches)) {
+                    self::$baseUrl = $matches[1];
+                } else {
+                    // Fallback to script directory
+                    self::$baseUrl = dirname($scriptPath);
+                }
+            } else {
+                // Local development environment - just use relative base
+                self::$baseUrl = '';
+            }
+            
+            // Ensure base URL ends with a slash if it's not empty
+            if (!empty(self::$baseUrl) && substr(self::$baseUrl, -1) !== '/') {
+                self::$baseUrl .= '/';
+            }
+            
+            // Log the calculated base URL
+            error_log("View::getBaseUrl - Calculated base URL: " . self::$baseUrl);
+        }
+        
+        return self::$baseUrl;
+    }
+    
+    /**
+     * Generate a URL for an asset
+     * 
+     * @param string $path Relative path to the asset
+     * @return string Full URL to the asset
+     */
+    public static function asset(string $path): string
+    {
+        // Remove leading slash if present
+        $path = ltrim($path, '/');
+        return self::getBaseUrl() . $path;
+    }
+    
+    /**
      * Render a view with data
      *
      * @param string $template Path to template file

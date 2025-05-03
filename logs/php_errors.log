@@ -1,0 +1,66 @@
+[03-May-2025 02:11:21 UTC] Database connection attempt - Host: localhost, DB: grocery_store_dev, User: root
+[03-May-2025 02:11:21 UTC] Database connection successful
+[03-May-2025 02:11:21 UTC] View::render - Rendering template: home
+[03-May-2025 02:11:21 UTC] View::render - Rendering template: layout
+[03-May-2025 02:11:23 UTC] Database connection attempt - Host: localhost, DB: grocery_store_dev, User: root
+[03-May-2025 02:11:23 UTC] Database connection successful
+[03-May-2025 02:11:23 UTC] View::render - Rendering template: home
+[03-May-2025 02:11:23 UTC] View::render - Rendering template: layout
+[03-May-2025 02:11:25 UTC] Database connection attempt - Host: localhost, DB: grocery_store_dev, User: root
+[03-May-2025 02:11:25 UTC] Database connection successful
+[03-May-2025 02:11:25 UTC] View::render - Rendering template: browse
+[03-May-2025 02:11:25 UTC] View::render - Rendering template: layout
+[03-May-2025 02:11:27 UTC] Database connection attempt - Host: localhost, DB: grocery_store_dev, User: root
+[03-May-2025 02:11:27 UTC] Database connection successful
+[03-May-2025 02:11:27 UTC] View::render - Rendering template: browse
+[03-May-2025 02:11:27 UTC] View::render - Rendering template: layout
+[03-May-2025 02:11:30 UTC] Database connection attempt - Host: localhost, DB: grocery_store_dev, User: root
+[03-May-2025 02:11:30 UTC] Database connection successful
+[03-May-2025 02:11:30 UTC] View::render - Rendering template: home
+[03-May-2025 02:11:30 UTC] View::render - Rendering template: layout
+[03-May-2025 02:11:31 UTC] Database connection attempt - Host: localhost, DB: grocery_store_dev, User: root
+[03-May-2025 02:11:31 UTC] Database connection successful
+[03-May-2025 02:11:31 UTC] View::render - Rendering template: browse
+[03-May-2025 02:11:31 UTC] View::render - Rendering template: layout
+[03-May-2025 02:11:31 UTC] View::render - Rendering template: about
+[03-May-2025 02:11:31 UTC] View::render - Rendering template: layout
+[03-May-2025 02:11:33 UTC] Database connection attempt - Host: localhost, DB: grocery_store_dev, User: root
+[03-May-2025 02:11:33 UTC] Database connection successful
+[03-May-2025 02:11:33 UTC] View::render - Rendering template: my-orders
+[03-May-2025 02:11:33 UTC] View::render - Rendering template: layout
+[03-May-2025 02:11:35 UTC] Database connection attempt - Host: localhost, DB: grocery_store_dev, User: root
+[03-May-2025 02:11:35 UTC] Database connection successful
+[03-May-2025 02:11:35 UTC] View::render - Rendering template: home
+[03-May-2025 02:11:35 UTC] View::render - Rendering template: layout
+[03-May-2025 02:11:36 UTC] Database connection attempt - Host: localhost, DB: grocery_store_dev, User: root
+[03-May-2025 02:11:36 UTC] Database connection successful
+[03-May-2025 02:11:36 UTC] View::render - Rendering template: home
+[03-May-2025 02:11:36 UTC] View::render - Rendering template: layout
+[03-May-2025 02:11:43 UTC] Database connection attempt - Host: localhost, DB: grocery_store_dev, User: root
+[03-May-2025 02:11:43 UTC] Database connection successful
+[03-May-2025 02:11:43 UTC] View::render - Rendering template: browse
+[03-May-2025 02:11:43 UTC] View::render - Rendering template: layout
+[03-May-2025 02:11:49 UTC] Database connection attempt - Host: localhost, DB: grocery_store_dev, User: root
+[03-May-2025 02:11:49 UTC] Database connection successful
+[03-May-2025 02:11:49 UTC] View::render - Rendering template: checkout
+[03-May-2025 02:11:49 UTC] View::render - Rendering template: layout
+[03-May-2025 02:12:00 UTC] Database connection attempt - Host: localhost, DB: grocery_store_dev, User: root
+[03-May-2025 02:12:00 UTC] Database connection successful
+[03-May-2025 02:12:00 UTC] Database connection attempt - Host: localhost, DB: grocery_store_dev, User: root
+[03-May-2025 02:12:00 UTC] Database connection successful
+[03-May-2025 02:12:00 UTC] View::render - Rendering template: order-receipt
+[03-May-2025 02:12:00 UTC] View::render - Rendering template: layout
+[03-May-2025 02:12:03 UTC] Database connection attempt - Host: localhost, DB: grocery_store_dev, User: root
+[03-May-2025 02:12:03 UTC] Database connection successful
+[03-May-2025 02:12:03 UTC] Database connection attempt - Host: localhost, DB: grocery_store_dev, User: root
+[03-May-2025 02:12:03 UTC] Database connection successful
+[03-May-2025 02:12:03 UTC] View::render - Rendering template: order-receipt
+[03-May-2025 02:12:03 UTC] View::render - Rendering template: layout
+[03-May-2025 02:12:06 UTC] Database connection attempt - Host: localhost, DB: grocery_store_dev, User: root
+[03-May-2025 02:12:06 UTC] Database connection successful
+[03-May-2025 02:12:06 UTC] View::render - Rendering template: my-orders
+[03-May-2025 02:12:06 UTC] View::render - Rendering template: layout
+[03-May-2025 02:12:21 UTC] Database connection attempt - Host: localhost, DB: grocery_store_dev, User: root
+[03-May-2025 02:12:21 UTC] Database connection successful
+[03-May-2025 02:12:21 UTC] View::render - Rendering template: home
+[03-May-2025 02:12:21 UTC] View::render - Rendering template: layout

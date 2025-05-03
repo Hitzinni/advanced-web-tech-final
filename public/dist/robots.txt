@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /api/
+Disallow: /login
+Disallow: /register
+Sitemap: https://teach.scam.keele.ac.uk/~<username>/grocery/sitemap.xml

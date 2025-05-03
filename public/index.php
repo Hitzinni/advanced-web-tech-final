@@ -58,9 +58,18 @@ if (empty($route)) {
     // Remove query string if present
     $uriPath = parse_url($requestUri, PHP_URL_PATH);
     
-    // Remove leading slash and any reference to /public/
+    // Remove leading slash and any reference to the application path
     $cleanPath = ltrim($uriPath, '/');
-    $cleanPath = preg_replace('#^public(/index\.php)?/?#', '', $cleanPath);
+    
+    // More aggressive cleaning for teaching server environments
+    // This will remove any path segments before and including 'public'
+    if (strpos($cleanPath, 'public') !== false) {
+        $parts = explode('public', $cleanPath, 2);
+        $cleanPath = isset($parts[1]) ? ltrim($parts[1], '/') : '';
+    }
+    
+    // Also handle direct access to index.php
+    $cleanPath = preg_replace('#^index\.php/?#', '', $cleanPath);
     
     // If the path is empty, default to 'home'
     $route = $cleanPath ?: 'home';

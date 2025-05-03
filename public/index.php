@@ -24,9 +24,24 @@ function debug($data, $title = null) {
 if (isset($_GET['server_info'])) {
     echo '<h1>Server Information</h1>';
     debug($_SERVER, 'SERVER Variables');
-    debug(get_defined_constants(true)['user'], 'User Constants');
+    
+    // Check if user constants exist before trying to access them
+    $constants = get_defined_constants(true);
+    if (isset($constants['user'])) {
+        debug($constants['user'], 'User Constants');
+    } else {
+        debug([], 'No User Constants Defined');
+    }
+    
     debug(getcwd(), 'Current Directory');
-    debug(BASE_PATH, 'BASE_PATH Constant (if defined)');
+    
+    // Check if BASE_PATH is defined before trying to use it
+    if (defined('BASE_PATH')) {
+        debug(BASE_PATH, 'BASE_PATH Constant');
+    } else {
+        debug('Not defined', 'BASE_PATH Constant');
+    }
+    
     exit;
 }
 

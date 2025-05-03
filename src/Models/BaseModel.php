@@ -16,7 +16,7 @@ abstract class BaseModel
      * @var PDO The database connection instance. 
      * Accessible by child classes.
      */
-    protected PDO $db;
+    protected $db;
     
     /**
      * Constructor

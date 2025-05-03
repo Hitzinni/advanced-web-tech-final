@@ -21,7 +21,6 @@ class CartController
             $this->db = Database::getInstance();
             $this->cartModel = new CartModel($this->db);
             $this->productModel = new Product($this->db);
-            error_log("CartController::__construct - Successfully initialized with Database helper");
         } catch (\PDOException $e) {
             error_log("CartController::__construct - Database connection failed: " . $e->getMessage());
             throw new \PDOException($e->getMessage(), (int)$e->getCode());
@@ -34,96 +33,30 @@ class CartController
     public function viewCart(): void
     {
         try {
-            // DEBUG - Log the method being called
-            error_log("CartController::viewCart - Method called - " . date('Y-m-d H:i:s'));
-            
-            // Check if we're in debug mode
-            $isDebug = isset($_GET['debug']) && $_GET['debug'] === 'true';
-            $noTemplate = isset($_GET['no_template']) && $_GET['no_template'] === 'true';
-            
             // Initialize cart in session if it doesn't exist
             if (!isset($_SESSION['cart'])) {
-                error_log("CartController::viewCart - Cart not found in session, initializing");
                 $_SESSION['cart'] = [
                     'items' => [],
                     'total' => 0
                 ];
             }
             
-            // TEMPORARY: Add a sample product to cart if empty for debugging purposes
-            if (empty($_SESSION['cart']['items']) && ($isDebug || isset($_GET['add_sample']))) {
-                error_log("CartController::viewCart - Adding sample product for testing");
-                $_SESSION['cart']['items'][] = [
-                    'id' => 1,
-                    'name' => 'Sample Product',
-                    'price' => 19.99,
-                    'quantity' => 1,
-                    'category' => 'Vegetables'
-                ];
-                $_SESSION['cart']['total'] = 19.99;
-            }
-            
             // Get cart data from session
             $cartItems = $_SESSION['cart']['items'];
             $cartTotal = $_SESSION['cart']['total'];
             
-            // Log debug information
-            error_log("CartController::viewCart - Using session-based cart");
-            error_log("CartController::viewCart - Cart items count: " . count($cartItems));
-            error_log("CartController::viewCart - Cart total: " . $cartTotal);
-            
-            // If we're in no_template mode, just display the cart directly
-            if ($noTemplate) {
-                echo '<div style="max-width: 800px; margin: 0 auto; padding: 20px;">';
-                echo '<h1>Shopping Cart</h1>';
-                echo '<p>Your cart has ' . count($cartItems) . ' items with a total of $' . number_format($cartTotal, 2) . '</p>';
-                
-                // Show cart items in a basic format
-                if (!empty($cartItems)) {
-                    echo '<table style="width: 100%; border-collapse: collapse; margin-top: 20px;">';
-                    echo '<tr style="background-color: #e9ecef;"><th style="padding: 10px; text-align: left;">Product</th><th style="padding: 10px; text-align: right;">Price</th><th style="padding: 10px; text-align: right;">Quantity</th><th style="padding: 10px; text-align: right;">Total</th></tr>';
-                    
-                    foreach ($cartItems as $item) {
-                        $itemName = isset($item['name']) ? htmlspecialchars((string)$item['name']) : 'Unknown Product';
-                        $itemPrice = isset($item['price']) && is_numeric($item['price']) ? (float)$item['price'] : 0;
-                        $itemQuantity = isset($item['quantity']) && is_numeric($item['quantity']) ? (int)$item['quantity'] : 1;
-                        $itemTotal = $itemPrice * $itemQuantity;
-                        
-                        echo '<tr style="border-bottom: 1px solid #dee2e6;">';
-                        echo '<td style="padding: 10px;">' . $itemName . '</td>';
-                        echo '<td style="padding: 10px; text-align: right;">$' . number_format($itemPrice, 2) . '</td>';
-                        echo '<td style="padding: 10px; text-align: right;">' . $itemQuantity . '</td>';
-                        echo '<td style="padding: 10px; text-align: right;">$' . number_format($itemTotal, 2) . '</td>';
-                        echo '</tr>';
-                    }
-                    
-                    echo '<tr style="background-color: #e9ecef;"><td colspan="3" style="padding: 10px; text-align: right;"><strong>Total:</strong></td><td style="padding: 10px; text-align: right;"><strong>$' . number_format($cartTotal, 2) . '</strong></td></tr>';
-                    echo '</table>';
-                } else {
-                    echo '<p>Your cart is empty.</p>';
-                }
-                
-                echo '<p style="margin-top: 20px;"><a href="index.php" style="display: inline-block; padding: 10px 15px; background-color: #007bff; color: white; text-decoration: none; border-radius: 4px;">Back to Home</a></p>';
-                echo '</div>';
-                return;
-            }
-            
-            // Render the cart view using the enhanced View helper with better error handling
-            error_log("CartController::viewCart - About to render cart view");
+            // Render the cart view using the enhanced View helper
             View::output('cart', [
                 'pageTitle' => 'Shopping Cart | Online Grocery Store',
                 'metaDescription' => 'View your shopping cart and proceed to checkout.',
                 'cartItems' => $cartItems,
-                'cartTotal' => $cartTotal,
-                'isDebug' => $isDebug
+                'cartTotal' => $cartTotal
             ]);
-            
-            error_log("CartController::viewCart - View rendered successfully");
         } catch (\Throwable $e) {
             // Log the error
-            error_log('CartController::viewCart - Unhandled exception: ' . $e->getMessage() . ' - ' . $e->getTraceAsString());
+            error_log('CartController::viewCart - Error: ' . $e->getMessage());
             
-            // Instead of redirecting to cart_direct.php, show basic cart with error notice
+            // Show basic cart with error notice
             echo '<!DOCTYPE html>
             <html>
             <head>
@@ -147,8 +80,6 @@ class CartController
                 <div class="container">
                     <div class="alert">
                         <strong>Notice:</strong> The cart is displayed in basic mode due to a template error.
-                        <br>
-                        <small>Error: ' . htmlspecialchars($e->getMessage()) . '</small>
                     </div>
                     
                     <h1>Shopping Cart</h1>';
@@ -197,7 +128,6 @@ class CartController
                     
                     echo '<p>
                         <a href="index.php" class="btn">Back to Home</a>
-                        <a href="index.php?route=cart&no_template=true" class="btn">View Basic Cart</a>
                     </p>
                 </div>
             </body>

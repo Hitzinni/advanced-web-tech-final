@@ -11,9 +11,6 @@ if (!defined('BASE_PATH')) {
     exit;
 }
 
-// DEBUGGING - Basic indicator that this template is loading
-echo '<div class="alert alert-info">Cart template is loading. Debug time: ' . date('H:i:s') . '</div>';
-
 $itemCount = count($cartItems);
 
 // Use the View helper for all URLs
@@ -50,8 +47,6 @@ if (empty($cartItems)) {
     </div>
 <?php
 } else {
-    // Simple debug output for cart items
-    echo '<div class="alert alert-info">Cart has ' . count($cartItems) . ' items with total: $' . number_format($cartTotal, 2) . '</div>';
 ?>
     <!-- Cart Items -->
     <div class="row">

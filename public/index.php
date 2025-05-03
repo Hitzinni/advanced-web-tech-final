@@ -35,7 +35,7 @@ if (file_exists(BASE_PATH . '/.env')) {
 
 // Enable error reporting for development
 error_reporting(E_ALL);
-ini_set('display_errors', '1'); // Temporarily show errors to diagnose the issue
+ini_set('display_errors', '0'); // Don't display errors directly to users
 ini_set('log_errors', '1');     // Log errors instead
 
 // Make sure logs directory exists
@@ -71,6 +71,26 @@ set_exception_handler(function($exception) {
     echo '</div>';
     exit;
 });
+
+// Add a safe require function to better handle missing files
+function safeRequire($filePath) {
+    if (file_exists($filePath)) {
+        require_once $filePath;
+        return true;
+    } else {
+        echo '<div style="background: #f8d7da; color: #721c24; padding: 20px; margin: 20px; border-radius: 5px; font-family: sans-serif;">';
+        echo '<h1>Controller Not Found</h1>';
+        echo "<p>The file <code>$filePath</code> does not exist.</p>";
+        echo '<p>This could be due to:</p>';
+        echo '<ul>';
+        echo '<li>Case sensitivity issues in the file path</li>';
+        echo '<li>Missing controller files in your project</li>';
+        echo '<li>Directory permission issues</li>';
+        echo '</ul>';
+        echo '</div>';
+        return false;
+    }
+}
 
 // Get route from URL path or query string for backward compatibility
 $route = $_GET['route'] ?? '';
@@ -112,223 +132,234 @@ if (empty($_SESSION['csrf_token'])) {
 switch ($route) {
     case '':
     case 'home':
-        require_once BASE_PATH . '/src/controllers/HomeController.php';
-        $controller = new \App\Controllers\HomeController();
-        $controller->index();
+        if (safeRequire(BASE_PATH . '/src/Controllers/HomeController.php')) {
+            $controller = new \App\Controllers\HomeController();
+            $controller->index();
+        }
         break;
         
     case 'about':
     case 'about-us':
-        require_once BASE_PATH . '/src/controllers/AboutController.php';
-        $controller = new \App\Controllers\AboutController();
-        $controller->index();
+        if (safeRequire(BASE_PATH . '/src/Controllers/AboutController.php')) {
+            $controller = new \App\Controllers\AboutController();
+            $controller->index();
+        }
         break;
         
     case 'browse':
     case 'products':
-        require_once BASE_PATH . '/src/controllers/ProductController.php';
-        $controller = new \App\Controllers\ProductController();
-        $controller->browse();
+        if (safeRequire(BASE_PATH . '/src/Controllers/ProductController.php')) {
+            $controller = new \App\Controllers\ProductController();
+            $controller->browse();
+        }
         break;
         
     case 'product':
-        require_once BASE_PATH . '/src/controllers/ProductController.php';
-        $controller = new \App\Controllers\ProductController();
-        $controller->detail();
+        if (safeRequire(BASE_PATH . '/src/Controllers/ProductController.php')) {
+            $controller = new \App\Controllers\ProductController();
+            $controller->detail();
+        }
         break;
         
     case 'login':
-        require_once BASE_PATH . '/src/controllers/AuthController.php';
-        $controller = new \App\Controllers\AuthController();
-        $controller->loginForm();
+        if (safeRequire(BASE_PATH . '/src/Controllers/AuthController.php')) {
+            $controller = new \App\Controllers\AuthController();
+            $controller->loginForm();
+        }
         break;
         
     case 'login-post':
-        require_once BASE_PATH . '/src/controllers/AuthController.php';
-        $controller = new \App\Controllers\AuthController();
-        $controller->login();
+        if (safeRequire(BASE_PATH . '/src/Controllers/AuthController.php')) {
+            $controller = new \App\Controllers\AuthController();
+            $controller->login();
+        }
         break;
         
     case 'register':
-        require_once BASE_PATH . '/src/controllers/AuthController.php';
-        $controller = new \App\Controllers\AuthController();
-        $controller->registerForm();
+        if (safeRequire(BASE_PATH . '/src/Controllers/AuthController.php')) {
+            $controller = new \App\Controllers\AuthController();
+            $controller->registerForm();
+        }
         break;
         
     case 'register-post':
-        require_once BASE_PATH . '/src/controllers/AuthController.php';
-        $controller = new \App\Controllers\AuthController();
-        $controller->register();
+        if (safeRequire(BASE_PATH . '/src/Controllers/AuthController.php')) {
+            $controller = new \App\Controllers\AuthController();
+            $controller->register();
+        }
         break;
         
     case 'logout':
-        require_once BASE_PATH . '/src/controllers/AuthController.php';
-        $controller = new \App\Controllers\AuthController();
-        $controller->logout();
+        if (safeRequire(BASE_PATH . '/src/Controllers/AuthController.php')) {
+            $controller = new \App\Controllers\AuthController();
+            $controller->logout();
+        }
         break;
         
     case 'change-password':
-        require_once BASE_PATH . '/src/controllers/AuthController.php';
-        $controller = new \App\Controllers\AuthController();
-        $controller->changePasswordForm();
+        if (safeRequire(BASE_PATH . '/src/Controllers/AuthController.php')) {
+            $controller = new \App\Controllers\AuthController();
+            $controller->changePasswordForm();
+        }
         break;
         
     case 'process-password-change':
-        require_once BASE_PATH . '/src/controllers/AuthController.php';
-        $controller = new \App\Controllers\AuthController();
-        $controller->changePassword();
+        if (safeRequire(BASE_PATH . '/src/Controllers/AuthController.php')) {
+            $controller = new \App\Controllers\AuthController();
+            $controller->changePassword();
+        }
         break;
         
     case 'order':
-        require_once BASE_PATH . '/src/controllers/OrderController.php';
+        safeRequire(BASE_PATH . '/src/Controllers/OrderController.php');
         $controller = new \App\Controllers\OrderController();
         $controller->create();
         break;
         
     case 'order-receipt':
-        require_once BASE_PATH . '/src/controllers/OrderController.php';
+        safeRequire(BASE_PATH . '/src/Controllers/OrderController.php');
         $controller = new \App\Controllers\OrderController();
         $controller->show();
         break;
         
     case 'my-orders':
-        require_once BASE_PATH . '/src/controllers/OrderController.php';
+        safeRequire(BASE_PATH . '/src/Controllers/OrderController.php');
         $controller = new \App\Controllers\OrderController();
         $controller->myOrders();
         break;
         
     case 'update-order-status':
-        require_once BASE_PATH . '/src/controllers/OrderController.php';
+        safeRequire(BASE_PATH . '/src/Controllers/OrderController.php');
         $controller = new \App\Controllers\OrderController();
         $controller->updateStatus();
         break;
         
     // Cart routes
     case 'cart':
-        require_once BASE_PATH . '/src/controllers/CartController.php';
+        safeRequire(BASE_PATH . '/src/Controllers/CartController.php');
         $controller = new \App\Controllers\CartController();
         $controller->viewCart();
         break;
         
     case 'api/cart/add':
-        require_once BASE_PATH . '/src/controllers/CartController.php';
+        safeRequire(BASE_PATH . '/src/Controllers/CartController.php');
         $controller = new \App\Controllers\CartController();
         $controller->addToCart();
         break;
         
     case 'api/cart/update':
-        require_once BASE_PATH . '/src/controllers/CartController.php';
+        safeRequire(BASE_PATH . '/src/Controllers/CartController.php');
         $controller = new \App\Controllers\CartController();
         $controller->updateCartItem();
         break;
         
     case 'api/cart/remove':
-        require_once BASE_PATH . '/src/controllers/CartController.php';
+        safeRequire(BASE_PATH . '/src/Controllers/CartController.php');
         $controller = new \App\Controllers\CartController();
         $controller->removeCartItem();
         break;
         
     case 'api/cart/clear':
-        require_once BASE_PATH . '/src/controllers/CartController.php';
+        safeRequire(BASE_PATH . '/src/Controllers/CartController.php');
         $controller = new \App\Controllers\CartController();
         $controller->clearCart();
         break;
         
     case 'api/cart/count':
-        require_once BASE_PATH . '/src/controllers/CartController.php';
+        safeRequire(BASE_PATH . '/src/Controllers/CartController.php');
         $controller = new \App\Controllers\CartController();
         $controller->getCartCount();
         break;
         
     case 'checkout':
-        require_once BASE_PATH . '/src/controllers/OrderController.php';
+        safeRequire(BASE_PATH . '/src/Controllers/OrderController.php');
         $controller = new \App\Controllers\OrderController();
         $controller->checkout();
         break;
         
     case 'process-checkout':
-        require_once BASE_PATH . '/src/controllers/OrderController.php';
+        safeRequire(BASE_PATH . '/src/Controllers/OrderController.php');
         $controller = new \App\Controllers\OrderController();
         $controller->processCheckout();
         break;
         
     case 'api/categories':
-        require_once BASE_PATH . '/src/controllers/ApiController.php';
+        safeRequire(BASE_PATH . '/src/Controllers/ApiController.php');
         $controller = new \App\Controllers\ApiController();
         $controller->categories();
         break;
         
     case 'api/products':
-        require_once BASE_PATH . '/src/controllers/ApiController.php';
+        safeRequire(BASE_PATH . '/src/Controllers/ApiController.php');
         $controller = new \App\Controllers\ApiController();
         $controller->products();
         break;
         
     case 'api/captcha':
-        require_once BASE_PATH . '/src/controllers/CaptchaController.php';
+        safeRequire(BASE_PATH . '/src/Controllers/CaptchaController.php');
         $controller = new \App\Controllers\CaptchaController();
         $controller->generate();
         break;
         
     case 'api/orders':
-        require_once BASE_PATH . '/src/controllers/ManagerController.php';
+        safeRequire(BASE_PATH . '/src/Controllers/ManagerController.php');
         $controller = new \App\Controllers\ManagerController();
         $controller->show();
         break;
         
     // Manager routes
     case 'manager-users':
-        require_once BASE_PATH . '/src/controllers/ManagerController.php';
+        safeRequire(BASE_PATH . '/src/Controllers/ManagerController.php');
         $controller = new \App\Controllers\ManagerController();
         $controller->users();
         break;
         
     case 'manager-orders':
-        require_once BASE_PATH . '/src/controllers/ManagerController.php';
+        safeRequire(BASE_PATH . '/src/Controllers/ManagerController.php');
         $controller = new \App\Controllers\ManagerController();
         $controller->orders();
         break;
         
     case 'update-user-role':
-        require_once BASE_PATH . '/src/controllers/ManagerController.php';
+        safeRequire(BASE_PATH . '/src/Controllers/ManagerController.php');
         $controller = new \App\Controllers\ManagerController();
         $controller->updateUserRole();
         break;
         
     case 'delete-user':
-        require_once BASE_PATH . '/src/controllers/ManagerController.php';
+        safeRequire(BASE_PATH . '/src/Controllers/ManagerController.php');
         $controller = new \App\Controllers\ManagerController();
         $controller->deleteUser();
         break;
         
     case 'reset-user-password':
-        require_once BASE_PATH . '/src/controllers/ManagerController.php';
+        safeRequire(BASE_PATH . '/src/Controllers/ManagerController.php');
         $controller = new \App\Controllers\ManagerController();
         $controller->resetUserPassword();
         break;
         
     // Review routes
     case 'review':
-        require_once BASE_PATH . '/src/controllers/ReviewController.php';
+        safeRequire(BASE_PATH . '/src/Controllers/ReviewController.php');
         $controller = new \App\Controllers\ReviewController();
         $controller->showReviewForm();
         break;
         
     case 'review-submit':
-        require_once BASE_PATH . '/src/controllers/ReviewController.php';
+        safeRequire(BASE_PATH . '/src/Controllers/ReviewController.php');
         $controller = new \App\Controllers\ReviewController();
         $controller->submitReview();
         break;
         
     case 'review-delete':
-        require_once BASE_PATH . '/src/controllers/ReviewController.php';
+        safeRequire(BASE_PATH . '/src/Controllers/ReviewController.php');
         $controller = new \App\Controllers\ReviewController();
         $controller->deleteReview();
         break;
         
     // Newsletter route
     case 'newsletter-subscribe':
-        require_once BASE_PATH . '/src/controllers/NewsletterController.php';
+        safeRequire(BASE_PATH . '/src/Controllers/NewsletterController.php');
         $controller = new \App\Controllers\NewsletterController();
         $controller->subscribe();
         break;
@@ -346,10 +377,19 @@ switch ($route) {
         
         // Show 404 page with the View helper
         http_response_code(404);
-        require_once BASE_PATH . '/src/Helpers/View.php';
-        require_once BASE_PATH . '/src/controllers/ErrorController.php';
+        $viewLoaded = safeRequire(BASE_PATH . '/src/Helpers/View.php');
+        $errorControllerLoaded = safeRequire(BASE_PATH . '/src/Controllers/ErrorController.php');
         
-        $controller = new \App\Controllers\ErrorController();
-        $controller->notFound();
+        if ($viewLoaded && $errorControllerLoaded) {
+            $controller = new \App\Controllers\ErrorController();
+            $controller->notFound();
+        } else {
+            // Fallback error message if View or ErrorController can't be loaded
+            echo '<div style="background: #f8d7da; color: #721c24; padding: 20px; margin: 20px; border-radius: 5px; font-family: sans-serif;">';
+            echo '<h1>Page Not Found</h1>';
+            echo '<p>The requested page could not be found, and error handling components are missing.</p>';
+            echo '<p><a href="home" style="color: #721c24;">Return to Home</a></p>';
+            echo '</div>';
+        }
         break;
 } 

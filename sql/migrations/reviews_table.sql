@@ -1,5 +1,5 @@
 -- Add reviews table
-USE `grocery_store_dev`;
+USE `x8m18`;
 
 -- REVIEWS table
 DROP TABLE IF EXISTS `review`;

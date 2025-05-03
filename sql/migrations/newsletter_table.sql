@@ -1,5 +1,5 @@
 -- Add newsletter subscribers table
-USE `grocery_store_dev`;
+USE `x8m18`;
 
 -- NEWSLETTER_SUBSCRIBERS table
 DROP TABLE IF EXISTS `newsletter_subscribers`;

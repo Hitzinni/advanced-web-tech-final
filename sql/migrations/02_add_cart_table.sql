@@ -1,5 +1,5 @@
 -- Add cart tables
-USE `grocery_store_dev`;
+USE `x8m18`;
 
 -- CART table
 CREATE TABLE IF NOT EXISTS `cart` (

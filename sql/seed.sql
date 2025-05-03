@@ -1,4 +1,4 @@
-USE `grocery_store_dev`;
+USE `x8m18`;
 
 START TRANSACTION;
 

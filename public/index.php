@@ -1,6 +1,35 @@
 <?php
 declare(strict_types=1);
 
+// ENHANCED DEBUG MODE
+// This will show critical server information and PHP errors
+ini_set('display_errors', '1');
+error_reporting(E_ALL);
+
+// Debug output function
+function debug($data, $title = null) {
+    echo '<div style="background: #f0f8ff; border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 5px; font-family: monospace;">';
+    if ($title) {
+        echo "<h3>$title</h3>";
+    }
+    if (is_array($data) || is_object($data)) {
+        echo '<pre>' . print_r($data, true) . '</pre>';
+    } else {
+        echo '<pre>' . htmlspecialchars((string)$data) . '</pre>';
+    }
+    echo '</div>';
+}
+
+// Always show basic debug information if ?server_info is in URL
+if (isset($_GET['server_info'])) {
+    echo '<h1>Server Information</h1>';
+    debug($_SERVER, 'SERVER Variables');
+    debug(get_defined_constants(true)['user'], 'User Constants');
+    debug(getcwd(), 'Current Directory');
+    debug(BASE_PATH, 'BASE_PATH Constant (if defined)');
+    exit;
+}
+
 // DEBUG MODE - Remove this in production
 // This will help identify why we're getting a 500 error
 // Diagnostic information
@@ -33,11 +62,6 @@ if (file_exists(BASE_PATH . '/.env')) {
 // For debugging - uncomment to see the current route
 // echo "<pre>REQUEST_URI: " . $_SERVER['REQUEST_URI'] . "</pre>";
 
-// Enable error reporting for development
-error_reporting(E_ALL);
-ini_set('display_errors', '0'); // Don't display errors directly to users
-ini_set('log_errors', '1');     // Log errors instead
-
 // Make sure logs directory exists
 $logsDir = BASE_PATH . '/logs';
 if (!is_dir($logsDir)) {
@@ -59,18 +83,44 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
 
 // Set up exception handler
 set_exception_handler(function($exception) {
-    error_log("Uncaught Exception: " . $exception->getMessage() . " in " . $exception->getFile() . " on line " . $exception->getLine());
-    error_log($exception->getTraceAsString());
+    $message = $exception->getMessage();
+    $file = $exception->getFile();
+    $line = $exception->getLine();
+    $trace = $exception->getTraceAsString();
     
-    // Display a friendly error page
+    // Log detailed exception info
+    error_log("Uncaught Exception: $message in $file on line $line");
+    error_log("Stack trace: $trace");
+    
+    // Display a user-friendly error page
     http_response_code(500);
-    echo '<div style="background: #f8d7da; color: #721c24; padding: 20px; margin: 20px; border-radius: 5px; font-family: sans-serif;">';
-    echo '<h1>Sorry, something went wrong.</h1>';
-    echo '<p>We encountered an error while processing your request. Please try again later.</p>';
-    echo '<p><a href="home" style="color: #721c24;">Return to Home</a></p>';
-    echo '</div>';
+    
+    // If we're in debug mode, show detailed error
+    if (isset($_GET['debug']) && $_GET['debug'] === 'exceptions') {
+        echo '<div style="background: #f8d7da; color: #721c24; padding: 20px; margin: 20px; border-radius: 5px; font-family: sans-serif;">';
+        echo '<h1>Application Error</h1>';
+        echo "<p><strong>Exception:</strong> " . htmlspecialchars($message) . "</p>";
+        echo "<p><strong>File:</strong> " . htmlspecialchars($file) . "</p>";
+        echo "<p><strong>Line:</strong> $line</p>";
+        echo "<p><strong>Stack Trace:</strong></p>";
+        echo "<pre>" . htmlspecialchars($trace) . "</pre>";
+        echo '</div>';
+    } else {
+        // User-friendly error page
+        echo '<div style="background: #f8d7da; color: #721c24; padding: 20px; margin: 20px; border-radius: 5px; font-family: sans-serif;">';
+        echo '<h1>Sorry, something went wrong.</h1>';
+        echo '<p>We encountered an error while processing your request. Please try again later.</p>';
+        echo '<p><a href="home" style="color: #721c24;">Return to Home</a></p>';
+        echo '<p><small>Add ?debug=exceptions to the URL to see error details</small></p>';
+        echo '</div>';
+    }
     exit;
 });
+
+// Helper function to check if a namespace\class exists
+function classExists($className) {
+    return class_exists($className, false);
+}
 
 // Add a safe require function to better handle missing files
 function safeRequire($filePath) {
@@ -78,15 +128,41 @@ function safeRequire($filePath) {
         require_once $filePath;
         return true;
     } else {
+        // Generate a more helpful error message
+        $errorMsg = "File not found: $filePath";
+        
+        // Check if the directory exists but not the file
+        $dir = dirname($filePath);
+        if (is_dir($dir)) {
+            $errorMsg .= "\nDirectory exists, but file is missing. Check file name case.";
+            // List files in the directory to help debugging
+            $files = scandir($dir);
+            $errorMsg .= "\nFiles in directory:\n" . implode("\n", $files);
+        } else {
+            $errorMsg .= "\nDirectory does not exist: $dir";
+        }
+        
+        // Log the error
+        error_log($errorMsg);
+        
+        // Display error in browser
         echo '<div style="background: #f8d7da; color: #721c24; padding: 20px; margin: 20px; border-radius: 5px; font-family: sans-serif;">';
         echo '<h1>Controller Not Found</h1>';
         echo "<p>The file <code>$filePath</code> does not exist.</p>";
+        echo "<p>Current working directory: <code>" . getcwd() . "</code></p>";
+        echo "<p>BASE_PATH: <code>" . BASE_PATH . "</code></p>";
         echo '<p>This could be due to:</p>';
         echo '<ul>';
         echo '<li>Case sensitivity issues in the file path</li>';
         echo '<li>Missing controller files in your project</li>';
         echo '<li>Directory permission issues</li>';
         echo '</ul>';
+        
+        if (isset($_GET['debug']) && $_GET['debug'] === 'files') {
+            echo '<h3>Directory Details:</h3>';
+            echo '<pre>' . htmlspecialchars($errorMsg) . '</pre>';
+        }
+        
         echo '</div>';
         return false;
     }
@@ -98,26 +174,50 @@ $route = $_GET['route'] ?? '';
 // If no route provided in the query string, try to get it from the URL path
 if (empty($route)) {
     // Get the request URI
-    $requestUri = $_SERVER['REQUEST_URI'];
+    $requestUri = $_SERVER['REQUEST_URI'] ?? '';
+    
+    // Debug the raw request URI if debug parameter is set
+    if (isset($_GET['debug'])) {
+        debug($requestUri, 'Raw Request URI');
+    }
     
     // Remove query string if present
     $uriPath = parse_url($requestUri, PHP_URL_PATH);
     
-    // Remove leading slash and any reference to the application path
-    $cleanPath = ltrim($uriPath, '/');
+    // On the teaching server, the path might include the full directory structure
+    // like /prin/x8m18/advanced-web-tech-final/public/
+    // We need to extract just the part after "public/"
     
-    // More aggressive cleaning for teaching server environments
-    // This will remove any path segments before and including 'public'
-    if (strpos($cleanPath, 'public') !== false) {
-        $parts = explode('public', $cleanPath, 2);
-        $cleanPath = isset($parts[1]) ? ltrim($parts[1], '/') : '';
+    // First, lowercase for easier matching
+    $lowercasePath = strtolower($uriPath);
+    
+    // Look for the public directory in the path
+    if (strpos($lowercasePath, 'public') !== false) {
+        // Find the position of 'public' in the path
+        $publicPos = strpos($lowercasePath, 'public');
+        // Get everything after 'public/' (adding 7 to skip over 'public/')
+        $afterPublic = substr($uriPath, $publicPos + 7);
+        $cleanPath = trim($afterPublic, '/');
+    } else {
+        // Not in public directory or public is not in path
+        $cleanPath = trim($uriPath, '/');
     }
     
     // Also handle direct access to index.php
     $cleanPath = preg_replace('#^index\.php/?#', '', $cleanPath);
     
+    // Debug processed path if debug parameter is set
+    if (isset($_GET['debug'])) {
+        debug($cleanPath, 'Processed Route Path');
+    }
+    
     // If the path is empty, default to 'home'
     $route = $cleanPath ?: 'home';
+}
+
+// Debug final route if debug parameter is set
+if (isset($_GET['debug'])) {
+    debug($route, 'Final Route');
 }
 
 // Display for debugging - uncomment if needed

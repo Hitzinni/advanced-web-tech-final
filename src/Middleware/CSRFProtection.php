@@ -16,7 +16,7 @@ class CSRFProtection
      * @param string|null $token The token submitted by the user (e.g., from a form).
      * @return bool True if the provided token is not null, the session token exists, and they match. False otherwise.
      */
-    public static function verifyToken(?string $token): bool
+    public static function verifyToken($token): bool
     {
         // Retrieve the CSRF token stored in the session, default to empty string if not set.
         $sessionToken = $_SESSION['csrf_token'] ?? '';

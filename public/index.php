@@ -1,6 +1,21 @@
 <?php
 declare(strict_types=1);
 
+// DEBUG MODE - Remove this in production
+// This will help identify why we're getting a 500 error
+// Diagnostic information
+if (isset($_GET['debug']) && $_GET['debug'] === 'info') {
+    header('Content-Type: text/plain');
+    echo "PHP Version: " . phpversion() . "\n";
+    echo "Server Software: " . $_SERVER['SERVER_SOFTWARE'] . "\n";
+    echo "Document Root: " . $_SERVER['DOCUMENT_ROOT'] . "\n";
+    echo "REQUEST_URI: " . $_SERVER['REQUEST_URI'] . "\n";
+    echo "Script Name: " . $_SERVER['SCRIPT_NAME'] . "\n";
+    echo "Script Filename: " . $_SERVER['SCRIPT_FILENAME'] . "\n";
+    echo "Current Directory: " . getcwd() . "\n";
+    exit;
+}
+
 session_start();
 
 // Define base path
@@ -20,9 +35,19 @@ if (file_exists(BASE_PATH . '/.env')) {
 
 // Enable error reporting for development
 error_reporting(E_ALL);
-ini_set('display_errors', '0'); // Don't display errors directly to users
+ini_set('display_errors', '1'); // Temporarily show errors to diagnose the issue
 ini_set('log_errors', '1');     // Log errors instead
-ini_set('error_log', BASE_PATH . '/logs/php_errors.log'); // Set a custom error log
+
+// Make sure logs directory exists
+$logsDir = BASE_PATH . '/logs';
+if (!is_dir($logsDir)) {
+    // Try to create the directory if it doesn't exist
+    if (!mkdir($logsDir, 0755, true)) {
+        // If we can't create it, use the system's temp directory
+        $logsDir = sys_get_temp_dir();
+    }
+}
+ini_set('error_log', $logsDir . '/php_errors.log'); // Set a custom error log
 
 // Set up custom error handler
 set_error_handler(function($errno, $errstr, $errfile, $errline) {

@@ -8,16 +8,8 @@ use PDOException;
 
 class Database
 {
-    /**
-     * @var PDO|null The PDO instance
-     */
-    private static $instance = null;
+    private static ?PDO $instance = null;
     
-    /**
-     * Get the PDO instance
-     *
-     * @return PDO The database connection
-     */
     public static function getInstance(): PDO
     {
         if (self::$instance === null) {

@@ -8,7 +8,7 @@ use App\Helpers\Validators;
 
 class ApiController
 {
-    private Product $productModel;
+    private $productModel;
     
     public function __construct()
     {

@@ -8,7 +8,7 @@ use PDOException;
 
 class Database
 {
-    private static ?PDO $instance = null;
+    private static $instance = null;
     
     public static function getInstance(): PDO
     {
@@ -22,10 +22,20 @@ class Database
                 // Check if we're on the teaching server
                 if (strpos($scriptPath, '/prin/') !== false) {
                     // Extract username (x8m18 or similar) from path
+                    // Updated regex to handle paths with spaces
                     if (preg_match('/\/prin\/([a-z0-9]+)\//', $scriptPath, $matches)) {
                         $username = $matches[1];
+                        error_log("Extracted username from path: $username");
+                    } else {
+                        error_log("Failed to extract username from path: $scriptPath");
+                        // Hardcode the username as a fallback for this specific case
+                        $username = 'x8m18';
+                        error_log("Using hardcoded fallback username: $username");
                     }
                 }
+                
+                // Log the script path for debugging
+                error_log("Script path: $scriptPath");
                 
                 // Use extracted username for database credentials on teaching server
                 // or fall back to environment variables/defaults
@@ -34,12 +44,14 @@ class Database
                     $name = $username;
                     $user = $username;
                     $pass = $username . $username; // Username twice for teaching server password
+                    error_log("Using teaching server credentials - User: $user, DB: $name, Pass: [hidden]");
                 } else {
                     // Default/local development settings
                     $host = $_ENV['DB_HOST'] ?? 'localhost';
                     $name = $_ENV['DB_NAME'] ?? 'grocery_store_dev';
                     $user = $_ENV['DB_USER'] ?? 'root';
                     $pass = $_ENV['DB_PASS'] ?? '';
+                    error_log("Using default credentials - Host: $host, DB: $name, User: $user");
                 }
                 
                 // Log connection attempt

@@ -18,7 +18,7 @@ class AuthMiddleware
         }
     }
     
-    public static function getUserId(): ?int
+    public static function getUserId()
     {
         return isset($_SESSION['user_id']) ? (int)$_SESSION['user_id'] : null;
     }

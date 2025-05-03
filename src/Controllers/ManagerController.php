@@ -7,9 +7,9 @@ use App\Models\Order;
 
 class ManagerController
 {
-    private Order $orderModel;
-    private string $token;
-    private \PDO $db;
+    private $orderModel;
+    private $token;
+    private $db;
     
     public function __construct()
     {

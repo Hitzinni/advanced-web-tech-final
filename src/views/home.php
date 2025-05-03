@@ -10,11 +10,11 @@
                         <h1 class="display-5 fw-bold text-white mb-3">Fresh Groceries, <br>Delivered Daily</h1>
                         <p class="lead text-white-50 mb-4">Farm-fresh produce and premium meats delivered to your doorstep</p>
                         <div class="d-flex flex-wrap gap-2">
-                            <a href="products" class="btn btn-light px-4 py-2 fw-medium">Shop Now</a>
+                            <a href="<?= \App\Helpers\View::url('products') ?>" class="btn btn-light px-4 py-2 fw-medium">Shop Now</a>
                             <?php if (!isset($_SESSION['user_id'])): ?>
-                            <a href="register" class="btn btn-outline-light px-4 py-2">Join Now</a>
+                            <a href="<?= \App\Helpers\View::url('register') ?>" class="btn btn-outline-light px-4 py-2">Join Now</a>
                             <?php else: ?>
-                            <a href="order-receipt" class="btn btn-outline-light px-4 py-2">My Orders</a>
+                            <a href="<?= \App\Helpers\View::url('order-receipt') ?>" class="btn btn-outline-light px-4 py-2">My Orders</a>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -23,7 +23,7 @@
             
             <!-- Right Image Side -->
             <div class="col-lg-7 d-none d-lg-block">
-                <div class="hero-image position-relative h-100" style="background-image: url('images/hero-grocery.jpg'); background-size: cover; background-position: center; height: 380px;">
+                <div class="hero-image position-relative h-100" style="background-image: url('<?= \App\Helpers\View::asset('images/vegetables-category.jpg') ?>'); background-size: cover; background-position: center; height: 380px;">
                     <!-- Special Promotion Badge (positioned to completely fill right side) -->
                     <div class="position-absolute" style="top: 0; right: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
                         <div class="promo-badge bg-white text-dark rounded-3 p-4 shadow-lg" style="border: 4px solid #3498db; width: 95%; height: 95%; display: flex; flex-direction: column; justify-content: center;">
@@ -37,13 +37,13 @@
                                     <div class="d-flex flex-column">
                                         <!-- Food images stack -->
                                         <div class="d-flex mb-4 justify-content-center">
-                                            <img src="images/vegetables-category.jpg" alt="Vegetables" class="img-fluid rounded-3 me-3" 
+                                            <img src="<?= \App\Helpers\View::asset('images/vegetables-category.jpg') ?>" alt="Vegetables" class="img-fluid rounded-3 me-3" 
                                                  style="width: 140px; height: 140px; object-fit: cover; border: 4px solid #28a745; box-shadow: 0 8px 16px rgba(0,0,0,0.15);">
-                                            <img src="images/fruits-category.jpg" alt="Fruits" class="img-fluid rounded-3" 
+                                            <img src="<?= \App\Helpers\View::asset('images/fruits-category.jpg') ?>" alt="Fruits" class="img-fluid rounded-3" 
                                                  style="width: 140px; height: 140px; object-fit: cover; border: 4px solid #fd7e14; box-shadow: 0 8px 16px rgba(0,0,0,0.15);">
                                         </div>
                                         <div class="d-flex justify-content-center">
-                                            <img src="images/meat-category.jpg" alt="Meat" class="img-fluid rounded-3" 
+                                            <img src="<?= \App\Helpers\View::asset('images/meat-category.jpg') ?>" alt="Meat" class="img-fluid rounded-3" 
                                                  style="width: 290px; height: 140px; object-fit: cover; border: 4px solid #dc3545; box-shadow: 0 8px 16px rgba(0,0,0,0.15);">
                                         </div>
                                     </div>
@@ -125,51 +125,51 @@
     <div class="row g-4">
         <div class="col-md-6 col-lg-4 mb-4">
             <div class="category-card position-relative rounded overflow-hidden shadow">
-                <img src="images/vegetables-category.jpg" class="img-fluid category-img w-100" alt="Vegetables">
+                <img src="<?= \App\Helpers\View::asset('images/vegetables-category.jpg') ?>" class="img-fluid category-img w-100" alt="Vegetables">
                 <div class="category-overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end p-4 text-white" style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);">
                     <h3 class="h4 mb-2">Fresh Vegetables</h3>
                     <p class="mb-3">Locally-sourced and organic options</p>
-                    <a href="products?category=Vegetables" class="btn btn-sm btn-success stretched-link">Shop Vegetables</a>
+                    <a href="<?= \App\Helpers\View::url('products', ['category' => 'Vegetables']) ?>" class="btn btn-sm btn-success stretched-link">Shop Vegetables</a>
                 </div>
             </div>
         </div>
         <div class="col-md-6 col-lg-4 mb-4">
             <div class="category-card position-relative rounded overflow-hidden shadow">
-                <img src="images/fruits-category.jpg" class="img-fluid category-img w-100" alt="Fruits">
+                <img src="<?= \App\Helpers\View::asset('images/fruits-category.jpg') ?>" class="img-fluid category-img w-100" alt="Fruits">
                 <div class="category-overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end p-4 text-white" style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);">
                     <h3 class="h4 mb-2">Fresh Fruits</h3>
                     <p class="mb-3">Sweet and juicy seasonal fruits</p>
-                    <a href="products?category=Fruits" class="btn btn-sm btn-success stretched-link">Shop Fruits</a>
+                    <a href="<?= \App\Helpers\View::url('products', ['category' => 'Fruits']) ?>" class="btn btn-sm btn-success stretched-link">Shop Fruits</a>
                 </div>
             </div>
         </div>
         <div class="col-md-6 col-lg-4 mb-4">
             <div class="category-card position-relative rounded overflow-hidden shadow">
-                <img src="images/meat-category.jpg" class="img-fluid category-img w-100" alt="Quality Meats">
+                <img src="<?= \App\Helpers\View::asset('images/meat-category.jpg') ?>" class="img-fluid category-img w-100" alt="Quality Meats">
                 <div class="category-overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end p-4 text-white" style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);">
                     <h3 class="h4 mb-2">Quality Meats</h3>
                     <p class="mb-3">Premium cuts and selections</p>
-                    <a href="products?category=Meat" class="btn btn-sm btn-success stretched-link">Shop Meats</a>
+                    <a href="<?= \App\Helpers\View::url('products', ['category' => 'Meat']) ?>" class="btn btn-sm btn-success stretched-link">Shop Meats</a>
                 </div>
             </div>
         </div>
         <div class="col-md-6 col-lg-4 mb-4">
             <div class="category-card position-relative rounded overflow-hidden shadow">
-                <img src="images/bakery-category.jpg" class="img-fluid category-img w-100" alt="Bakery">
+                <img src="<?= \App\Helpers\View::asset('images/bakery-category.jpg') ?>" class="img-fluid category-img w-100" alt="Bakery">
                 <div class="category-overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end p-4 text-white" style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);">
                     <h3 class="h4 mb-2">Fresh Bakery</h3>
                     <p class="mb-3">Freshly baked bread and pastries</p>
-                    <a href="products?category=Bakery" class="btn btn-sm btn-success stretched-link">Shop Bakery</a>
+                    <a href="<?= \App\Helpers\View::url('products', ['category' => 'Bakery']) ?>" class="btn btn-sm btn-success stretched-link">Shop Bakery</a>
                 </div>
             </div>
         </div>
         <div class="col-md-6 col-lg-4 mb-4">
             <div class="category-card position-relative rounded overflow-hidden shadow">
-                <img src="images/dairy-category.jpg" class="img-fluid category-img w-100" alt="Dairy Products">
+                <img src="<?= \App\Helpers\View::asset('images/dairy-category.jpg') ?>" class="img-fluid category-img w-100" alt="Dairy Products">
                 <div class="category-overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end p-4 text-white" style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);">
                     <h3 class="h4 mb-2">Dairy Products</h3>
                     <p class="mb-3">Fresh milk, cheese, and more</p>
-                    <a href="products?category=Dairy" class="btn btn-sm btn-success stretched-link">Shop Dairy</a>
+                    <a href="<?= \App\Helpers\View::url('products', ['category' => 'Dairy']) ?>" class="btn btn-sm btn-success stretched-link">Shop Dairy</a>
                 </div>
             </div>
         </div>
@@ -203,7 +203,7 @@
                                     <span class="badge bg-danger">Hot Deal</span>
                                 </div>
                                 <p class="card-text">Get 25% off on all fresh vegetables this weekend! Stock up on nutritious produce for the week ahead.</p>
-                                <a href="products?category=Vegetables" class="btn btn-outline-success">Shop Now</a>
+                                <a href="<?= \App\Helpers\View::url('products', ['category' => 'Vegetables']) ?>" class="btn btn-outline-success">Shop Now</a>
                             </div>
                         </div>
                     </div>
@@ -226,9 +226,9 @@
                                 </div>
                                 <p class="card-text">New to our store? Enjoy 10% off your first order when you create an account today!</p>
                                 <?php if (!isset($_SESSION['user_id'])): ?>
-                                <a href="register" class="btn btn-outline-danger">Sign Up</a>
+                                <a href="<?= \App\Helpers\View::url('register') ?>" class="btn btn-outline-danger">Sign Up</a>
                                 <?php else: ?>
-                                <a href="products" class="btn btn-outline-danger">Browse Products</a>
+                                <a href="<?= \App\Helpers\View::url('products') ?>" class="btn btn-outline-danger">Browse Products</a>
                                 <?php endif; ?>
                             </div>
                         </div>
@@ -246,7 +246,7 @@
             <h2 class="section-title position-relative pb-2 mb-4">What Our Customers Say</h2>
             <?php if (isset($_SESSION['user_id'])): ?>
                 <div class="mb-4">
-                    <a href="/review" class="btn btn-outline-primary btn-sm">
+                    <a href="<?= \App\Helpers\View::url('review') ?>" class="btn btn-outline-primary btn-sm">
                         <i class="bi bi-pencil-square me-1"></i>Write a Review
                     </a>
                 </div>
@@ -285,9 +285,9 @@
                 <div class="p-4 bg-light rounded">
                     <p class="mb-0">No reviews yet. Be the first to share your experience!</p>
                     <?php if (isset($_SESSION['user_id'])): ?>
-                        <a href="/review" class="btn btn-primary mt-3">Write a Review</a>
+                        <a href="<?= \App\Helpers\View::url('review') ?>" class="btn btn-primary mt-3">Write a Review</a>
                     <?php else: ?>
-                        <a href="/login" class="btn btn-primary mt-3">Login to Write a Review</a>
+                        <a href="<?= \App\Helpers\View::url('login') ?>" class="btn btn-primary mt-3">Login to Write a Review</a>
                     <?php endif; ?>
                 </div>
             </div>
@@ -317,7 +317,7 @@
                         <?php unset($_SESSION['newsletter_error']); ?>
                     </div>
                 <?php else: ?>
-                    <form action="/newsletter-subscribe" method="post" class="d-flex flex-column flex-sm-row gap-2">
+                    <form action="<?= \App\Helpers\View::url('newsletter-subscribe') ?>" method="post" class="d-flex flex-column flex-sm-row gap-2">
                         <input type="email" name="email" class="form-control form-control-lg" placeholder="Your Email Address" required>
                         <button type="submit" class="btn btn-light btn-lg px-4">
                             <i class="bi bi-envelope-check me-2"></i>Subscribe

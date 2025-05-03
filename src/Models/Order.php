@@ -112,7 +112,7 @@ class Order extends BaseModel
      * @param int $id The ID of the order to retrieve.
      * @return array|null An associative array of the order data (with items if new format), or null if not found.
      */
-    public function getById(int $id): ?array
+    public function getById(int $id)
     {
         try {
             // Attempt to find the order in the new `orders` table first
@@ -174,7 +174,7 @@ class Order extends BaseModel
      * @param int $id The ID of the legacy order.
      * @return array|null Detailed order information or null if not found.
      */
-    public function getDetailedById(int $id): ?array
+    public function getDetailedById(int $id)
     {
         // SQL query to get detailed info for a specific legacy order
         $sql = "SELECT 

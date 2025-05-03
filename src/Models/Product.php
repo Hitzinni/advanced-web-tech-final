@@ -58,7 +58,7 @@ class Product extends BaseModel
      * @param int $id The ID of the product to retrieve.
      * @return array|null An associative array of the product data if found, otherwise null.
      */
-    public function getById(int $id): ?array
+    public function getById(int $id)
     {
         // SQL query to select a product by its primary key ID
         $sql = "SELECT * FROM product WHERE id = ? LIMIT 1";

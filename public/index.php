@@ -200,11 +200,17 @@ if (empty($route)) {
     $uriPath = parse_url($requestUri, PHP_URL_PATH);
     
     // On the teaching server, the path might include the full directory structure
-    // like /prin/x8m18/advanced-web-tech-final/public/
+    // like /prin/x8m18/kill%20me/advanced-web-tech-final/public/products
     // We need to extract just the part after "public/"
     
     // First, lowercase for easier matching
     $lowercasePath = strtolower($uriPath);
+    
+    // EXTENSIVE DEBUGGING for routing issues
+    error_log("========= ROUTE DEBUGGING =========");
+    error_log("REQUEST_URI: " . $requestUri);
+    error_log("URI Path: " . $uriPath);
+    error_log("Lowercase Path: " . $lowercasePath);
     
     // Look for the public directory in the path
     if (strpos($lowercasePath, 'public') !== false) {
@@ -213,9 +219,15 @@ if (empty($route)) {
         // Get everything after 'public/' (adding 7 to skip over 'public/')
         $afterPublic = substr($uriPath, $publicPos + 7);
         $cleanPath = trim($afterPublic, '/');
+        
+        // Debug paths
+        error_log("Public position: " . $publicPos);
+        error_log("After Public: " . $afterPublic);
+        error_log("Clean Path: " . $cleanPath);
     } else {
         // Not in public directory or public is not in path
         $cleanPath = trim($uriPath, '/');
+        error_log("No 'public' in path. Clean Path: " . $cleanPath);
     }
     
     // Also handle direct access to index.php
@@ -228,6 +240,8 @@ if (empty($route)) {
     
     // If the path is empty, default to 'home'
     $route = $cleanPath ?: 'home';
+    error_log("Final Route: " . $route);
+    error_log("======== END ROUTE DEBUGGING ========");
 }
 
 // Debug final route if debug parameter is set

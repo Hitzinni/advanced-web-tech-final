@@ -16,7 +16,7 @@ use App\Middleware\RateLimiter;
 class AuthController
 {
     /** @var User User model instance for database interactions. */
-    private User $userModel;
+    private $userModel;
     
     /**
      * Constructor

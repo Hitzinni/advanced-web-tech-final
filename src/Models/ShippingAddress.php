@@ -99,7 +99,7 @@ class ShippingAddress extends BaseModel
      * @param int $userId The ID of the user.
      * @return array|null An associative array representing the default address, or null if no default address is set or on error.
      */
-    public function getDefaultAddress(int $userId): ?array
+    public function getDefaultAddress(int $userId)
     {
         try {
             // SQL query to select the address marked as default for the user
@@ -128,7 +128,7 @@ class ShippingAddress extends BaseModel
      * @param int $userId The ID of the user who should own this address.
      * @return array|null An associative array of the address data if found and owned by the user, null otherwise or on error.
      */
-    public function getById(int $id, int $userId): ?array
+    public function getById(int $id, int $userId)
     {
         try {
             // SQL query to select a specific address by its ID and user ID

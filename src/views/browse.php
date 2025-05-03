@@ -8,7 +8,7 @@
         <div class="col-lg-6 text-lg-end">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb justify-content-lg-end mb-0">
-                    <li class="breadcrumb-item"><a href="home" class="text-white">Home</a></li>
+                    <li class="breadcrumb-item"><a href="<?= \App\Helpers\View::url('home') ?>" class="text-white">Home</a></li>
                     <li class="breadcrumb-item active text-white-50" aria-current="page">Browse Products</li>
                 </ol>
             </nav>
@@ -22,11 +22,11 @@
         <?php 
         // Define category image mapping (same as elsewhere)
         $categoryImages = [
-            'Vegetables' => 'images/vegetables-category.jpg',
-            'Fruits' => 'images/fruits-category.jpg',
-            'Meat' => 'images/meat-category.jpg',
-            'Bakery' => 'images/bakery-category.jpg',
-            'Dairy' => 'images/dairy-category.jpg'
+            'Vegetables' => \App\Helpers\View::asset('images/vegetables-category.jpg'),
+            'Fruits' => \App\Helpers\View::asset('images/fruits-category.jpg'),
+            'Meat' => \App\Helpers\View::asset('images/meat-category.jpg'),
+            'Bakery' => \App\Helpers\View::asset('images/bakery-category.jpg'),
+            'Dairy' => \App\Helpers\View::asset('images/dairy-category.jpg')
         ];
         
         // Category labels and descriptions
@@ -50,7 +50,7 @@
             if (isset($categoryImages[$category])): 
         ?>
         <div class="col-md-4 col-lg-2-4">
-            <a href="products?category=<?= urlencode($category) ?>" class="text-decoration-none">
+            <a href="<?= \App\Helpers\View::url('products', ['category' => $category]) ?>" class="text-decoration-none">
                 <div class="category-card position-relative rounded overflow-hidden shadow h-100 <?= $selectedCategory === $category ? 'border border-primary border-3' : '' ?>">
                     <img src="<?= htmlspecialchars($categoryImages[$category]) ?>" class="img-fluid category-img w-100" alt="<?= htmlspecialchars($category) ?>" style="height: 150px; object-fit: cover;">
                     <div class="category-overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center p-3 text-white text-center" style="background: rgba(0,0,0,0.5);">
@@ -98,7 +98,7 @@
             <div class="d-flex mt-3 justify-content-center">
                 <?php foreach ($categories as $category): ?>
                     <?php if (isset($categoryImages[$category])): ?>
-                    <a href="products?category=<?= urlencode($category) ?>" class="mx-2 category-thumbnail-link">
+                    <a href="<?= \App\Helpers\View::url('products', ['category' => $category]) ?>" class="mx-2 category-thumbnail-link">
                         <div class="category-thumbnail rounded-circle overflow-hidden <?= $selectedCategory === $category ? 'border border-2 border-primary' : 'border' ?>" 
                              style="width: 50px; height: 50px; transition: transform 0.2s;">
                             <img src="<?= htmlspecialchars($categoryImages[$category]) ?>" 
@@ -160,15 +160,15 @@
     <?php 
     // Define category image mapping (same as below)
     $categoryImages = [
-        'Vegetables' => 'images/vegetables-category.jpg',
-        'Fruits' => 'images/fruits-category.jpg',
-        'Meat' => 'images/meat-category.jpg',
-        'Bakery' => 'images/bakery-category.jpg',
-        'Dairy' => 'images/dairy-category.jpg'
+        'Vegetables' => \App\Helpers\View::asset('images/vegetables-category.jpg'),
+        'Fruits' => \App\Helpers\View::asset('images/fruits-category.jpg'),
+        'Meat' => \App\Helpers\View::asset('images/meat-category.jpg'),
+        'Bakery' => \App\Helpers\View::asset('images/bakery-category.jpg'),
+        'Dairy' => \App\Helpers\View::asset('images/dairy-category.jpg')
     ];
     
     // Get the appropriate image for the selected category
-    $selectedCategoryImage = $categoryImages[$selectedCategory] ?? 'images/products/placeholder.jpg';
+    $selectedCategoryImage = $categoryImages[$selectedCategory] ?? \App\Helpers\View::asset('images/products/placeholder.jpg');
     ?>
     <div class="selected-category mb-4">
         <div class="row align-items-center">
@@ -194,7 +194,7 @@
                      data-product-id="<?= (int)$product['id'] ?>">
                     <div class="position-relative">
                         <?php 
-                        // Fix image path handling
+                        // Fix image path handling - use absolute URL with View::asset
                         $imagePath = $product['image_url'];
                         
                         // Remove 'public/' prefix if it exists
@@ -207,8 +207,8 @@
                             $imagePath = substr($imagePath, 1);
                         }
                         ?>
-                        <a href="product?id=<?= (int)$product['id'] ?>" class="text-decoration-none product-img-link">
-                            <img src="<?= htmlspecialchars($imagePath) ?>" class="card-img-top product-img" alt="<?= htmlspecialchars($product['name']) ?>" onerror="this.src='images/products/placeholder.jpg'" style="height: 200px; object-fit: cover;">
+                        <a href="<?= \App\Helpers\View::url('product', ['id' => (int)$product['id']]) ?>" class="text-decoration-none product-img-link">
+                            <img src="<?= \App\Helpers\View::asset($imagePath) ?>" class="card-img-top product-img" alt="<?= htmlspecialchars($product['name']) ?>" onerror="this.src='<?= \App\Helpers\View::asset('images/products/placeholder.jpg') ?>'" style="height: 200px; object-fit: cover;">
                             <div class="product-overlay position-absolute top-0 end-0 m-2">
                                 <span class="badge bg-primary rounded-pill px-3 py-2 shadow-sm">$<?= number_format((float)$product['price'], 2) ?></span>
                             </div>
@@ -216,7 +216,7 @@
                     </div>
                     <div class="card-body d-flex flex-column p-3">
                         <h5 class="card-title fw-bold mb-3">
-                            <a href="product?id=<?= (int)$product['id'] ?>" class="text-decoration-none text-dark">
+                            <a href="<?= \App\Helpers\View::url('product', ['id' => (int)$product['id']]) ?>" class="text-decoration-none text-dark">
                                 <?= htmlspecialchars($product['name']) ?>
                             </a>
                         </h5>
@@ -245,7 +245,7 @@
                                     <i class="bi bi-cart-plus me-2"></i>Add to Cart
                                 </button>
                             <?php else: ?>
-                                <a href="login" class="btn btn-outline-primary w-100">
+                                <a href="<?= \App\Helpers\View::url('login') ?>" class="btn btn-outline-primary w-100">
                                     <i class="bi bi-box-arrow-in-right me-2"></i>Login to Order
                                 </a>
                             <?php endif; ?>
@@ -256,16 +256,19 @@
         <?php endforeach; ?>
     <?php elseif (!empty($selectedCategory)): ?>
         <div class="col-12">
-            <div class="alert alert-info bg-white border-info d-flex align-items-center p-4 shadow-sm">
-                <i class="bi bi-info-circle-fill text-info fs-4 me-3"></i>
-                <div>No products found in this category. Try selecting a different category.</div>
+            <div class="alert alert-info text-center py-5">
+                <i class="bi bi-info-circle fs-1 d-block mb-3"></i>
+                <h3 class="h4 mb-3">No Products Found</h3>
+                <p class="mb-3">There are currently no products available in this category.</p>
+                <a href="<?= \App\Helpers\View::url('products') ?>" class="btn btn-primary">View All Categories</a>
             </div>
         </div>
     <?php else: ?>
         <div class="col-12">
-            <div class="alert alert-info bg-white border-primary d-flex align-items-center p-4 shadow-sm">
-                <i class="bi bi-arrow-up-circle-fill text-primary fs-4 me-3"></i>
-                <div>Please select a category above to view available products.</div>
+            <div class="alert alert-primary text-center py-5">
+                <i class="bi bi-arrow-up-circle fs-1 d-block mb-3"></i>
+                <h3 class="h4 mb-3">Select a Category</h3>
+                <p class="mb-3">Please select a category above to browse products.</p>
             </div>
         </div>
     <?php endif; ?>
@@ -307,7 +310,7 @@
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                     <i class="bi bi-arrow-left me-1"></i>Continue Shopping
                 </button>
-                <a href="cart" class="btn btn-primary">
+                <a href="<?= \App\Helpers\View::url('cart') ?>" class="btn btn-primary">
                     <i class="bi bi-cart me-1"></i>View Cart
                 </a>
             </div>
@@ -325,25 +328,25 @@
         <?php 
         // Define category image mapping
         $categoryImages = [
-            'Vegetables' => 'images/vegetables-category.jpg',
-            'Fruits' => 'images/fruits-category.jpg',
-            'Meat' => 'images/meat-category.jpg',
-            'Bakery' => 'images/bakery-category.jpg',
-            'Dairy' => 'images/dairy-category.jpg'
+            'Vegetables' => \App\Helpers\View::asset('images/vegetables-category.jpg'),
+            'Fruits' => \App\Helpers\View::asset('images/fruits-category.jpg'),
+            'Meat' => \App\Helpers\View::asset('images/meat-category.jpg'),
+            'Bakery' => \App\Helpers\View::asset('images/bakery-category.jpg'),
+            'Dairy' => \App\Helpers\View::asset('images/dairy-category.jpg')
         ];
         
         foreach (array_slice($categories, 0, 3) as $category): 
             if ($category !== $selectedCategory): 
             // Get the appropriate image for this category
-            $categoryImage = $categoryImages[$category] ?? 'images/products/placeholder.jpg';
+            $categoryImage = $categoryImages[$category] ?? \App\Helpers\View::asset('images/products/placeholder.jpg');
         ?>
         <div class="col-md-4">
-            <a href="products?category=<?= urlencode($category) ?>" class="text-decoration-none">
+            <a href="<?= \App\Helpers\View::url('products', ['category' => $category]) ?>" class="text-decoration-none">
                 <div class="category-card position-relative rounded overflow-hidden shadow h-100">
                     <img src="<?= htmlspecialchars($categoryImage) ?>" class="img-fluid category-img w-100" alt="<?= htmlspecialchars($category) ?>" style="height: 180px; object-fit: cover;">
                     <div class="category-overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end p-4 text-white" style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);">
                         <h4 class="h5 fw-bold mb-2"><?= htmlspecialchars($category) ?></h4>
-                        <a href="products?category=<?= urlencode($category) ?>" class="btn btn-sm btn-primary stretched-link">
+                        <a href="<?= \App\Helpers\View::url('products', ['category' => $category]) ?>" class="btn btn-sm btn-primary stretched-link">
                             <i class="bi bi-arrow-right-circle me-1"></i>Explore
                         </a>
                     </div>
@@ -360,164 +363,141 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Category select change handler
     const categorySelect = document.getElementById('category-select');
+    const productSelect = document.getElementById('product-select');
+    
+    // Handle category selection change
     if (categorySelect) {
         categorySelect.addEventListener('change', function() {
-            window.location.href = `products?category=${encodeURIComponent(this.value)}`;
+            const category = this.value;
+            if (category) {
+                window.location.href = '<?= \App\Helpers\View::url('products') ?>?category=' + encodeURIComponent(category);
+            } else {
+                window.location.href = '<?= \App\Helpers\View::url('products') ?>';
+            }
         });
     }
     
-    // Product select change handler
-    const productSelect = document.getElementById('product-select');
+    // Handle product selection change
     if (productSelect) {
         productSelect.addEventListener('change', function() {
-            const category = categorySelect.value;
-            window.location.href = `products?category=${encodeURIComponent(category)}&product_id=${this.value}`;
+            const productId = this.value;
+            if (productId) {
+                window.location.href = '<?= \App\Helpers\View::url('product') ?>?id=' + encodeURIComponent(productId);
+            }
         });
     }
     
-    // Product card selection
-    const productCards = document.querySelectorAll('.product-card[data-product-id]');
-    productCards.forEach(card => {
-        card.addEventListener('click', function(e) {
-            // Don't navigate if clicking on specific elements
-            if (e.target.closest('.order-btn') || 
-                e.target.closest('.input-group') || 
-                e.target.closest('.product-img-link') ||
-                e.target.closest('a')) {
-                return;
-            }
-            
-            const productId = this.dataset.productId;
-            window.location.href = `product?id=${productId}`;
-        });
-    });
+    // Quantity adjustment
+    const decreaseButtons = document.querySelectorAll('.quantity-decrease');
+    const increaseButtons = document.querySelectorAll('.quantity-increase');
+    const quantityInputs = document.querySelectorAll('.quantity-input');
     
-    // Handle quantity buttons
-    document.querySelectorAll('.quantity-decrease').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            const input = this.parentElement.querySelector('.quantity-input');
-            const currentValue = parseInt(input.value);
-            if (currentValue > 1) {
-                input.value = currentValue - 1;
+    decreaseButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            const input = this.parentNode.querySelector('.quantity-input');
+            const value = parseInt(input.value, 10);
+            if (value > 1) {
+                input.value = value - 1;
             }
         });
     });
     
-    document.querySelectorAll('.quantity-increase').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            const input = this.parentElement.querySelector('.quantity-input');
-            const currentValue = parseInt(input.value);
-            if (currentValue < 99) {
-                input.value = currentValue + 1;
+    increaseButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            const input = this.parentNode.querySelector('.quantity-input');
+            const value = parseInt(input.value, 10);
+            if (value < 99) {
+                input.value = value + 1;
             }
         });
     });
     
-    document.querySelectorAll('.quantity-input').forEach(input => {
-        input.addEventListener('click', function(e) {
-            e.stopPropagation();
-        });
-        
+    quantityInputs.forEach(function(input) {
         input.addEventListener('change', function() {
-            if (this.value < 1) this.value = 1;
-            if (this.value > 99) this.value = 99;
+            const value = parseInt(this.value, 10);
+            if (isNaN(value) || value < 1) {
+                this.value = 1;
+            } else if (value > 99) {
+                this.value = 99;
+            }
         });
     });
     
-    // Get CSRF token
-    const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+    // Add to cart functionality
+    const orderButtons = document.querySelectorAll('.order-btn');
     
-    // Order button handlers - now using the cart system
-    const orderBtns = document.querySelectorAll('.order-btn');
-    const cartModal = document.getElementById('cartModal');
-    
-    if (orderBtns.length) {
-        const modalProductName = document.getElementById('modal-product-name');
-        const modalQuantity = document.getElementById('modal-quantity');
-        const modalCartCount = document.getElementById('modal-cart-count');
-        const modalCartTotal = document.getElementById('modal-cart-total');
-        const bsModal = cartModal ? new bootstrap.Modal(cartModal) : null;
-        
-        orderBtns.forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.stopPropagation(); // Prevent card click
-                
-                const productId = this.dataset.productId;
-                const card = document.querySelector(`.product-card[data-product-id="${productId}"]`);
-                const name = card.querySelector('.card-title').textContent;
-                const quantityInput = card.querySelector('.quantity-input');
-                const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
-                
-                // Use AJAX to add to cart
-                fetch(`cart/add-to-cart.php?product_id=${productId}&quantity=${quantity}`, {
-                    method: 'GET',
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    // Always show the modal for any successful addition
-                    if (bsModal && modalProductName) {
-                        modalProductName.textContent = name;
-                        modalQuantity.textContent = quantity;
-                        
-                        // Get cart data from session via a new endpoint
-                        fetch('/cart/info.php?t=' + new Date().getTime(), {
-                            method: 'GET',
-                            headers: {
-                                'Accept': 'application/json',
-                                'Cache-Control': 'no-cache'
-                            }
-                        })
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Network response was not ok');
-                            }
-                            return response.json();
-                        })
-                        .then(data => {
-                            console.log('Cart data received:', data); // Debug output
-                            if (data && typeof data === 'object') {
-                                modalCartCount.textContent = data.itemCount || '0';
-                                modalCartTotal.textContent = '$' + (parseFloat(data.total) || 0).toFixed(2);
-                            } else {
-                                console.error('Invalid data format received:', data);
-                                modalCartCount.textContent = '0';
-                                modalCartTotal.textContent = '$0.00';
-                            }
-                            
-                            // Hide the modal if it's already showing and then show it again
-                            if (bsModal._isShown) {
-                                bsModal.hide();
-                                setTimeout(() => { bsModal.show(); }, 150);
-                            } else {
-                                bsModal.show();
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error fetching cart info:', error);
-                            // Still show the modal, but with default values
-                            modalCartCount.textContent = '0';
-                            modalCartTotal.textContent = '$0.00';
-                            bsModal.show();
+    orderButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            const productId = this.getAttribute('data-product-id');
+            const quantityInput = this.closest('.product-card').querySelector('.quantity-input');
+            const quantity = quantityInput ? parseInt(quantityInput.value, 10) : 1;
+            
+            // AJAX request to add to cart
+            fetch('<?= \App\Helpers\View::url('api/cart/add') ?>', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: 'product_id=' + encodeURIComponent(productId) + '&quantity=' + encodeURIComponent(quantity)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Show success notification
+                    const card = button.closest('.product-card');
+                    const productName = card.querySelector('.card-title').textContent.trim();
+                    
+                    // Create notification
+                    const notification = document.createElement('div');
+                    notification.className = 'toast show position-fixed bottom-0 end-0 m-3';
+                    notification.style.zIndex = 1050;
+                    notification.innerHTML = `
+                        <div class="toast-header bg-success text-white">
+                            <i class="bi bi-check-circle me-2"></i>
+                            <strong class="me-auto">Added to Cart</strong>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
+                        </div>
+                        <div class="toast-body">
+                            ${productName} was added to your cart.
+                            <div class="mt-2 pt-2 border-top">
+                                <a href="<?= \App\Helpers\View::url('cart') ?>" class="btn btn-success btn-sm">View Cart</a>
+                                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Continue Shopping</button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    document.body.appendChild(notification);
+                    
+                    // Remove after 5 seconds
+                    setTimeout(() => {
+                        notification.remove();
+                    }, 5000);
+                    
+                    // Close button functionality
+                    const closeButton = notification.querySelector('.btn-close');
+                    if (closeButton) {
+                        closeButton.addEventListener('click', function() {
+                            notification.remove();
                         });
-                    } else {
-                        // Fallback if no modal
-                        window.location.href = `cart/add-to-cart.php?product_id=${productId}&quantity=${quantity}`;
                     }
-                })
-                .catch(error => {
-                    console.error('Error adding to cart:', error);
-                    // Fallback on error
-                    window.location.href = `cart/add-to-cart.php?product_id=${productId}&quantity=${quantity}`;
-                });
+                    
+                    // Update any cart counters
+                    const cartCounters = document.querySelectorAll('.cart-count');
+                    cartCounters.forEach(counter => {
+                        let count = parseInt(counter.textContent, 10) || 0;
+                        counter.textContent = count + 1;
+                    });
+                } else {
+                    alert(data.message || 'Failed to add item to cart.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while adding the item to your cart.');
             });
         });
-    }
+    });
 });
 </script> 

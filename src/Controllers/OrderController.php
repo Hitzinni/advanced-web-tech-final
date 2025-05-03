@@ -13,10 +13,10 @@ use App\Helpers\Validators;
 
 class OrderController
 {
-    private Order $orderModel;
-    private Product $productModel;
-    private \PDO $db;
-    private CartModel $cartModel;
+    private $orderModel;
+    private $productModel;
+    private $db;
+    private $cartModel;
     
     public function __construct()
     {

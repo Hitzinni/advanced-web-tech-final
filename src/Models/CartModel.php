@@ -10,7 +10,7 @@ namespace App\Models;
 class CartModel
 {
     /** @var \PDO Database connection instance. */
-    private \PDO $db;
+    private $db;
     
     /**
      * Constructor

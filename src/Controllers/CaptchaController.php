@@ -5,7 +5,7 @@ namespace App\Controllers;
 
 class CaptchaController
 {
-    private array $fonts = [
+    private $fonts = [
         'arial.ttf',
         'verdana.ttf',
         'times.ttf'

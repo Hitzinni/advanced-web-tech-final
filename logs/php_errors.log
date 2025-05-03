@@ -1,66 +1,1029 @@
-[03-May-2025 02:11:21 UTC] Database connection attempt - Host: localhost, DB: grocery_store_dev, User: root
-[03-May-2025 02:11:21 UTC] Database connection successful
-[03-May-2025 02:11:21 UTC] View::render - Rendering template: home
-[03-May-2025 02:11:21 UTC] View::render - Rendering template: layout
-[03-May-2025 02:11:23 UTC] Database connection attempt - Host: localhost, DB: grocery_store_dev, User: root
-[03-May-2025 02:11:23 UTC] Database connection successful
-[03-May-2025 02:11:23 UTC] View::render - Rendering template: home
-[03-May-2025 02:11:23 UTC] View::render - Rendering template: layout
-[03-May-2025 02:11:25 UTC] Database connection attempt - Host: localhost, DB: grocery_store_dev, User: root
-[03-May-2025 02:11:25 UTC] Database connection successful
-[03-May-2025 02:11:25 UTC] View::render - Rendering template: browse
-[03-May-2025 02:11:25 UTC] View::render - Rendering template: layout
-[03-May-2025 02:11:27 UTC] Database connection attempt - Host: localhost, DB: grocery_store_dev, User: root
-[03-May-2025 02:11:27 UTC] Database connection successful
-[03-May-2025 02:11:27 UTC] View::render - Rendering template: browse
-[03-May-2025 02:11:27 UTC] View::render - Rendering template: layout
-[03-May-2025 02:11:30 UTC] Database connection attempt - Host: localhost, DB: grocery_store_dev, User: root
-[03-May-2025 02:11:30 UTC] Database connection successful
-[03-May-2025 02:11:30 UTC] View::render - Rendering template: home
-[03-May-2025 02:11:30 UTC] View::render - Rendering template: layout
-[03-May-2025 02:11:31 UTC] Database connection attempt - Host: localhost, DB: grocery_store_dev, User: root
-[03-May-2025 02:11:31 UTC] Database connection successful
-[03-May-2025 02:11:31 UTC] View::render - Rendering template: browse
-[03-May-2025 02:11:31 UTC] View::render - Rendering template: layout
-[03-May-2025 02:11:31 UTC] View::render - Rendering template: about
-[03-May-2025 02:11:31 UTC] View::render - Rendering template: layout
-[03-May-2025 02:11:33 UTC] Database connection attempt - Host: localhost, DB: grocery_store_dev, User: root
-[03-May-2025 02:11:33 UTC] Database connection successful
-[03-May-2025 02:11:33 UTC] View::render - Rendering template: my-orders
-[03-May-2025 02:11:33 UTC] View::render - Rendering template: layout
-[03-May-2025 02:11:35 UTC] Database connection attempt - Host: localhost, DB: grocery_store_dev, User: root
-[03-May-2025 02:11:35 UTC] Database connection successful
-[03-May-2025 02:11:35 UTC] View::render - Rendering template: home
-[03-May-2025 02:11:35 UTC] View::render - Rendering template: layout
-[03-May-2025 02:11:36 UTC] Database connection attempt - Host: localhost, DB: grocery_store_dev, User: root
-[03-May-2025 02:11:36 UTC] Database connection successful
-[03-May-2025 02:11:36 UTC] View::render - Rendering template: home
-[03-May-2025 02:11:36 UTC] View::render - Rendering template: layout
-[03-May-2025 02:11:43 UTC] Database connection attempt - Host: localhost, DB: grocery_store_dev, User: root
-[03-May-2025 02:11:43 UTC] Database connection successful
-[03-May-2025 02:11:43 UTC] View::render - Rendering template: browse
-[03-May-2025 02:11:43 UTC] View::render - Rendering template: layout
-[03-May-2025 02:11:49 UTC] Database connection attempt - Host: localhost, DB: grocery_store_dev, User: root
-[03-May-2025 02:11:49 UTC] Database connection successful
-[03-May-2025 02:11:49 UTC] View::render - Rendering template: checkout
-[03-May-2025 02:11:49 UTC] View::render - Rendering template: layout
-[03-May-2025 02:12:00 UTC] Database connection attempt - Host: localhost, DB: grocery_store_dev, User: root
-[03-May-2025 02:12:00 UTC] Database connection successful
-[03-May-2025 02:12:00 UTC] Database connection attempt - Host: localhost, DB: grocery_store_dev, User: root
-[03-May-2025 02:12:00 UTC] Database connection successful
-[03-May-2025 02:12:00 UTC] View::render - Rendering template: order-receipt
-[03-May-2025 02:12:00 UTC] View::render - Rendering template: layout
-[03-May-2025 02:12:03 UTC] Database connection attempt - Host: localhost, DB: grocery_store_dev, User: root
-[03-May-2025 02:12:03 UTC] Database connection successful
-[03-May-2025 02:12:03 UTC] Database connection attempt - Host: localhost, DB: grocery_store_dev, User: root
-[03-May-2025 02:12:03 UTC] Database connection successful
-[03-May-2025 02:12:03 UTC] View::render - Rendering template: order-receipt
-[03-May-2025 02:12:03 UTC] View::render - Rendering template: layout
-[03-May-2025 02:12:06 UTC] Database connection attempt - Host: localhost, DB: grocery_store_dev, User: root
-[03-May-2025 02:12:06 UTC] Database connection successful
-[03-May-2025 02:12:06 UTC] View::render - Rendering template: my-orders
-[03-May-2025 02:12:06 UTC] View::render - Rendering template: layout
-[03-May-2025 02:12:21 UTC] Database connection attempt - Host: localhost, DB: grocery_store_dev, User: root
-[03-May-2025 02:12:21 UTC] Database connection successful
-[03-May-2025 02:12:21 UTC] View::render - Rendering template: home
-[03-May-2025 02:12:21 UTC] View::render - Rendering template: layout
+[04-May-2025 00:02:34 Europe/London] Extracted username from path: x8m18
+[04-May-2025 00:02:34 Europe/London] Script path: /var/www/htdocs/prin/x8m18/kill me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:02:34 Europe/London] Using teaching server credentials - User: x8m18, DB: x8m18, Pass: [hidden]
+[04-May-2025 00:02:34 Europe/London] Database connection attempt - Host: localhost, DB: x8m18, User: x8m18
+[04-May-2025 00:02:34 Europe/London] Database connection successful
+[04-May-2025 00:02:34 Europe/London] CartController::__construct - Successfully initialized with Database helper
+[04-May-2025 00:02:34 Europe/London] CartController::viewCart - Method called - 2025-05-04 00:02:34
+[04-May-2025 00:02:34 Europe/London] CartController::viewCart - Using session-based cart
+[04-May-2025 00:02:34 Europe/London] CartController::viewCart - Cart items count: 1
+[04-May-2025 00:02:34 Europe/London] CartController::viewCart - Cart total: 19.99
+[04-May-2025 00:02:34 Europe/London] CartController::viewCart - About to render cart view
+[04-May-2025 00:02:34 Europe/London] View::render - Starting to render template: cart at 2025-05-04 00:02:34
+[04-May-2025 00:02:34 Europe/London] View::render - Full template path: /net/teachweb/scamweb/prin/x8m18/kill me/advanced-web-tech-final/src/views/cart.php
+[04-May-2025 00:02:34 Europe/London] View::render - Template file found, reading contents...
+[04-May-2025 00:02:34 Europe/London] View::render - Successfully rendered template: cart (content length: 24138 bytes)
+[04-May-2025 00:02:34 Europe/London] View::render - Now rendering layout with content from: cart
+[04-May-2025 00:02:34 Europe/London] View::render - Starting to render template: layout at 2025-05-04 00:02:34
+[04-May-2025 00:02:34 Europe/London] View::render - Full template path: /net/teachweb/scamweb/prin/x8m18/kill me/advanced-web-tech-final/src/views/layout.php
+[04-May-2025 00:02:34 Europe/London] View::render - Template file found, reading contents...
+[04-May-2025 00:02:34 Europe/London] Script Name: /prin/x8m18/kill me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:02:34 Europe/London] Request URI: /prin/x8m18/kill%20me/advanced-web-tech-final/public/index.php?route=cart
+[04-May-2025 00:02:34 Europe/London] Found public/ in script name: /prin/x8m18/kill me/advanced-web-tech-final/public
+[04-May-2025 00:02:34 Europe/London] View::getBaseUrl - Calculated base URL: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/
+[04-May-2025 00:02:34 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/css/styles.css for path: css/styles.css
+[04-May-2025 00:02:34 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/grocery-store.jpg for path: images/grocery-store.jpg
+[04-May-2025 00:02:34 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/grocery-store.jpg for path: images/grocery-store.jpg
+[04-May-2025 00:02:34 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/favicon.ico for path: favicon.ico
+[04-May-2025 00:02:34 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/apple-touch-icon.png for path: images/apple-touch-icon.png
+[04-May-2025 00:02:34 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/logo.png for path: images/logo.png
+[04-May-2025 00:02:34 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:02:34 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/logo.svg for path: images/logo.svg
+[04-May-2025 00:02:34 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:02:34 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:02:34 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/about for route: about
+[04-May-2025 00:02:34 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/my-orders for route: my-orders
+[04-May-2025 00:02:34 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/change-password for route: change-password
+[04-May-2025 00:02:34 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/logout for route: logout
+[04-May-2025 00:02:34 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:02:34 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:02:34 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/about for route: about
+[04-May-2025 00:02:35 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/cart for route: cart
+[04-May-2025 00:02:35 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:02:35 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:02:35 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/assets/js/main.js for path: assets/js/main.js
+[04-May-2025 00:02:35 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/js/catalog.js for path: js/catalog.js
+[04-May-2025 00:02:35 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/js/form-validation.js for path: js/form-validation.js
+[04-May-2025 00:02:35 Europe/London] View::render - Successfully rendered template: layout (content length: 32406 bytes)
+[04-May-2025 00:02:35 Europe/London] CartController::viewCart - View rendered successfully
+[04-May-2025 00:08:27 Europe/London] Extracted username from path: x8m18
+[04-May-2025 00:08:27 Europe/London] Script path: /var/www/htdocs/prin/x8m18/kill me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:08:27 Europe/London] Using teaching server credentials - User: x8m18, DB: x8m18, Pass: [hidden]
+[04-May-2025 00:08:27 Europe/London] Database connection attempt - Host: localhost, DB: x8m18, User: x8m18
+[04-May-2025 00:08:27 Europe/London] Database connection successful
+[04-May-2025 00:08:27 Europe/London] CartController::__construct - Successfully initialized with Database helper
+[04-May-2025 00:08:27 Europe/London] CartController::viewCart - Method called - 2025-05-04 00:08:27
+[04-May-2025 00:08:27 Europe/London] CartController::viewCart - Cart not found in session, initializing
+[04-May-2025 00:08:27 Europe/London] CartController::viewCart - Using session-based cart
+[04-May-2025 00:08:27 Europe/London] CartController::viewCart - Cart items count: 0
+[04-May-2025 00:08:27 Europe/London] CartController::viewCart - Cart total: 0
+[04-May-2025 00:08:27 Europe/London] CartController::viewCart - About to render cart view
+[04-May-2025 00:08:27 Europe/London] View::render - Starting to render template: cart at 2025-05-04 00:08:27
+[04-May-2025 00:08:27 Europe/London] View::render - Full template path: /net/teachweb/scamweb/prin/x8m18/kill me/advanced-web-tech-final/src/views/cart.php
+[04-May-2025 00:08:27 Europe/London] View::render - Template file found, reading contents...
+[04-May-2025 00:08:27 Europe/London] View::render - Successfully rendered template: cart (content length: 24138 bytes)
+[04-May-2025 00:08:27 Europe/London] View::render - Now rendering layout with content from: cart
+[04-May-2025 00:08:27 Europe/London] View::render - Starting to render template: layout at 2025-05-04 00:08:27
+[04-May-2025 00:08:27 Europe/London] View::render - Full template path: /net/teachweb/scamweb/prin/x8m18/kill me/advanced-web-tech-final/src/views/layout.php
+[04-May-2025 00:08:27 Europe/London] View::render - Template file found, reading contents...
+[04-May-2025 00:08:27 Europe/London] Script Name: /prin/x8m18/kill me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:08:27 Europe/London] Request URI: /prin/x8m18/kill%20me/advanced-web-tech-final/public/index.php?route=cart
+[04-May-2025 00:08:27 Europe/London] Found public/ in script name: /prin/x8m18/kill me/advanced-web-tech-final/public
+[04-May-2025 00:08:27 Europe/London] View::getBaseUrl - Calculated base URL: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/
+[04-May-2025 00:08:27 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/css/styles.css for path: css/styles.css
+[04-May-2025 00:08:27 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/grocery-store.jpg for path: images/grocery-store.jpg
+[04-May-2025 00:08:27 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/grocery-store.jpg for path: images/grocery-store.jpg
+[04-May-2025 00:08:27 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/favicon.ico for path: favicon.ico
+[04-May-2025 00:08:27 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/apple-touch-icon.png for path: images/apple-touch-icon.png
+[04-May-2025 00:08:27 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/logo.png for path: images/logo.png
+[04-May-2025 00:08:27 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:08:27 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/logo.svg for path: images/logo.svg
+[04-May-2025 00:08:27 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:08:27 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:08:27 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/about for route: about
+[04-May-2025 00:08:27 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:08:27 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:08:27 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:08:27 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:08:27 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/about for route: about
+[04-May-2025 00:08:27 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/cart for route: cart
+[04-May-2025 00:08:27 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:08:27 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:08:27 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/assets/js/main.js for path: assets/js/main.js
+[04-May-2025 00:08:27 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/js/catalog.js for path: js/catalog.js
+[04-May-2025 00:08:27 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/js/form-validation.js for path: js/form-validation.js
+[04-May-2025 00:08:27 Europe/London] View::render - Successfully rendered template: layout (content length: 31799 bytes)
+[04-May-2025 00:08:27 Europe/London] CartController::viewCart - View rendered successfully
+[04-May-2025 00:09:22 Europe/London] Extracted username from path: x8m18
+[04-May-2025 00:09:22 Europe/London] Script path: /var/www/htdocs/prin/x8m18/kill me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:09:22 Europe/London] Using teaching server credentials - User: x8m18, DB: x8m18, Pass: [hidden]
+[04-May-2025 00:09:22 Europe/London] Database connection attempt - Host: localhost, DB: x8m18, User: x8m18
+[04-May-2025 00:09:22 Europe/London] Database connection successful
+[04-May-2025 00:09:22 Europe/London] CartController::__construct - Successfully initialized with Database helper
+[04-May-2025 00:09:22 Europe/London] CartController::viewCart - Method called - 2025-05-04 00:09:22
+[04-May-2025 00:09:22 Europe/London] CartController::viewCart - Using session-based cart
+[04-May-2025 00:09:22 Europe/London] CartController::viewCart - Cart items count: 0
+[04-May-2025 00:09:22 Europe/London] CartController::viewCart - Cart total: 0
+[04-May-2025 00:09:26 Europe/London] ========= ROUTE DEBUGGING =========
+[04-May-2025 00:09:26 Europe/London] REQUEST_URI: /prin/x8m18/kill%20me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:09:26 Europe/London] URI Path: /prin/x8m18/kill%20me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:09:26 Europe/London] Lowercase Path: /prin/x8m18/kill%20me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:09:26 Europe/London] Public position: 46
+[04-May-2025 00:09:26 Europe/London] After Public: index.php
+[04-May-2025 00:09:26 Europe/London] Clean Path: index.php
+[04-May-2025 00:09:26 Europe/London] Final Route: home
+[04-May-2025 00:09:26 Europe/London] ======== END ROUTE DEBUGGING ========
+[04-May-2025 00:09:26 Europe/London] Extracted username from path: x8m18
+[04-May-2025 00:09:26 Europe/London] Script path: /var/www/htdocs/prin/x8m18/kill me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:09:26 Europe/London] Using teaching server credentials - User: x8m18, DB: x8m18, Pass: [hidden]
+[04-May-2025 00:09:26 Europe/London] Database connection attempt - Host: localhost, DB: x8m18, User: x8m18
+[04-May-2025 00:09:26 Europe/London] Database connection successful
+[04-May-2025 00:09:26 Europe/London] View::render - Starting to render template: home at 2025-05-04 00:09:26
+[04-May-2025 00:09:26 Europe/London] View::render - Full template path: /net/teachweb/scamweb/prin/x8m18/kill me/advanced-web-tech-final/src/views/home.php
+[04-May-2025 00:09:26 Europe/London] View::render - Template file found, reading contents...
+[04-May-2025 00:09:26 Europe/London] Script Name: /prin/x8m18/kill me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:09:26 Europe/London] Request URI: /prin/x8m18/kill%20me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:09:26 Europe/London] Found public/ in script name: /prin/x8m18/kill me/advanced-web-tech-final/public
+[04-May-2025 00:09:26 Europe/London] View::getBaseUrl - Calculated base URL: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/
+[04-May-2025 00:09:26 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:09:26 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:09:26 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/vegetables-category.jpg for path: images/vegetables-category.jpg
+[04-May-2025 00:09:26 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/vegetables-category.jpg for path: images/vegetables-category.jpg
+[04-May-2025 00:09:26 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/fruits-category.jpg for path: images/fruits-category.jpg
+[04-May-2025 00:09:26 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/meat-category.jpg for path: images/meat-category.jpg
+[04-May-2025 00:09:26 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/vegetables-category.jpg for path: images/vegetables-category.jpg
+[04-May-2025 00:09:26 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Vegetables for route: products
+[04-May-2025 00:09:26 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/fruits-category.jpg for path: images/fruits-category.jpg
+[04-May-2025 00:09:26 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Fruits for route: products
+[04-May-2025 00:09:26 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/meat-category.jpg for path: images/meat-category.jpg
+[04-May-2025 00:09:26 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Meat for route: products
+[04-May-2025 00:09:26 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/bakery-category.jpg for path: images/bakery-category.jpg
+[04-May-2025 00:09:26 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Bakery for route: products
+[04-May-2025 00:09:26 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/dairy-category.jpg for path: images/dairy-category.jpg
+[04-May-2025 00:09:26 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Dairy for route: products
+[04-May-2025 00:09:26 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Vegetables for route: products
+[04-May-2025 00:09:26 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:09:26 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:09:26 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/newsletter-subscribe for route: newsletter-subscribe
+[04-May-2025 00:09:26 Europe/London] View::render - Successfully rendered template: home (content length: 19497 bytes)
+[04-May-2025 00:09:26 Europe/London] View::render - Now rendering layout with content from: home
+[04-May-2025 00:09:26 Europe/London] View::render - Starting to render template: layout at 2025-05-04 00:09:26
+[04-May-2025 00:09:26 Europe/London] View::render - Full template path: /net/teachweb/scamweb/prin/x8m18/kill me/advanced-web-tech-final/src/views/layout.php
+[04-May-2025 00:09:26 Europe/London] View::render - Template file found, reading contents...
+[04-May-2025 00:09:26 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/css/styles.css for path: css/styles.css
+[04-May-2025 00:09:26 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/grocery-store.jpg for path: images/grocery-store.jpg
+[04-May-2025 00:09:26 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/grocery-store.jpg for path: images/grocery-store.jpg
+[04-May-2025 00:09:26 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/favicon.ico for path: favicon.ico
+[04-May-2025 00:09:26 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/apple-touch-icon.png for path: images/apple-touch-icon.png
+[04-May-2025 00:09:26 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/logo.png for path: images/logo.png
+[04-May-2025 00:09:26 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:09:26 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/logo.svg for path: images/logo.svg
+[04-May-2025 00:09:26 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:09:26 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:09:26 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/about for route: about
+[04-May-2025 00:09:26 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:09:26 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:09:26 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:09:26 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:09:26 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/about for route: about
+[04-May-2025 00:09:26 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/cart for route: cart
+[04-May-2025 00:09:26 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:09:26 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:09:26 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/assets/js/main.js for path: assets/js/main.js
+[04-May-2025 00:09:26 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/js/catalog.js for path: js/catalog.js
+[04-May-2025 00:09:26 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/js/form-validation.js for path: js/form-validation.js
+[04-May-2025 00:09:26 Europe/London] View::render - Successfully rendered template: layout (content length: 27201 bytes)
+[04-May-2025 00:09:30 Europe/London] ========= ROUTE DEBUGGING =========
+[04-May-2025 00:09:30 Europe/London] REQUEST_URI: /prin/x8m18/kill%20me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:09:30 Europe/London] URI Path: /prin/x8m18/kill%20me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:09:30 Europe/London] Lowercase Path: /prin/x8m18/kill%20me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:09:30 Europe/London] Public position: 46
+[04-May-2025 00:09:30 Europe/London] After Public: index.php
+[04-May-2025 00:09:30 Europe/London] Clean Path: index.php
+[04-May-2025 00:09:30 Europe/London] Final Route: home
+[04-May-2025 00:09:30 Europe/London] ======== END ROUTE DEBUGGING ========
+[04-May-2025 00:09:30 Europe/London] Extracted username from path: x8m18
+[04-May-2025 00:09:30 Europe/London] Script path: /var/www/htdocs/prin/x8m18/kill me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:09:30 Europe/London] Using teaching server credentials - User: x8m18, DB: x8m18, Pass: [hidden]
+[04-May-2025 00:09:30 Europe/London] Database connection attempt - Host: localhost, DB: x8m18, User: x8m18
+[04-May-2025 00:09:30 Europe/London] Database connection successful
+[04-May-2025 00:09:30 Europe/London] View::render - Starting to render template: home at 2025-05-04 00:09:30
+[04-May-2025 00:09:30 Europe/London] View::render - Full template path: /net/teachweb/scamweb/prin/x8m18/kill me/advanced-web-tech-final/src/views/home.php
+[04-May-2025 00:09:30 Europe/London] View::render - Template file found, reading contents...
+[04-May-2025 00:09:30 Europe/London] Script Name: /prin/x8m18/kill me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:09:30 Europe/London] Request URI: /prin/x8m18/kill%20me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:09:30 Europe/London] Found public/ in script name: /prin/x8m18/kill me/advanced-web-tech-final/public
+[04-May-2025 00:09:30 Europe/London] View::getBaseUrl - Calculated base URL: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/
+[04-May-2025 00:09:30 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:09:30 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:09:30 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/vegetables-category.jpg for path: images/vegetables-category.jpg
+[04-May-2025 00:09:30 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/vegetables-category.jpg for path: images/vegetables-category.jpg
+[04-May-2025 00:09:30 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/fruits-category.jpg for path: images/fruits-category.jpg
+[04-May-2025 00:09:30 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/meat-category.jpg for path: images/meat-category.jpg
+[04-May-2025 00:09:30 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/vegetables-category.jpg for path: images/vegetables-category.jpg
+[04-May-2025 00:09:30 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Vegetables for route: products
+[04-May-2025 00:09:30 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/fruits-category.jpg for path: images/fruits-category.jpg
+[04-May-2025 00:09:30 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Fruits for route: products
+[04-May-2025 00:09:30 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/meat-category.jpg for path: images/meat-category.jpg
+[04-May-2025 00:09:30 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Meat for route: products
+[04-May-2025 00:09:30 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/bakery-category.jpg for path: images/bakery-category.jpg
+[04-May-2025 00:09:30 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Bakery for route: products
+[04-May-2025 00:09:30 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/dairy-category.jpg for path: images/dairy-category.jpg
+[04-May-2025 00:09:30 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Dairy for route: products
+[04-May-2025 00:09:30 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Vegetables for route: products
+[04-May-2025 00:09:30 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:09:30 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:09:30 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/newsletter-subscribe for route: newsletter-subscribe
+[04-May-2025 00:09:30 Europe/London] View::render - Successfully rendered template: home (content length: 19497 bytes)
+[04-May-2025 00:09:30 Europe/London] View::render - Now rendering layout with content from: home
+[04-May-2025 00:09:30 Europe/London] View::render - Starting to render template: layout at 2025-05-04 00:09:30
+[04-May-2025 00:09:30 Europe/London] View::render - Full template path: /net/teachweb/scamweb/prin/x8m18/kill me/advanced-web-tech-final/src/views/layout.php
+[04-May-2025 00:09:30 Europe/London] View::render - Template file found, reading contents...
+[04-May-2025 00:09:30 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/css/styles.css for path: css/styles.css
+[04-May-2025 00:09:30 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/grocery-store.jpg for path: images/grocery-store.jpg
+[04-May-2025 00:09:30 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/grocery-store.jpg for path: images/grocery-store.jpg
+[04-May-2025 00:09:30 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/favicon.ico for path: favicon.ico
+[04-May-2025 00:09:30 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/apple-touch-icon.png for path: images/apple-touch-icon.png
+[04-May-2025 00:09:30 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/logo.png for path: images/logo.png
+[04-May-2025 00:09:30 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:09:30 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/logo.svg for path: images/logo.svg
+[04-May-2025 00:09:30 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:09:30 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:09:30 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/about for route: about
+[04-May-2025 00:09:30 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:09:31 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:09:31 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:09:31 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:09:31 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/about for route: about
+[04-May-2025 00:09:31 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/cart for route: cart
+[04-May-2025 00:09:31 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:09:31 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:09:31 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/assets/js/main.js for path: assets/js/main.js
+[04-May-2025 00:09:31 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/js/catalog.js for path: js/catalog.js
+[04-May-2025 00:09:31 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/js/form-validation.js for path: js/form-validation.js
+[04-May-2025 00:09:31 Europe/London] View::render - Successfully rendered template: layout (content length: 27201 bytes)
+[04-May-2025 00:09:31 Europe/London] Extracted username from path: x8m18
+[04-May-2025 00:09:31 Europe/London] Script path: /var/www/htdocs/prin/x8m18/kill me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:09:31 Europe/London] Using teaching server credentials - User: x8m18, DB: x8m18, Pass: [hidden]
+[04-May-2025 00:09:31 Europe/London] Database connection attempt - Host: localhost, DB: x8m18, User: x8m18
+[04-May-2025 00:09:31 Europe/London] Database connection successful
+[04-May-2025 00:09:31 Europe/London] CartController::__construct - Successfully initialized with Database helper
+[04-May-2025 00:09:31 Europe/London] CartController::viewCart - Method called - 2025-05-04 00:09:31
+[04-May-2025 00:09:31 Europe/London] CartController::viewCart - Using session-based cart
+[04-May-2025 00:09:31 Europe/London] CartController::viewCart - Cart items count: 1
+[04-May-2025 00:09:31 Europe/London] CartController::viewCart - Cart total: 19.99
+[04-May-2025 00:09:35 Europe/London] Extracted username from path: x8m18
+[04-May-2025 00:09:35 Europe/London] Script path: /var/www/htdocs/prin/x8m18/kill me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:09:35 Europe/London] Using teaching server credentials - User: x8m18, DB: x8m18, Pass: [hidden]
+[04-May-2025 00:09:35 Europe/London] Database connection attempt - Host: localhost, DB: x8m18, User: x8m18
+[04-May-2025 00:09:35 Europe/London] Database connection successful
+[04-May-2025 00:09:35 Europe/London] CartController::__construct - Successfully initialized with Database helper
+[04-May-2025 00:09:35 Europe/London] CartController::viewCart - Method called - 2025-05-04 00:09:35
+[04-May-2025 00:09:35 Europe/London] CartController::viewCart - Using session-based cart
+[04-May-2025 00:09:35 Europe/London] CartController::viewCart - Cart items count: 1
+[04-May-2025 00:09:35 Europe/London] CartController::viewCart - Cart total: 19.99
+[04-May-2025 00:17:50 Europe/London] ========= ROUTE DEBUGGING =========
+[04-May-2025 00:17:50 Europe/London] REQUEST_URI: /prin/x8m18/kill%20me/advanced-web-tech-final/public/
+[04-May-2025 00:17:50 Europe/London] URI Path: /prin/x8m18/kill%20me/advanced-web-tech-final/public/
+[04-May-2025 00:17:50 Europe/London] Lowercase Path: /prin/x8m18/kill%20me/advanced-web-tech-final/public/
+[04-May-2025 00:17:50 Europe/London] Public position: 46
+[04-May-2025 00:17:50 Europe/London] After Public: 
+[04-May-2025 00:17:50 Europe/London] Clean Path: 
+[04-May-2025 00:17:50 Europe/London] Final Route: home
+[04-May-2025 00:17:50 Europe/London] ======== END ROUTE DEBUGGING ========
+[04-May-2025 00:17:50 Europe/London] Extracted username from path: x8m18
+[04-May-2025 00:17:50 Europe/London] Script path: /var/www/htdocs/prin/x8m18/kill me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:17:50 Europe/London] Using teaching server credentials - User: x8m18, DB: x8m18, Pass: [hidden]
+[04-May-2025 00:17:50 Europe/London] Database connection attempt - Host: localhost, DB: x8m18, User: x8m18
+[04-May-2025 00:17:50 Europe/London] Database connection successful
+[04-May-2025 00:17:50 Europe/London] View::render - Starting to render template: home at 2025-05-04 00:17:50
+[04-May-2025 00:17:50 Europe/London] View::render - Full template path: /net/teachweb/scamweb/prin/x8m18/kill me/advanced-web-tech-final/src/views/home.php
+[04-May-2025 00:17:50 Europe/London] View::render - Template file found, reading contents...
+[04-May-2025 00:17:50 Europe/London] Script Name: /prin/x8m18/kill me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:17:50 Europe/London] Request URI: /prin/x8m18/kill%20me/advanced-web-tech-final/public/
+[04-May-2025 00:17:50 Europe/London] Found public/ in script name: /prin/x8m18/kill me/advanced-web-tech-final/public
+[04-May-2025 00:17:50 Europe/London] View::getBaseUrl - Calculated base URL: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/
+[04-May-2025 00:17:50 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:17:50 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:17:50 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/vegetables-category.jpg for path: images/vegetables-category.jpg
+[04-May-2025 00:17:50 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/vegetables-category.jpg for path: images/vegetables-category.jpg
+[04-May-2025 00:17:50 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/fruits-category.jpg for path: images/fruits-category.jpg
+[04-May-2025 00:17:50 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/meat-category.jpg for path: images/meat-category.jpg
+[04-May-2025 00:17:50 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/vegetables-category.jpg for path: images/vegetables-category.jpg
+[04-May-2025 00:17:50 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Vegetables for route: products
+[04-May-2025 00:17:50 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/fruits-category.jpg for path: images/fruits-category.jpg
+[04-May-2025 00:17:50 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Fruits for route: products
+[04-May-2025 00:17:50 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/meat-category.jpg for path: images/meat-category.jpg
+[04-May-2025 00:17:50 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Meat for route: products
+[04-May-2025 00:17:50 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/bakery-category.jpg for path: images/bakery-category.jpg
+[04-May-2025 00:17:50 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Bakery for route: products
+[04-May-2025 00:17:50 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/dairy-category.jpg for path: images/dairy-category.jpg
+[04-May-2025 00:17:50 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Dairy for route: products
+[04-May-2025 00:17:50 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Vegetables for route: products
+[04-May-2025 00:17:50 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:17:50 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:17:50 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/newsletter-subscribe for route: newsletter-subscribe
+[04-May-2025 00:17:50 Europe/London] View::render - Successfully rendered template: home (content length: 19497 bytes)
+[04-May-2025 00:17:50 Europe/London] View::render - Now rendering layout with content from: home
+[04-May-2025 00:17:50 Europe/London] View::render - Starting to render template: layout at 2025-05-04 00:17:50
+[04-May-2025 00:17:50 Europe/London] View::render - Full template path: /net/teachweb/scamweb/prin/x8m18/kill me/advanced-web-tech-final/src/views/layout.php
+[04-May-2025 00:17:50 Europe/London] View::render - Template file found, reading contents...
+[04-May-2025 00:17:50 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/css/styles.css for path: css/styles.css
+[04-May-2025 00:17:50 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/grocery-store.jpg for path: images/grocery-store.jpg
+[04-May-2025 00:17:50 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/grocery-store.jpg for path: images/grocery-store.jpg
+[04-May-2025 00:17:50 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/favicon.ico for path: favicon.ico
+[04-May-2025 00:17:50 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/apple-touch-icon.png for path: images/apple-touch-icon.png
+[04-May-2025 00:17:50 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/logo.png for path: images/logo.png
+[04-May-2025 00:17:50 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:17:50 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/logo.svg for path: images/logo.svg
+[04-May-2025 00:17:50 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:17:50 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:17:50 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/about for route: about
+[04-May-2025 00:17:50 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:17:50 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:17:50 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:17:50 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:17:50 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/about for route: about
+[04-May-2025 00:17:50 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/cart for route: cart
+[04-May-2025 00:17:50 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:17:50 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:17:50 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/assets/js/main.js for path: assets/js/main.js
+[04-May-2025 00:17:50 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/js/catalog.js for path: js/catalog.js
+[04-May-2025 00:17:50 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/js/form-validation.js for path: js/form-validation.js
+[04-May-2025 00:17:50 Europe/London] View::render - Successfully rendered template: layout (content length: 27178 bytes)
+[04-May-2025 00:17:52 Europe/London] Extracted username from path: x8m18
+[04-May-2025 00:17:52 Europe/London] Script path: /var/www/htdocs/prin/x8m18/kill me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:17:52 Europe/London] Using teaching server credentials - User: x8m18, DB: x8m18, Pass: [hidden]
+[04-May-2025 00:17:52 Europe/London] Database connection attempt - Host: localhost, DB: x8m18, User: x8m18
+[04-May-2025 00:17:52 Europe/London] Database connection successful
+[04-May-2025 00:17:52 Europe/London] CartController::__construct - Successfully initialized with Database helper
+[04-May-2025 00:17:52 Europe/London] CartController::viewCart - Method called - 2025-05-04 00:17:52
+[04-May-2025 00:17:52 Europe/London] CartController::viewCart - Using session-based cart
+[04-May-2025 00:17:52 Europe/London] CartController::viewCart - Cart items count: 1
+[04-May-2025 00:17:52 Europe/London] CartController::viewCart - Cart total: 19.99
+[04-May-2025 00:17:52 Europe/London] CartController::viewCart - About to render cart view
+[04-May-2025 00:17:52 Europe/London] View::render - Starting to render template: cart at 2025-05-04 00:17:52
+[04-May-2025 00:17:52 Europe/London] View::render - Full template path: /net/teachweb/scamweb/prin/x8m18/kill me/advanced-web-tech-final/src/views/cart.php
+[04-May-2025 00:17:52 Europe/London] View::render - Template file found, reading contents...
+[04-May-2025 00:17:52 Europe/London] Script Name: /prin/x8m18/kill me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:17:52 Europe/London] Request URI: /prin/x8m18/kill%20me/advanced-web-tech-final/public/index.php?route=cart
+[04-May-2025 00:17:52 Europe/London] Found public/ in script name: /prin/x8m18/kill me/advanced-web-tech-final/public
+[04-May-2025 00:17:52 Europe/London] View::getBaseUrl - Calculated base URL: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/
+[04-May-2025 00:17:52 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/api/cart/remove for route: api/cart/remove
+[04-May-2025 00:17:52 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/api/cart/update for route: api/cart/update
+[04-May-2025 00:17:52 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/api/cart/clear for route: api/cart/clear
+[04-May-2025 00:17:52 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:17:52 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/checkout for route: checkout
+[04-May-2025 00:17:52 Europe/London] View::render - Successfully rendered template: cart (content length: 7009 bytes)
+[04-May-2025 00:17:52 Europe/London] View::render - Now rendering layout with content from: cart
+[04-May-2025 00:17:52 Europe/London] View::render - Starting to render template: layout at 2025-05-04 00:17:52
+[04-May-2025 00:17:52 Europe/London] View::render - Full template path: /net/teachweb/scamweb/prin/x8m18/kill me/advanced-web-tech-final/src/views/layout.php
+[04-May-2025 00:17:52 Europe/London] View::render - Template file found, reading contents...
+[04-May-2025 00:17:52 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/css/styles.css for path: css/styles.css
+[04-May-2025 00:17:52 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/grocery-store.jpg for path: images/grocery-store.jpg
+[04-May-2025 00:17:52 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/grocery-store.jpg for path: images/grocery-store.jpg
+[04-May-2025 00:17:52 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/favicon.ico for path: favicon.ico
+[04-May-2025 00:17:52 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/apple-touch-icon.png for path: images/apple-touch-icon.png
+[04-May-2025 00:17:52 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/logo.png for path: images/logo.png
+[04-May-2025 00:17:52 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:17:52 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/logo.svg for path: images/logo.svg
+[04-May-2025 00:17:52 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:17:52 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:17:52 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/about for route: about
+[04-May-2025 00:17:52 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:17:52 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:17:52 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:17:52 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:17:52 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/about for route: about
+[04-May-2025 00:17:52 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/cart for route: cart
+[04-May-2025 00:17:52 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:17:52 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:17:52 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/assets/js/main.js for path: assets/js/main.js
+[04-May-2025 00:17:52 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/js/catalog.js for path: js/catalog.js
+[04-May-2025 00:17:52 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/js/form-validation.js for path: js/form-validation.js
+[04-May-2025 00:17:52 Europe/London] View::render - Successfully rendered template: layout (content length: 14656 bytes)
+[04-May-2025 00:17:52 Europe/London] CartController::viewCart - View rendered successfully
+[04-May-2025 00:17:59 Europe/London] Extracted username from path: x8m18
+[04-May-2025 00:17:59 Europe/London] Script path: /var/www/htdocs/prin/x8m18/kill me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:17:59 Europe/London] Using teaching server credentials - User: x8m18, DB: x8m18, Pass: [hidden]
+[04-May-2025 00:17:59 Europe/London] Database connection attempt - Host: localhost, DB: x8m18, User: x8m18
+[04-May-2025 00:17:59 Europe/London] Database connection successful
+[04-May-2025 00:17:59 Europe/London] CartController::__construct - Successfully initialized with Database helper
+[04-May-2025 00:17:59 Europe/London] CartController::viewCart - Method called - 2025-05-04 00:17:59
+[04-May-2025 00:17:59 Europe/London] CartController::viewCart - Using session-based cart
+[04-May-2025 00:17:59 Europe/London] CartController::viewCart - Cart items count: 1
+[04-May-2025 00:17:59 Europe/London] CartController::viewCart - Cart total: 19.99
+[04-May-2025 00:17:59 Europe/London] CartController::viewCart - About to render cart view
+[04-May-2025 00:17:59 Europe/London] View::render - Starting to render template: cart at 2025-05-04 00:17:59
+[04-May-2025 00:17:59 Europe/London] View::render - Full template path: /net/teachweb/scamweb/prin/x8m18/kill me/advanced-web-tech-final/src/views/cart.php
+[04-May-2025 00:17:59 Europe/London] View::render - Template file found, reading contents...
+[04-May-2025 00:17:59 Europe/London] Script Name: /prin/x8m18/kill me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:17:59 Europe/London] Request URI: /prin/x8m18/kill%20me/advanced-web-tech-final/public/index.php?route=cart
+[04-May-2025 00:17:59 Europe/London] Found public/ in script name: /prin/x8m18/kill me/advanced-web-tech-final/public
+[04-May-2025 00:17:59 Europe/London] View::getBaseUrl - Calculated base URL: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/
+[04-May-2025 00:17:59 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/api/cart/remove for route: api/cart/remove
+[04-May-2025 00:17:59 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/api/cart/update for route: api/cart/update
+[04-May-2025 00:17:59 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/api/cart/clear for route: api/cart/clear
+[04-May-2025 00:17:59 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:17:59 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/checkout for route: checkout
+[04-May-2025 00:17:59 Europe/London] View::render - Successfully rendered template: cart (content length: 7009 bytes)
+[04-May-2025 00:17:59 Europe/London] View::render - Now rendering layout with content from: cart
+[04-May-2025 00:17:59 Europe/London] View::render - Starting to render template: layout at 2025-05-04 00:17:59
+[04-May-2025 00:17:59 Europe/London] View::render - Full template path: /net/teachweb/scamweb/prin/x8m18/kill me/advanced-web-tech-final/src/views/layout.php
+[04-May-2025 00:17:59 Europe/London] View::render - Template file found, reading contents...
+[04-May-2025 00:17:59 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/css/styles.css for path: css/styles.css
+[04-May-2025 00:17:59 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/grocery-store.jpg for path: images/grocery-store.jpg
+[04-May-2025 00:17:59 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/grocery-store.jpg for path: images/grocery-store.jpg
+[04-May-2025 00:17:59 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/favicon.ico for path: favicon.ico
+[04-May-2025 00:17:59 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/apple-touch-icon.png for path: images/apple-touch-icon.png
+[04-May-2025 00:17:59 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/logo.png for path: images/logo.png
+[04-May-2025 00:17:59 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:17:59 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/logo.svg for path: images/logo.svg
+[04-May-2025 00:17:59 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:17:59 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:17:59 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/about for route: about
+[04-May-2025 00:17:59 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:17:59 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:17:59 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:17:59 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:17:59 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/about for route: about
+[04-May-2025 00:17:59 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/cart for route: cart
+[04-May-2025 00:17:59 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:17:59 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:17:59 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/assets/js/main.js for path: assets/js/main.js
+[04-May-2025 00:17:59 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/js/catalog.js for path: js/catalog.js
+[04-May-2025 00:17:59 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/js/form-validation.js for path: js/form-validation.js
+[04-May-2025 00:17:59 Europe/London] View::render - Successfully rendered template: layout (content length: 14656 bytes)
+[04-May-2025 00:17:59 Europe/London] CartController::viewCart - View rendered successfully
+[04-May-2025 00:21:02 Europe/London] ========= ROUTE DEBUGGING =========
+[04-May-2025 00:21:02 Europe/London] REQUEST_URI: /prin/x8m18/kill%20me/advanced-web-tech-final/public/home
+[04-May-2025 00:21:02 Europe/London] URI Path: /prin/x8m18/kill%20me/advanced-web-tech-final/public/home
+[04-May-2025 00:21:02 Europe/London] Lowercase Path: /prin/x8m18/kill%20me/advanced-web-tech-final/public/home
+[04-May-2025 00:21:02 Europe/London] Public position: 46
+[04-May-2025 00:21:02 Europe/London] After Public: home
+[04-May-2025 00:21:02 Europe/London] Clean Path: home
+[04-May-2025 00:21:02 Europe/London] Final Route: home
+[04-May-2025 00:21:02 Europe/London] ======== END ROUTE DEBUGGING ========
+[04-May-2025 00:21:02 Europe/London] Extracted username from path: x8m18
+[04-May-2025 00:21:02 Europe/London] Script path: /var/www/htdocs/prin/x8m18/kill me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:21:02 Europe/London] Using teaching server credentials - User: x8m18, DB: x8m18, Pass: [hidden]
+[04-May-2025 00:21:02 Europe/London] Database connection attempt - Host: localhost, DB: x8m18, User: x8m18
+[04-May-2025 00:21:02 Europe/London] Database connection successful
+[04-May-2025 00:21:02 Europe/London] View::render - Starting to render template: home at 2025-05-04 00:21:02
+[04-May-2025 00:21:02 Europe/London] View::render - Full template path: /net/teachweb/scamweb/prin/x8m18/kill me/advanced-web-tech-final/src/views/home.php
+[04-May-2025 00:21:02 Europe/London] View::render - Template file found, reading contents...
+[04-May-2025 00:21:02 Europe/London] Script Name: /prin/x8m18/kill me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:21:02 Europe/London] Request URI: /prin/x8m18/kill%20me/advanced-web-tech-final/public/home
+[04-May-2025 00:21:02 Europe/London] Found public/ in script name: /prin/x8m18/kill me/advanced-web-tech-final/public
+[04-May-2025 00:21:02 Europe/London] View::getBaseUrl - Calculated base URL: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/
+[04-May-2025 00:21:02 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:21:02 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:21:02 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/vegetables-category.jpg for path: images/vegetables-category.jpg
+[04-May-2025 00:21:02 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/vegetables-category.jpg for path: images/vegetables-category.jpg
+[04-May-2025 00:21:02 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/fruits-category.jpg for path: images/fruits-category.jpg
+[04-May-2025 00:21:02 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/meat-category.jpg for path: images/meat-category.jpg
+[04-May-2025 00:21:02 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/vegetables-category.jpg for path: images/vegetables-category.jpg
+[04-May-2025 00:21:02 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Vegetables for route: products
+[04-May-2025 00:21:02 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/fruits-category.jpg for path: images/fruits-category.jpg
+[04-May-2025 00:21:02 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Fruits for route: products
+[04-May-2025 00:21:02 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/meat-category.jpg for path: images/meat-category.jpg
+[04-May-2025 00:21:02 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Meat for route: products
+[04-May-2025 00:21:02 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/bakery-category.jpg for path: images/bakery-category.jpg
+[04-May-2025 00:21:02 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Bakery for route: products
+[04-May-2025 00:21:02 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/dairy-category.jpg for path: images/dairy-category.jpg
+[04-May-2025 00:21:02 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Dairy for route: products
+[04-May-2025 00:21:02 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Vegetables for route: products
+[04-May-2025 00:21:02 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:21:02 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:21:02 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/newsletter-subscribe for route: newsletter-subscribe
+[04-May-2025 00:21:02 Europe/London] View::render - Successfully rendered template: home (content length: 19497 bytes)
+[04-May-2025 00:21:02 Europe/London] View::render - Now rendering layout with content from: home
+[04-May-2025 00:21:02 Europe/London] View::render - Starting to render template: layout at 2025-05-04 00:21:02
+[04-May-2025 00:21:02 Europe/London] View::render - Full template path: /net/teachweb/scamweb/prin/x8m18/kill me/advanced-web-tech-final/src/views/layout.php
+[04-May-2025 00:21:02 Europe/London] View::render - Template file found, reading contents...
+[04-May-2025 00:21:02 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/css/styles.css for path: css/styles.css
+[04-May-2025 00:21:02 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/grocery-store.jpg for path: images/grocery-store.jpg
+[04-May-2025 00:21:02 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/grocery-store.jpg for path: images/grocery-store.jpg
+[04-May-2025 00:21:02 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/favicon.ico for path: favicon.ico
+[04-May-2025 00:21:02 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/apple-touch-icon.png for path: images/apple-touch-icon.png
+[04-May-2025 00:21:02 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/logo.png for path: images/logo.png
+[04-May-2025 00:21:02 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:21:02 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/logo.svg for path: images/logo.svg
+[04-May-2025 00:21:02 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:21:02 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:21:02 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/about for route: about
+[04-May-2025 00:21:02 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/cart for route: cart
+[04-May-2025 00:21:02 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:21:02 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:21:02 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:21:02 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:21:02 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/about for route: about
+[04-May-2025 00:21:02 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/cart for route: cart
+[04-May-2025 00:21:02 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:21:02 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:21:02 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/assets/js/main.js for path: assets/js/main.js
+[04-May-2025 00:21:02 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/js/catalog.js for path: js/catalog.js
+[04-May-2025 00:21:02 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/js/form-validation.js for path: js/form-validation.js
+[04-May-2025 00:21:02 Europe/London] View::render - Successfully rendered template: layout (content length: 27201 bytes)
+[04-May-2025 00:21:02 Europe/London] ========= ROUTE DEBUGGING =========
+[04-May-2025 00:21:02 Europe/London] REQUEST_URI: /prin/x8m18/kill%20me/advanced-web-tech-final/public/home
+[04-May-2025 00:21:02 Europe/London] URI Path: /prin/x8m18/kill%20me/advanced-web-tech-final/public/home
+[04-May-2025 00:21:02 Europe/London] Lowercase Path: /prin/x8m18/kill%20me/advanced-web-tech-final/public/home
+[04-May-2025 00:21:03 Europe/London] Public position: 46
+[04-May-2025 00:21:03 Europe/London] After Public: home
+[04-May-2025 00:21:03 Europe/London] Clean Path: home
+[04-May-2025 00:21:03 Europe/London] Final Route: home
+[04-May-2025 00:21:03 Europe/London] ======== END ROUTE DEBUGGING ========
+[04-May-2025 00:21:03 Europe/London] Extracted username from path: x8m18
+[04-May-2025 00:21:03 Europe/London] Script path: /var/www/htdocs/prin/x8m18/kill me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:21:03 Europe/London] Using teaching server credentials - User: x8m18, DB: x8m18, Pass: [hidden]
+[04-May-2025 00:21:03 Europe/London] Database connection attempt - Host: localhost, DB: x8m18, User: x8m18
+[04-May-2025 00:21:03 Europe/London] Database connection successful
+[04-May-2025 00:21:03 Europe/London] View::render - Starting to render template: home at 2025-05-04 00:21:03
+[04-May-2025 00:21:03 Europe/London] View::render - Full template path: /net/teachweb/scamweb/prin/x8m18/kill me/advanced-web-tech-final/src/views/home.php
+[04-May-2025 00:21:03 Europe/London] View::render - Template file found, reading contents...
+[04-May-2025 00:21:03 Europe/London] Script Name: /prin/x8m18/kill me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:21:03 Europe/London] Request URI: /prin/x8m18/kill%20me/advanced-web-tech-final/public/home
+[04-May-2025 00:21:03 Europe/London] Found public/ in script name: /prin/x8m18/kill me/advanced-web-tech-final/public
+[04-May-2025 00:21:03 Europe/London] View::getBaseUrl - Calculated base URL: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/
+[04-May-2025 00:21:03 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:21:03 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:21:03 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/vegetables-category.jpg for path: images/vegetables-category.jpg
+[04-May-2025 00:21:03 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/vegetables-category.jpg for path: images/vegetables-category.jpg
+[04-May-2025 00:21:03 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/fruits-category.jpg for path: images/fruits-category.jpg
+[04-May-2025 00:21:03 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/meat-category.jpg for path: images/meat-category.jpg
+[04-May-2025 00:21:03 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/vegetables-category.jpg for path: images/vegetables-category.jpg
+[04-May-2025 00:21:03 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Vegetables for route: products
+[04-May-2025 00:21:03 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/fruits-category.jpg for path: images/fruits-category.jpg
+[04-May-2025 00:21:03 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Fruits for route: products
+[04-May-2025 00:21:03 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/meat-category.jpg for path: images/meat-category.jpg
+[04-May-2025 00:21:03 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Meat for route: products
+[04-May-2025 00:21:03 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/bakery-category.jpg for path: images/bakery-category.jpg
+[04-May-2025 00:21:03 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Bakery for route: products
+[04-May-2025 00:21:03 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/dairy-category.jpg for path: images/dairy-category.jpg
+[04-May-2025 00:21:03 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Dairy for route: products
+[04-May-2025 00:21:03 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Vegetables for route: products
+[04-May-2025 00:21:03 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:21:03 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:21:03 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/newsletter-subscribe for route: newsletter-subscribe
+[04-May-2025 00:21:03 Europe/London] View::render - Successfully rendered template: home (content length: 19497 bytes)
+[04-May-2025 00:21:03 Europe/London] View::render - Now rendering layout with content from: home
+[04-May-2025 00:21:03 Europe/London] View::render - Starting to render template: layout at 2025-05-04 00:21:03
+[04-May-2025 00:21:03 Europe/London] View::render - Full template path: /net/teachweb/scamweb/prin/x8m18/kill me/advanced-web-tech-final/src/views/layout.php
+[04-May-2025 00:21:03 Europe/London] View::render - Template file found, reading contents...
+[04-May-2025 00:21:03 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/css/styles.css for path: css/styles.css
+[04-May-2025 00:21:03 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/grocery-store.jpg for path: images/grocery-store.jpg
+[04-May-2025 00:21:03 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/grocery-store.jpg for path: images/grocery-store.jpg
+[04-May-2025 00:21:03 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/favicon.ico for path: favicon.ico
+[04-May-2025 00:21:03 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/apple-touch-icon.png for path: images/apple-touch-icon.png
+[04-May-2025 00:21:03 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/logo.png for path: images/logo.png
+[04-May-2025 00:21:03 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:21:03 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/logo.svg for path: images/logo.svg
+[04-May-2025 00:21:03 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:21:03 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:21:03 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/about for route: about
+[04-May-2025 00:21:03 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/cart for route: cart
+[04-May-2025 00:21:03 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:21:03 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:21:03 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:21:03 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:21:03 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/about for route: about
+[04-May-2025 00:21:03 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/cart for route: cart
+[04-May-2025 00:21:03 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:21:03 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:21:03 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/assets/js/main.js for path: assets/js/main.js
+[04-May-2025 00:21:03 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/js/catalog.js for path: js/catalog.js
+[04-May-2025 00:21:03 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/js/form-validation.js for path: js/form-validation.js
+[04-May-2025 00:21:03 Europe/London] View::render - Successfully rendered template: layout (content length: 27201 bytes)
+[04-May-2025 00:21:04 Europe/London] ========= ROUTE DEBUGGING =========
+[04-May-2025 00:21:04 Europe/London] REQUEST_URI: /prin/x8m18/kill%20me/advanced-web-tech-final/public/products
+[04-May-2025 00:21:04 Europe/London] URI Path: /prin/x8m18/kill%20me/advanced-web-tech-final/public/products
+[04-May-2025 00:21:04 Europe/London] Lowercase Path: /prin/x8m18/kill%20me/advanced-web-tech-final/public/products
+[04-May-2025 00:21:04 Europe/London] Public position: 46
+[04-May-2025 00:21:04 Europe/London] After Public: products
+[04-May-2025 00:21:04 Europe/London] Clean Path: products
+[04-May-2025 00:21:04 Europe/London] Final Route: products
+[04-May-2025 00:21:04 Europe/London] ======== END ROUTE DEBUGGING ========
+[04-May-2025 00:21:04 Europe/London] ProductController::__construct - Controller instantiated
+[04-May-2025 00:21:04 Europe/London] Extracted username from path: x8m18
+[04-May-2025 00:21:04 Europe/London] Script path: /var/www/htdocs/prin/x8m18/kill me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:21:04 Europe/London] Using teaching server credentials - User: x8m18, DB: x8m18, Pass: [hidden]
+[04-May-2025 00:21:04 Europe/London] Database connection attempt - Host: localhost, DB: x8m18, User: x8m18
+[04-May-2025 00:21:04 Europe/London] Database connection successful
+[04-May-2025 00:21:04 Europe/London] ProductController::browse - Method called
+[04-May-2025 00:21:04 Europe/London] ProductController::browse - REQUEST_URI: /prin/x8m18/kill%20me/advanced-web-tech-final/public/products
+[04-May-2025 00:21:04 Europe/London] ProductController::browse - SCRIPT_NAME: /prin/x8m18/kill me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:21:04 Europe/London] ProductController::browse - Current route path: not set in GET
+[04-May-2025 00:21:04 Europe/London] ProductController::browse - Selected category: 
+[04-May-2025 00:21:04 Europe/London] ProductController::browse - Retrieved 5 categories
+[04-May-2025 00:21:04 Europe/London] ProductController::browse - Retrieved 0 products
+[04-May-2025 00:21:04 Europe/London] ProductController::browse - About to render browse view
+[04-May-2025 00:21:04 Europe/London] View::render - Starting to render template: browse at 2025-05-04 00:21:04
+[04-May-2025 00:21:04 Europe/London] View::render - Full template path: /net/teachweb/scamweb/prin/x8m18/kill me/advanced-web-tech-final/src/views/browse.php
+[04-May-2025 00:21:04 Europe/London] View::render - Template file found, reading contents...
+[04-May-2025 00:21:04 Europe/London] Script Name: /prin/x8m18/kill me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:21:04 Europe/London] Request URI: /prin/x8m18/kill%20me/advanced-web-tech-final/public/products
+[04-May-2025 00:21:04 Europe/London] Found public/ in script name: /prin/x8m18/kill me/advanced-web-tech-final/public
+[04-May-2025 00:21:04 Europe/London] View::getBaseUrl - Calculated base URL: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/
+[04-May-2025 00:21:04 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:21:04 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/vegetables-category.jpg for path: images/vegetables-category.jpg
+[04-May-2025 00:21:04 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/fruits-category.jpg for path: images/fruits-category.jpg
+[04-May-2025 00:21:04 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/meat-category.jpg for path: images/meat-category.jpg
+[04-May-2025 00:21:04 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/bakery-category.jpg for path: images/bakery-category.jpg
+[04-May-2025 00:21:04 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/dairy-category.jpg for path: images/dairy-category.jpg
+[04-May-2025 00:21:04 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Vegetables for route: products
+[04-May-2025 00:21:04 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Fruits for route: products
+[04-May-2025 00:21:04 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Meat for route: products
+[04-May-2025 00:21:04 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Bakery for route: products
+[04-May-2025 00:21:04 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Dairy for route: products
+[04-May-2025 00:21:04 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Vegetables for route: products
+[04-May-2025 00:21:04 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Fruits for route: products
+[04-May-2025 00:21:04 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Meat for route: products
+[04-May-2025 00:21:04 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Bakery for route: products
+[04-May-2025 00:21:04 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Dairy for route: products
+[04-May-2025 00:21:04 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/vegetables-category.jpg for path: images/vegetables-category.jpg
+[04-May-2025 00:21:04 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/fruits-category.jpg for path: images/fruits-category.jpg
+[04-May-2025 00:21:04 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/meat-category.jpg for path: images/meat-category.jpg
+[04-May-2025 00:21:04 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/bakery-category.jpg for path: images/bakery-category.jpg
+[04-May-2025 00:21:04 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/dairy-category.jpg for path: images/dairy-category.jpg
+[04-May-2025 00:21:04 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Vegetables for route: products
+[04-May-2025 00:21:04 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Vegetables for route: products
+[04-May-2025 00:21:04 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Fruits for route: products
+[04-May-2025 00:21:04 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Fruits for route: products
+[04-May-2025 00:21:04 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Meat for route: products
+[04-May-2025 00:21:04 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Meat for route: products
+[04-May-2025 00:21:04 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:21:04 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:21:04 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/product for route: product
+[04-May-2025 00:21:04 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/api/cart/add for route: api/cart/add
+[04-May-2025 00:21:04 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/cart for route: cart
+[04-May-2025 00:21:04 Europe/London] View::render - Successfully rendered template: browse (content length: 23799 bytes)
+[04-May-2025 00:21:04 Europe/London] View::render - Now rendering layout with content from: browse
+[04-May-2025 00:21:04 Europe/London] View::render - Starting to render template: layout at 2025-05-04 00:21:04
+[04-May-2025 00:21:04 Europe/London] View::render - Full template path: /net/teachweb/scamweb/prin/x8m18/kill me/advanced-web-tech-final/src/views/layout.php
+[04-May-2025 00:21:04 Europe/London] View::render - Template file found, reading contents...
+[04-May-2025 00:21:04 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/css/styles.css for path: css/styles.css
+[04-May-2025 00:21:04 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/grocery-store.jpg for path: images/grocery-store.jpg
+[04-May-2025 00:21:04 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/grocery-store.jpg for path: images/grocery-store.jpg
+[04-May-2025 00:21:04 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/favicon.ico for path: favicon.ico
+[04-May-2025 00:21:04 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/apple-touch-icon.png for path: images/apple-touch-icon.png
+[04-May-2025 00:21:04 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/logo.png for path: images/logo.png
+[04-May-2025 00:21:04 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:21:04 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/logo.svg for path: images/logo.svg
+[04-May-2025 00:21:04 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:21:04 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:21:04 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/about for route: about
+[04-May-2025 00:21:04 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/cart for route: cart
+[04-May-2025 00:21:04 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:21:04 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:21:04 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:21:04 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:21:04 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/about for route: about
+[04-May-2025 00:21:04 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/cart for route: cart
+[04-May-2025 00:21:04 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:21:04 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:21:04 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/assets/js/main.js for path: assets/js/main.js
+[04-May-2025 00:21:04 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/js/catalog.js for path: js/catalog.js
+[04-May-2025 00:21:04 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/js/form-validation.js for path: js/form-validation.js
+[04-May-2025 00:21:04 Europe/London] View::render - Successfully rendered template: layout (content length: 31423 bytes)
+[04-May-2025 00:21:04 Europe/London] ProductController::browse - View rendered successfully
+[04-May-2025 00:21:06 Europe/London] ========= ROUTE DEBUGGING =========
+[04-May-2025 00:21:06 Europe/London] REQUEST_URI: /prin/x8m18/kill%20me/advanced-web-tech-final/public/home
+[04-May-2025 00:21:06 Europe/London] URI Path: /prin/x8m18/kill%20me/advanced-web-tech-final/public/home
+[04-May-2025 00:21:06 Europe/London] Lowercase Path: /prin/x8m18/kill%20me/advanced-web-tech-final/public/home
+[04-May-2025 00:21:06 Europe/London] Public position: 46
+[04-May-2025 00:21:06 Europe/London] After Public: home
+[04-May-2025 00:21:06 Europe/London] Clean Path: home
+[04-May-2025 00:21:06 Europe/London] Final Route: home
+[04-May-2025 00:21:06 Europe/London] ======== END ROUTE DEBUGGING ========
+[04-May-2025 00:21:06 Europe/London] Extracted username from path: x8m18
+[04-May-2025 00:21:06 Europe/London] Script path: /var/www/htdocs/prin/x8m18/kill me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:21:06 Europe/London] Using teaching server credentials - User: x8m18, DB: x8m18, Pass: [hidden]
+[04-May-2025 00:21:06 Europe/London] Database connection attempt - Host: localhost, DB: x8m18, User: x8m18
+[04-May-2025 00:21:06 Europe/London] Database connection successful
+[04-May-2025 00:21:06 Europe/London] View::render - Starting to render template: home at 2025-05-04 00:21:06
+[04-May-2025 00:21:06 Europe/London] View::render - Full template path: /net/teachweb/scamweb/prin/x8m18/kill me/advanced-web-tech-final/src/views/home.php
+[04-May-2025 00:21:06 Europe/London] View::render - Template file found, reading contents...
+[04-May-2025 00:21:06 Europe/London] Script Name: /prin/x8m18/kill me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:21:06 Europe/London] Request URI: /prin/x8m18/kill%20me/advanced-web-tech-final/public/home
+[04-May-2025 00:21:06 Europe/London] Found public/ in script name: /prin/x8m18/kill me/advanced-web-tech-final/public
+[04-May-2025 00:21:06 Europe/London] View::getBaseUrl - Calculated base URL: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/
+[04-May-2025 00:21:06 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:21:06 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:21:06 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/vegetables-category.jpg for path: images/vegetables-category.jpg
+[04-May-2025 00:21:06 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/vegetables-category.jpg for path: images/vegetables-category.jpg
+[04-May-2025 00:21:06 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/fruits-category.jpg for path: images/fruits-category.jpg
+[04-May-2025 00:21:06 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/meat-category.jpg for path: images/meat-category.jpg
+[04-May-2025 00:21:06 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/vegetables-category.jpg for path: images/vegetables-category.jpg
+[04-May-2025 00:21:06 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Vegetables for route: products
+[04-May-2025 00:21:06 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/fruits-category.jpg for path: images/fruits-category.jpg
+[04-May-2025 00:21:06 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Fruits for route: products
+[04-May-2025 00:21:06 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/meat-category.jpg for path: images/meat-category.jpg
+[04-May-2025 00:21:06 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Meat for route: products
+[04-May-2025 00:21:06 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/bakery-category.jpg for path: images/bakery-category.jpg
+[04-May-2025 00:21:06 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Bakery for route: products
+[04-May-2025 00:21:06 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/dairy-category.jpg for path: images/dairy-category.jpg
+[04-May-2025 00:21:06 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Dairy for route: products
+[04-May-2025 00:21:06 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Vegetables for route: products
+[04-May-2025 00:21:06 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:21:06 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:21:06 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/newsletter-subscribe for route: newsletter-subscribe
+[04-May-2025 00:21:06 Europe/London] View::render - Successfully rendered template: home (content length: 19497 bytes)
+[04-May-2025 00:21:06 Europe/London] View::render - Now rendering layout with content from: home
+[04-May-2025 00:21:06 Europe/London] View::render - Starting to render template: layout at 2025-05-04 00:21:06
+[04-May-2025 00:21:06 Europe/London] View::render - Full template path: /net/teachweb/scamweb/prin/x8m18/kill me/advanced-web-tech-final/src/views/layout.php
+[04-May-2025 00:21:06 Europe/London] View::render - Template file found, reading contents...
+[04-May-2025 00:21:06 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/css/styles.css for path: css/styles.css
+[04-May-2025 00:21:06 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/grocery-store.jpg for path: images/grocery-store.jpg
+[04-May-2025 00:21:06 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/grocery-store.jpg for path: images/grocery-store.jpg
+[04-May-2025 00:21:06 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/favicon.ico for path: favicon.ico
+[04-May-2025 00:21:06 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/apple-touch-icon.png for path: images/apple-touch-icon.png
+[04-May-2025 00:21:06 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/logo.png for path: images/logo.png
+[04-May-2025 00:21:06 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:21:06 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/logo.svg for path: images/logo.svg
+[04-May-2025 00:21:06 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:21:06 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:21:06 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/about for route: about
+[04-May-2025 00:21:06 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/cart for route: cart
+[04-May-2025 00:21:06 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:21:06 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:21:06 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:21:06 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:21:06 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/about for route: about
+[04-May-2025 00:21:06 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/cart for route: cart
+[04-May-2025 00:21:06 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:21:06 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:21:06 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/assets/js/main.js for path: assets/js/main.js
+[04-May-2025 00:21:06 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/js/catalog.js for path: js/catalog.js
+[04-May-2025 00:21:06 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/js/form-validation.js for path: js/form-validation.js
+[04-May-2025 00:21:06 Europe/London] View::render - Successfully rendered template: layout (content length: 27201 bytes)
+[04-May-2025 00:21:07 Europe/London] ========= ROUTE DEBUGGING =========
+[04-May-2025 00:21:07 Europe/London] REQUEST_URI: /prin/x8m18/kill%20me/advanced-web-tech-final/public/products
+[04-May-2025 00:21:07 Europe/London] URI Path: /prin/x8m18/kill%20me/advanced-web-tech-final/public/products
+[04-May-2025 00:21:07 Europe/London] Lowercase Path: /prin/x8m18/kill%20me/advanced-web-tech-final/public/products
+[04-May-2025 00:21:07 Europe/London] Public position: 46
+[04-May-2025 00:21:07 Europe/London] After Public: products
+[04-May-2025 00:21:07 Europe/London] Clean Path: products
+[04-May-2025 00:21:07 Europe/London] Final Route: products
+[04-May-2025 00:21:07 Europe/London] ======== END ROUTE DEBUGGING ========
+[04-May-2025 00:21:07 Europe/London] ProductController::__construct - Controller instantiated
+[04-May-2025 00:21:07 Europe/London] Extracted username from path: x8m18
+[04-May-2025 00:21:07 Europe/London] Script path: /var/www/htdocs/prin/x8m18/kill me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:21:07 Europe/London] Using teaching server credentials - User: x8m18, DB: x8m18, Pass: [hidden]
+[04-May-2025 00:21:07 Europe/London] Database connection attempt - Host: localhost, DB: x8m18, User: x8m18
+[04-May-2025 00:21:07 Europe/London] Database connection successful
+[04-May-2025 00:21:07 Europe/London] ProductController::browse - Method called
+[04-May-2025 00:21:07 Europe/London] ProductController::browse - REQUEST_URI: /prin/x8m18/kill%20me/advanced-web-tech-final/public/products
+[04-May-2025 00:21:07 Europe/London] ProductController::browse - SCRIPT_NAME: /prin/x8m18/kill me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:21:07 Europe/London] ProductController::browse - Current route path: not set in GET
+[04-May-2025 00:21:07 Europe/London] ProductController::browse - Selected category: 
+[04-May-2025 00:21:07 Europe/London] ProductController::browse - Retrieved 5 categories
+[04-May-2025 00:21:07 Europe/London] ProductController::browse - Retrieved 0 products
+[04-May-2025 00:21:07 Europe/London] ProductController::browse - About to render browse view
+[04-May-2025 00:21:07 Europe/London] View::render - Starting to render template: browse at 2025-05-04 00:21:07
+[04-May-2025 00:21:07 Europe/London] View::render - Full template path: /net/teachweb/scamweb/prin/x8m18/kill me/advanced-web-tech-final/src/views/browse.php
+[04-May-2025 00:21:07 Europe/London] View::render - Template file found, reading contents...
+[04-May-2025 00:21:07 Europe/London] Script Name: /prin/x8m18/kill me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:21:07 Europe/London] Request URI: /prin/x8m18/kill%20me/advanced-web-tech-final/public/products
+[04-May-2025 00:21:07 Europe/London] Found public/ in script name: /prin/x8m18/kill me/advanced-web-tech-final/public
+[04-May-2025 00:21:07 Europe/London] View::getBaseUrl - Calculated base URL: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/
+[04-May-2025 00:21:07 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:21:07 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/vegetables-category.jpg for path: images/vegetables-category.jpg
+[04-May-2025 00:21:07 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/fruits-category.jpg for path: images/fruits-category.jpg
+[04-May-2025 00:21:07 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/meat-category.jpg for path: images/meat-category.jpg
+[04-May-2025 00:21:07 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/bakery-category.jpg for path: images/bakery-category.jpg
+[04-May-2025 00:21:07 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/dairy-category.jpg for path: images/dairy-category.jpg
+[04-May-2025 00:21:07 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Vegetables for route: products
+[04-May-2025 00:21:07 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Fruits for route: products
+[04-May-2025 00:21:07 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Meat for route: products
+[04-May-2025 00:21:07 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Bakery for route: products
+[04-May-2025 00:21:07 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Dairy for route: products
+[04-May-2025 00:21:07 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Vegetables for route: products
+[04-May-2025 00:21:07 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Fruits for route: products
+[04-May-2025 00:21:07 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Meat for route: products
+[04-May-2025 00:21:07 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Bakery for route: products
+[04-May-2025 00:21:07 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Dairy for route: products
+[04-May-2025 00:21:07 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/vegetables-category.jpg for path: images/vegetables-category.jpg
+[04-May-2025 00:21:07 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/fruits-category.jpg for path: images/fruits-category.jpg
+[04-May-2025 00:21:07 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/meat-category.jpg for path: images/meat-category.jpg
+[04-May-2025 00:21:07 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/bakery-category.jpg for path: images/bakery-category.jpg
+[04-May-2025 00:21:07 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/dairy-category.jpg for path: images/dairy-category.jpg
+[04-May-2025 00:21:07 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Vegetables for route: products
+[04-May-2025 00:21:07 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Vegetables for route: products
+[04-May-2025 00:21:07 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Fruits for route: products
+[04-May-2025 00:21:07 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Fruits for route: products
+[04-May-2025 00:21:07 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Meat for route: products
+[04-May-2025 00:21:07 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products?category=Meat for route: products
+[04-May-2025 00:21:07 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:21:07 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:21:07 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/product for route: product
+[04-May-2025 00:21:07 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/api/cart/add for route: api/cart/add
+[04-May-2025 00:21:07 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/cart for route: cart
+[04-May-2025 00:21:07 Europe/London] View::render - Successfully rendered template: browse (content length: 23799 bytes)
+[04-May-2025 00:21:07 Europe/London] View::render - Now rendering layout with content from: browse
+[04-May-2025 00:21:07 Europe/London] View::render - Starting to render template: layout at 2025-05-04 00:21:07
+[04-May-2025 00:21:07 Europe/London] View::render - Full template path: /net/teachweb/scamweb/prin/x8m18/kill me/advanced-web-tech-final/src/views/layout.php
+[04-May-2025 00:21:07 Europe/London] View::render - Template file found, reading contents...
+[04-May-2025 00:21:07 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/css/styles.css for path: css/styles.css
+[04-May-2025 00:21:07 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/grocery-store.jpg for path: images/grocery-store.jpg
+[04-May-2025 00:21:07 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/grocery-store.jpg for path: images/grocery-store.jpg
+[04-May-2025 00:21:07 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/favicon.ico for path: favicon.ico
+[04-May-2025 00:21:07 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/apple-touch-icon.png for path: images/apple-touch-icon.png
+[04-May-2025 00:21:07 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/logo.png for path: images/logo.png
+[04-May-2025 00:21:07 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:21:07 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/logo.svg for path: images/logo.svg
+[04-May-2025 00:21:07 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:21:07 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:21:07 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/about for route: about
+[04-May-2025 00:21:07 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/cart for route: cart
+[04-May-2025 00:21:07 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:21:07 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:21:07 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:21:07 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:21:07 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/about for route: about
+[04-May-2025 00:21:07 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/cart for route: cart
+[04-May-2025 00:21:07 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:21:07 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:21:07 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/assets/js/main.js for path: assets/js/main.js
+[04-May-2025 00:21:07 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/js/catalog.js for path: js/catalog.js
+[04-May-2025 00:21:07 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/js/form-validation.js for path: js/form-validation.js
+[04-May-2025 00:21:07 Europe/London] View::render - Successfully rendered template: layout (content length: 31423 bytes)
+[04-May-2025 00:21:07 Europe/London] ProductController::browse - View rendered successfully
+[04-May-2025 00:21:08 Europe/London] ========= ROUTE DEBUGGING =========
+[04-May-2025 00:21:08 Europe/London] REQUEST_URI: /prin/x8m18/kill%20me/advanced-web-tech-final/public/about
+[04-May-2025 00:21:08 Europe/London] URI Path: /prin/x8m18/kill%20me/advanced-web-tech-final/public/about
+[04-May-2025 00:21:08 Europe/London] Lowercase Path: /prin/x8m18/kill%20me/advanced-web-tech-final/public/about
+[04-May-2025 00:21:08 Europe/London] Public position: 46
+[04-May-2025 00:21:08 Europe/London] After Public: about
+[04-May-2025 00:21:08 Europe/London] Clean Path: about
+[04-May-2025 00:21:08 Europe/London] Final Route: about
+[04-May-2025 00:21:08 Europe/London] ======== END ROUTE DEBUGGING ========
+[04-May-2025 00:21:08 Europe/London] View::render - Starting to render template: about at 2025-05-04 00:21:08
+[04-May-2025 00:21:08 Europe/London] View::render - Full template path: /net/teachweb/scamweb/prin/x8m18/kill me/advanced-web-tech-final/src/views/about.php
+[04-May-2025 00:21:08 Europe/London] View::render - Template file found, reading contents...
+[04-May-2025 00:21:08 Europe/London] View::render - Successfully rendered template: about (content length: 18999 bytes)
+[04-May-2025 00:21:08 Europe/London] View::render - Now rendering layout with content from: about
+[04-May-2025 00:21:08 Europe/London] View::render - Starting to render template: layout at 2025-05-04 00:21:08
+[04-May-2025 00:21:08 Europe/London] View::render - Full template path: /net/teachweb/scamweb/prin/x8m18/kill me/advanced-web-tech-final/src/views/layout.php
+[04-May-2025 00:21:08 Europe/London] View::render - Template file found, reading contents...
+[04-May-2025 00:21:08 Europe/London] Script Name: /prin/x8m18/kill me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:21:08 Europe/London] Request URI: /prin/x8m18/kill%20me/advanced-web-tech-final/public/about
+[04-May-2025 00:21:08 Europe/London] Found public/ in script name: /prin/x8m18/kill me/advanced-web-tech-final/public
+[04-May-2025 00:21:08 Europe/London] View::getBaseUrl - Calculated base URL: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/
+[04-May-2025 00:21:08 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/css/styles.css for path: css/styles.css
+[04-May-2025 00:21:08 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/grocery-store.jpg for path: images/grocery-store.jpg
+[04-May-2025 00:21:08 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/grocery-store.jpg for path: images/grocery-store.jpg
+[04-May-2025 00:21:08 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/favicon.ico for path: favicon.ico
+[04-May-2025 00:21:08 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/apple-touch-icon.png for path: images/apple-touch-icon.png
+[04-May-2025 00:21:08 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/logo.png for path: images/logo.png
+[04-May-2025 00:21:08 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:21:08 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/logo.svg for path: images/logo.svg
+[04-May-2025 00:21:08 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:21:08 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:21:08 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/about for route: about
+[04-May-2025 00:21:08 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/cart for route: cart
+[04-May-2025 00:21:08 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:21:09 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:21:09 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:21:09 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:21:09 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/about for route: about
+[04-May-2025 00:21:09 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/cart for route: cart
+[04-May-2025 00:21:09 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:21:09 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:21:09 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/assets/js/main.js for path: assets/js/main.js
+[04-May-2025 00:21:09 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/js/catalog.js for path: js/catalog.js
+[04-May-2025 00:21:09 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/js/form-validation.js for path: js/form-validation.js
+[04-May-2025 00:21:09 Europe/London] View::render - Successfully rendered template: layout (content length: 26821 bytes)
+[04-May-2025 00:21:11 Europe/London] Extracted username from path: x8m18
+[04-May-2025 00:21:11 Europe/London] Script path: /var/www/htdocs/prin/x8m18/kill me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:21:11 Europe/London] Using teaching server credentials - User: x8m18, DB: x8m18, Pass: [hidden]
+[04-May-2025 00:21:11 Europe/London] Database connection attempt - Host: localhost, DB: x8m18, User: x8m18
+[04-May-2025 00:21:11 Europe/London] Database connection successful
+[04-May-2025 00:21:11 Europe/London] CartController::__construct - Successfully initialized with Database helper
+[04-May-2025 00:21:11 Europe/London] CartController::viewCart - Method called - 2025-05-04 00:21:11
+[04-May-2025 00:21:11 Europe/London] CartController::viewCart - Using session-based cart
+[04-May-2025 00:21:11 Europe/London] CartController::viewCart - Cart items count: 1
+[04-May-2025 00:21:11 Europe/London] CartController::viewCart - Cart total: 19.99
+[04-May-2025 00:21:11 Europe/London] CartController::viewCart - About to render cart view
+[04-May-2025 00:21:11 Europe/London] View::render - Starting to render template: cart at 2025-05-04 00:21:11
+[04-May-2025 00:21:11 Europe/London] View::render - Full template path: /net/teachweb/scamweb/prin/x8m18/kill me/advanced-web-tech-final/src/views/cart.php
+[04-May-2025 00:21:11 Europe/London] View::render - Template file found, reading contents...
+[04-May-2025 00:21:11 Europe/London] Script Name: /prin/x8m18/kill me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:21:11 Europe/London] Request URI: /prin/x8m18/kill%20me/advanced-web-tech-final/public/index.php?route=cart
+[04-May-2025 00:21:11 Europe/London] Found public/ in script name: /prin/x8m18/kill me/advanced-web-tech-final/public
+[04-May-2025 00:21:11 Europe/London] View::getBaseUrl - Calculated base URL: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/
+[04-May-2025 00:21:11 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/api/cart/remove for route: api/cart/remove
+[04-May-2025 00:21:11 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/api/cart/update for route: api/cart/update
+[04-May-2025 00:21:11 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/api/cart/clear for route: api/cart/clear
+[04-May-2025 00:21:11 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:21:11 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/checkout for route: checkout
+[04-May-2025 00:21:11 Europe/London] View::render - Successfully rendered template: cart (content length: 7009 bytes)
+[04-May-2025 00:21:11 Europe/London] View::render - Now rendering layout with content from: cart
+[04-May-2025 00:21:11 Europe/London] View::render - Starting to render template: layout at 2025-05-04 00:21:11
+[04-May-2025 00:21:11 Europe/London] View::render - Full template path: /net/teachweb/scamweb/prin/x8m18/kill me/advanced-web-tech-final/src/views/layout.php
+[04-May-2025 00:21:11 Europe/London] View::render - Template file found, reading contents...
+[04-May-2025 00:21:11 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/css/styles.css for path: css/styles.css
+[04-May-2025 00:21:11 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/grocery-store.jpg for path: images/grocery-store.jpg
+[04-May-2025 00:21:11 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/grocery-store.jpg for path: images/grocery-store.jpg
+[04-May-2025 00:21:11 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/favicon.ico for path: favicon.ico
+[04-May-2025 00:21:11 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/apple-touch-icon.png for path: images/apple-touch-icon.png
+[04-May-2025 00:21:11 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/logo.png for path: images/logo.png
+[04-May-2025 00:21:11 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:21:11 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/logo.svg for path: images/logo.svg
+[04-May-2025 00:21:11 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:21:11 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:21:11 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/about for route: about
+[04-May-2025 00:21:11 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/cart for route: cart
+[04-May-2025 00:21:11 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:21:11 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:21:11 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:21:11 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:21:11 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/about for route: about
+[04-May-2025 00:21:11 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/cart for route: cart
+[04-May-2025 00:21:11 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:21:11 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:21:11 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/assets/js/main.js for path: assets/js/main.js
+[04-May-2025 00:21:11 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/js/catalog.js for path: js/catalog.js
+[04-May-2025 00:21:11 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/js/form-validation.js for path: js/form-validation.js
+[04-May-2025 00:21:11 Europe/London] View::render - Successfully rendered template: layout (content length: 14675 bytes)
+[04-May-2025 00:21:11 Europe/London] CartController::viewCart - View rendered successfully
+[04-May-2025 00:21:19 Europe/London] ========= ROUTE DEBUGGING =========
+[04-May-2025 00:21:19 Europe/London] REQUEST_URI: /prin/x8m18/kill%20me/advanced-web-tech-final/public/login
+[04-May-2025 00:21:19 Europe/London] URI Path: /prin/x8m18/kill%20me/advanced-web-tech-final/public/login
+[04-May-2025 00:21:19 Europe/London] Lowercase Path: /prin/x8m18/kill%20me/advanced-web-tech-final/public/login
+[04-May-2025 00:21:19 Europe/London] Public position: 46
+[04-May-2025 00:21:19 Europe/London] After Public: login
+[04-May-2025 00:21:19 Europe/London] Clean Path: login
+[04-May-2025 00:21:19 Europe/London] Final Route: login
+[04-May-2025 00:21:19 Europe/London] ======== END ROUTE DEBUGGING ========
+[04-May-2025 00:21:19 Europe/London] Extracted username from path: x8m18
+[04-May-2025 00:21:19 Europe/London] Script path: /var/www/htdocs/prin/x8m18/kill me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:21:19 Europe/London] Using teaching server credentials - User: x8m18, DB: x8m18, Pass: [hidden]
+[04-May-2025 00:21:19 Europe/London] Database connection attempt - Host: localhost, DB: x8m18, User: x8m18
+[04-May-2025 00:21:19 Europe/London] Database connection successful
+[04-May-2025 00:21:19 Europe/London] View::render - Starting to render template: login at 2025-05-04 00:21:19
+[04-May-2025 00:21:19 Europe/London] View::render - Full template path: /net/teachweb/scamweb/prin/x8m18/kill me/advanced-web-tech-final/src/views/login.php
+[04-May-2025 00:21:19 Europe/London] View::render - Template file found, reading contents...
+[04-May-2025 00:21:19 Europe/London] View::render - Successfully rendered template: login (content length: 7646 bytes)
+[04-May-2025 00:21:19 Europe/London] View::render - Now rendering layout with content from: login
+[04-May-2025 00:21:19 Europe/London] View::render - Starting to render template: layout at 2025-05-04 00:21:19
+[04-May-2025 00:21:19 Europe/London] View::render - Full template path: /net/teachweb/scamweb/prin/x8m18/kill me/advanced-web-tech-final/src/views/layout.php
+[04-May-2025 00:21:19 Europe/London] View::render - Template file found, reading contents...
+[04-May-2025 00:21:19 Europe/London] Script Name: /prin/x8m18/kill me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:21:19 Europe/London] Request URI: /prin/x8m18/kill%20me/advanced-web-tech-final/public/login
+[04-May-2025 00:21:19 Europe/London] Found public/ in script name: /prin/x8m18/kill me/advanced-web-tech-final/public
+[04-May-2025 00:21:19 Europe/London] View::getBaseUrl - Calculated base URL: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/
+[04-May-2025 00:21:19 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/css/styles.css for path: css/styles.css
+[04-May-2025 00:21:19 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/grocery-store.jpg for path: images/grocery-store.jpg
+[04-May-2025 00:21:19 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/grocery-store.jpg for path: images/grocery-store.jpg
+[04-May-2025 00:21:19 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/favicon.ico for path: favicon.ico
+[04-May-2025 00:21:19 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/apple-touch-icon.png for path: images/apple-touch-icon.png
+[04-May-2025 00:21:19 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/logo.png for path: images/logo.png
+[04-May-2025 00:21:19 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:21:19 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/logo.svg for path: images/logo.svg
+[04-May-2025 00:21:19 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:21:19 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:21:19 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/about for route: about
+[04-May-2025 00:21:19 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/cart for route: cart
+[04-May-2025 00:21:19 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:21:19 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:21:19 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:21:19 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:21:19 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/about for route: about
+[04-May-2025 00:21:19 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/cart for route: cart
+[04-May-2025 00:21:19 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:21:19 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:21:19 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/assets/js/main.js for path: assets/js/main.js
+[04-May-2025 00:21:19 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/js/catalog.js for path: js/catalog.js
+[04-May-2025 00:21:19 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/js/form-validation.js for path: js/form-validation.js
+[04-May-2025 00:21:19 Europe/London] View::render - Successfully rendered template: layout (content length: 15330 bytes)
+[04-May-2025 00:21:20 Europe/London] ========= ROUTE DEBUGGING =========
+[04-May-2025 00:21:20 Europe/London] REQUEST_URI: /prin/x8m18/kill%20me/advanced-web-tech-final/public/register
+[04-May-2025 00:21:20 Europe/London] URI Path: /prin/x8m18/kill%20me/advanced-web-tech-final/public/register
+[04-May-2025 00:21:20 Europe/London] Lowercase Path: /prin/x8m18/kill%20me/advanced-web-tech-final/public/register
+[04-May-2025 00:21:20 Europe/London] Public position: 46
+[04-May-2025 00:21:20 Europe/London] After Public: register
+[04-May-2025 00:21:20 Europe/London] Clean Path: register
+[04-May-2025 00:21:20 Europe/London] Final Route: register
+[04-May-2025 00:21:20 Europe/London] ======== END ROUTE DEBUGGING ========
+[04-May-2025 00:21:20 Europe/London] Extracted username from path: x8m18
+[04-May-2025 00:21:20 Europe/London] Script path: /var/www/htdocs/prin/x8m18/kill me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:21:20 Europe/London] Using teaching server credentials - User: x8m18, DB: x8m18, Pass: [hidden]
+[04-May-2025 00:21:20 Europe/London] Database connection attempt - Host: localhost, DB: x8m18, User: x8m18
+[04-May-2025 00:21:20 Europe/London] Database connection successful
+[04-May-2025 00:21:20 Europe/London] View::render - Starting to render template: register at 2025-05-04 00:21:20
+[04-May-2025 00:21:20 Europe/London] View::render - Full template path: /net/teachweb/scamweb/prin/x8m18/kill me/advanced-web-tech-final/src/views/register.php
+[04-May-2025 00:21:20 Europe/London] View::render - Template file found, reading contents...
+[04-May-2025 00:21:20 Europe/London] View::render - Successfully rendered template: register (content length: 417 bytes)
+[04-May-2025 00:21:20 Europe/London] View::render - Now rendering layout with content from: register
+[04-May-2025 00:21:20 Europe/London] View::render - Starting to render template: layout at 2025-05-04 00:21:20
+[04-May-2025 00:21:20 Europe/London] View::render - Full template path: /net/teachweb/scamweb/prin/x8m18/kill me/advanced-web-tech-final/src/views/layout.php
+[04-May-2025 00:21:20 Europe/London] View::render - Template file found, reading contents...
+[04-May-2025 00:21:20 Europe/London] Script Name: /prin/x8m18/kill me/advanced-web-tech-final/public/index.php
+[04-May-2025 00:21:20 Europe/London] Request URI: /prin/x8m18/kill%20me/advanced-web-tech-final/public/register
+[04-May-2025 00:21:20 Europe/London] Found public/ in script name: /prin/x8m18/kill me/advanced-web-tech-final/public
+[04-May-2025 00:21:20 Europe/London] View::getBaseUrl - Calculated base URL: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/
+[04-May-2025 00:21:20 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/css/styles.css for path: css/styles.css
+[04-May-2025 00:21:20 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/grocery-store.jpg for path: images/grocery-store.jpg
+[04-May-2025 00:21:20 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/grocery-store.jpg for path: images/grocery-store.jpg
+[04-May-2025 00:21:20 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/favicon.ico for path: favicon.ico
+[04-May-2025 00:21:20 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/apple-touch-icon.png for path: images/apple-touch-icon.png
+[04-May-2025 00:21:20 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/logo.png for path: images/logo.png
+[04-May-2025 00:21:20 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:21:20 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/images/logo.svg for path: images/logo.svg
+[04-May-2025 00:21:20 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:21:20 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:21:20 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/about for route: about
+[04-May-2025 00:21:20 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/cart for route: cart
+[04-May-2025 00:21:20 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:21:20 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:21:20 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/home for route: home
+[04-May-2025 00:21:20 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/products for route: products
+[04-May-2025 00:21:20 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/about for route: about
+[04-May-2025 00:21:20 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/cart for route: cart
+[04-May-2025 00:21:20 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/login for route: login
+[04-May-2025 00:21:20 Europe/London] URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/register for route: register
+[04-May-2025 00:21:20 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/assets/js/main.js for path: assets/js/main.js
+[04-May-2025 00:21:20 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/js/catalog.js for path: js/catalog.js
+[04-May-2025 00:21:20 Europe/London] Asset URL generated: https://teach.scam.keele.ac.uk/prin/x8m18/kill me/advanced-web-tech-final/public/js/form-validation.js for path: js/form-validation.js
+[04-May-2025 00:21:20 Europe/London] View::render - Successfully rendered template: layout (content length: 8074 bytes)

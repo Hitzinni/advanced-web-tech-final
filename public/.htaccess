@@ -1,13 +1,21 @@
 RewriteEngine On
-RewriteBase /
 
-# If the requested file or directory exists, serve it directly
+# Set the base URL path for the application
+# Include the full path with proper encoding for spaces
+RewriteBase /prin/x8m18/kill%20me/advanced-web-tech-final/public/
+
+# Block direct access to template files in src/views
+RewriteCond %{THE_REQUEST} ^.*/src/views/.*\.php [NC]
+RewriteRule ^ - [F,L]
+
+# Allow direct access to actual files and directories
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
-# Allow direct access to files in css, js, and images directories
-RewriteRule ^(css|js|images)/(.*)$ - [L]
+# Allow direct access to assets in specific directories
+RewriteRule ^(css|js|images|assets)/(.*)$ - [L]
 
-# Otherwise redirect all requests to index.php
+# For all other requests, route through index.php
+# Including query string parameters with QSA flag
 RewriteRule ^(.*)$ index.php [QSA,L] 

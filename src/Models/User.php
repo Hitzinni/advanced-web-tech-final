@@ -75,7 +75,7 @@ class User extends BaseModel
      * @param string $email The email address to search for.
      * @return array|null An associative array of the user data if found, otherwise null.
      */
-    public function findByEmail(string $email): ?array
+    public function findByEmail(string $email)
     {
         // SQL query to select a user by email
         $sql = "SELECT * FROM user WHERE email = ? LIMIT 1";
@@ -95,7 +95,7 @@ class User extends BaseModel
      * @param int $id The user ID to search for.
      * @return array|null An associative array of the user data if found, otherwise null.
      */
-    public function findById(int $id): ?array
+    public function findById(int $id)
     {
         // SQL query to select a user by ID
         $sql = "SELECT * FROM user WHERE id = ? LIMIT 1";

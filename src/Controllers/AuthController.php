@@ -141,31 +141,113 @@ class AuthController
      */
     public function registerForm(): void
     {
-        // Check if the user is already logged in.
-        if (isset($_SESSION['user_id'])) {
-            // Redirect to homepage if logged in.
-            header('Location: /');
-            exit;
+        try {
+            // Check if the user is already logged in.
+            if (isset($_SESSION['user_id'])) {
+                // Redirect to homepage if logged in.
+                header('Location: /');
+                exit;
+            }
+            
+            // Set page metadata for the registration view.
+            $pageTitle = 'Create an Account';
+            $metaDescription = 'Register for an account to place orders at our online grocery store.';
+            
+            // CSRF token setup if not already present
+            if (!isset($_SESSION['csrf_token'])) {
+                $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+            }
+            
+            // Render the 'register' view.
+            View::output('register', [
+                'pageTitle' => $pageTitle,
+                'metaDescription' => $metaDescription,
+                // Pass any registration error from previous attempt.
+                'error' => $_SESSION['register_error'] ?? null,
+                // Pass previously submitted data (if any) to repopulate the form.
+                'name' => $_SESSION['register_data']['name'] ?? null,
+                'phone' => $_SESSION['register_data']['phone'] ?? null,
+                'email' => $_SESSION['register_data']['email'] ?? null
+            ]);
+            
+            // Clear registration flash data (error message and submitted values) from session.
+            unset($_SESSION['register_error'], $_SESSION['register_data']);
+        } catch (\Throwable $e) {
+            // Log the error
+            error_log('AuthController::registerForm - Unhandled exception: ' . $e->getMessage() . ' - ' . $e->getTraceAsString());
+            
+            // Display a basic registration form when the template fails
+            echo '<!DOCTYPE html>
+            <html>
+            <head>
+                <title>Create an Account | Online Grocery Store</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+                <style>
+                    body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+                    .container { max-width: 800px; margin: 0 auto; }
+                    .alert { padding: 15px; margin-bottom: 20px; border: 1px solid transparent; border-radius: 4px; }
+                    .alert-danger { background-color: #f8d7da; border-color: #f5c6cb; color: #721c24; }
+                    .card { border: 1px solid rgba(0,0,0,.125); border-radius: 4px; margin-bottom: 20px; }
+                    .card-header { padding: 15px; background-color: #0d6efd; color: white; }
+                    .card-body { padding: 15px; }
+                    .card-footer { padding: 15px; background-color: rgba(0,0,0,.03); }
+                    .form-group { margin-bottom: 15px; }
+                    label { display: block; margin-bottom: 5px; }
+                    input { width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px; }
+                    .btn { display: inline-block; padding: 8px 16px; background-color: #0d6efd; color: white; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; }
+                    .form-text { color: #6c757d; font-size: 14px; margin-top: 5px; }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <div class="alert alert-danger">
+                        <strong>Notice:</strong> Using basic registration form due to a template rendering issue.
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 style="margin: 0;">Create an Account</h3>
+                        </div>
+                        <div class="card-body">
+                            <form method="post" action="index.php?route=register">
+                                <input type="hidden" name="csrf_token" value="' . $_SESSION['csrf_token'] . '">
+                                
+                                <div class="form-group">
+                                    <label for="name">Full Name</label>
+                                    <input type="text" id="name" name="name" value="' . htmlspecialchars($_SESSION['register_data']['name'] ?? '') . '" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="tel" id="phone" name="phone" value="' . htmlspecialchars($_SESSION['register_data']['phone'] ?? '') . '" pattern="[0-9]{10}" required>
+                                    <div class="form-text">Format: 10 digits with no spaces or dashes</div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" id="email" name="email" value="' . htmlspecialchars($_SESSION['register_data']['email'] ?? '') . '" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" id="password" name="password" minlength="8" required>
+                                    <div class="form-text">Must contain at least 8 characters with letters and numbers</div>
+                                </div>
+                                
+                                <button type="submit" class="btn">Create Account</button>
+                            </form>
+                        </div>
+                        <div class="card-footer" style="text-align: center;">
+                            <p style="margin: 0;">Already have an account? <a href="index.php?route=login">Login here</a></p>
+                        </div>
+                    </div>
+                    
+                    <p><a href="index.php" class="btn">Back to Home</a></p>
+                </div>
+            </body>
+            </html>';
         }
-        
-        // Set page metadata for the registration view.
-        $pageTitle = 'Create an Account';
-        $metaDescription = 'Register for an account to place orders at our online grocery store.';
-        
-        // Render the 'register' view.
-        View::output('register', [
-            'pageTitle' => $pageTitle,
-            'metaDescription' => $metaDescription,
-            // Pass any registration error from previous attempt.
-            'error' => $_SESSION['register_error'] ?? null,
-            // Pass previously submitted data (if any) to repopulate the form.
-            'name' => $_SESSION['register_data']['name'] ?? null,
-            'phone' => $_SESSION['register_data']['phone'] ?? null,
-            'email' => $_SESSION['register_data']['email'] ?? null
-        ]);
-        
-        // Clear registration flash data (error message and submitted values) from session.
-        unset($_SESSION['register_error'], $_SESSION['register_data']);
     }
     
     /**

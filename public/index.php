@@ -20,8 +20,8 @@ if (file_exists(BASE_PATH . '/.env')) {
 
 // Enable error reporting for development
 error_reporting(E_ALL);
-ini_set('display_errors', 0); // Don't display errors directly to users
-ini_set('log_errors', 1);     // Log errors instead
+ini_set('display_errors', '0'); // Don't display errors directly to users
+ini_set('log_errors', '1');     // Log errors instead
 ini_set('error_log', BASE_PATH . '/logs/php_errors.log'); // Set a custom error log
 
 // Set up custom error handler

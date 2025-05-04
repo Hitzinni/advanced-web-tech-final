@@ -21,6 +21,14 @@
                     </div>
                 <?php endif; ?>
                 
+                <?php if (!empty($_SESSION['login_success'])): ?>
+                    <div class="alert alert-success d-flex align-items-center" role="alert">
+                        <i class="bi bi-check-circle-fill me-2"></i>
+                        <div><?= htmlspecialchars($_SESSION['login_success']) ?></div>
+                    </div>
+                    <?php unset($_SESSION['login_success']); ?>
+                <?php endif; ?>
+                
                 <form action="login-post" method="post" id="login-form" class="needs-validation" novalidate>
                     <div class="mb-3">
                         <label for="email" class="form-label fw-medium">Email Address</label>
@@ -45,7 +53,7 @@
                         <label for="captcha" class="form-label fw-medium">Security Verification</label>
                         <div class="input-group">
                             <div class="d-flex align-items-center bg-light rounded p-2 me-2" style="flex: 0 0 auto;">
-                                <img src="/captcha.php" id="captcha-image" alt="CAPTCHA" class="captcha-img"
+                                <img src="captcha.php" id="captcha-image" alt="CAPTCHA" class="captcha-img"
                                      style="height: 50px; width: 150px; border-radius: 3px; cursor: pointer;">
                                 <button type="button" id="refresh-captcha" class="btn btn-sm btn-link text-primary ms-1" 
                                         title="Refresh CAPTCHA">
@@ -91,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const refreshButton = document.getElementById('refresh-captcha');
     
     const refreshCaptcha = function() {
-        captchaImage.src = '/captcha.php?' + new Date().getTime();
+        captchaImage.src = 'captcha.php?' + new Date().getTime();
     };
     
     // Initial load not needed as the image is loaded via src attribute

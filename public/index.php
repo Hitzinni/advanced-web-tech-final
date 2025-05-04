@@ -493,6 +493,125 @@ switch ($route) {
         $controller->subscribe();
         break;
         
+    case 'api/register':
+        // API adapter for React registration
+        // Forward the request to the regular registration handler
+        if (safeRequire(BASE_PATH . '/src/Controllers/AuthController.php')) {
+            // Set content type for API response
+            header('Content-Type: application/json');
+            
+            try {
+                // Convert JSON body to POST parameters if needed
+                $contentType = $_SERVER["CONTENT_TYPE"] ?? '';
+                if (strpos($contentType, 'application/json') !== false) {
+                    $json = file_get_contents('php://input');
+                    $data = json_decode($json, true);
+                    if ($data) {
+                        $_POST = array_merge($_POST, $data);
+                    }
+                }
+                
+                // Initialize controller but don't call register() method yet
+                $controller = new \App\Controllers\AuthController();
+                
+                // Validate inputs first
+                $name = $_POST['name'] ?? '';
+                $phone = $_POST['phone'] ?? '';
+                $email = $_POST['email'] ?? '';
+                $password = $_POST['password'] ?? '';
+                $csrfToken = $_POST['csrf_token'] ?? '';
+                
+                // For debugging
+                error_log('API register route called with data: ' . json_encode([
+                    'name' => $name,
+                    'phone' => $phone,
+                    'email' => $email,
+                    'password_length' => strlen($password),
+                    'csrf_token_length' => strlen($csrfToken),
+                ]));
+                
+                // Store the current output buffer level
+                $currentLevel = ob_get_level();
+                
+                // Start output buffering to capture any output/headers
+                ob_start();
+                
+                // Call the registration method but intercept the result
+                $success = false;
+                try {
+                    // Instead of directly calling register which might redirect,
+                    // check if inputs are valid
+                    // Validate the data
+                    $validationErrors = [];
+                    
+                    // Import Validators class
+                    require_once BASE_PATH . '/src/Helpers/Validators.php';
+                    
+                    if (!\App\Helpers\Validators::name($name)) {
+                        $validationErrors[] = 'Invalid name format.';
+                    }
+                    if (!\App\Helpers\Validators::phone($phone)) {
+                        $validationErrors[] = 'Phone number must be exactly 10 digits.';
+                    }
+                    if (!\App\Helpers\Validators::email($email)) {
+                        $validationErrors[] = 'Invalid email format.';
+                    }
+                    if (!\App\Helpers\Validators::password($password)) {
+                        $validationErrors[] = 'Password must be at least 8 characters with at least one letter and one number.';
+                    }
+                    
+                    if (empty($validationErrors)) {
+                        // If validation passes, check for existing email
+                        require_once BASE_PATH . '/src/Models/User.php';
+                        $userModel = new \App\Models\User();
+                        $existingUser = $userModel->findByEmail($email);
+                        
+                        if ($existingUser) {
+                            $validationErrors[] = 'Email address is already registered.';
+                        } else {
+                            // Create the user
+                            $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+                            $userId = $userModel->create($name, $phone, $email, $passwordHash);
+                            
+                            if ($userId) {
+                                $success = true;
+                            } else {
+                                $validationErrors[] = 'Database error when creating user.';
+                            }
+                        }
+                    }
+                    
+                    // Clean output buffer
+                    ob_end_clean();
+                    
+                    if ($success) {
+                        echo json_encode([
+                            'success' => true, 
+                            'message' => 'Registration successful. Please login.',
+                            'redirectUrl' => './login'
+                        ]);
+                    } else {
+                        http_response_code(400);
+                        echo json_encode([
+                            'success' => false, 
+                            'message' => implode(' ', $validationErrors),
+                            'errors' => $validationErrors
+                        ]);
+                    }
+                } catch (\Exception $e) {
+                    ob_end_clean();
+                    http_response_code(500);
+                    echo json_encode(['success' => false, 'message' => 'Server error: ' . $e->getMessage()]);
+                }
+            } catch (\Exception $e) {
+                // Return error response
+                http_response_code(500);
+                echo json_encode(['success' => false, 'message' => 'Registration failed: ' . $e->getMessage()]);
+            }
+            exit;
+        }
+        break;
+        
     default:
         // Check if the route starts with 'api/'
         if (strpos($route, 'api/') === 0) {

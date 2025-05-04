@@ -1,24 +1,32 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Get login form (registration form handled by React)
+    // Get forms
     const loginForm = document.getElementById('login-form');
+    const registerForm = document.querySelector('form[action*="register"]');
     
     // Regex patterns for validation
     const patterns = {
-        // name: /^[A-Za-z\s]{2,60}$/, // Handled by React
-        // phone: /^\d{10}$/, // Handled by React
+        name: /^[A-Za-z\s]{2,60}$/,
+        phone: /^\d{10}$/,
         email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-        // password: /^(?=.*[A-Za-z])(?=.*\d).{8,}$/ // Handled by React, but keep email regex for login
+        password: /^(?=.*[A-Za-z])(?=.*\d).{8,}$/ // At least 8 chars with letters and numbers
     };
     
     // Functions to validate each field
-    // const validateName = (value) => { ... }; // Removed
-    // const validatePhone = (value) => { ... }; // Removed
+    const validateName = (value) => {
+        return patterns.name.test(value);
+    };
+    
+    const validatePhone = (value) => {
+        return patterns.phone.test(value);
+    };
     
     const validateEmail = (value) => {
         return patterns.email.test(value);
     };
     
-    // const validatePassword = (value) => { ... }; // Removed (only simple check needed for login)
+    const validatePassword = (value) => {
+        return patterns.password.test(value);
+    };
     
     // Show error message
     const showError = (input, message) => {
@@ -46,8 +54,87 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
     
-    // Add validation listeners to registration form - REMOVED
-    // if (registerForm) { ... } 
+    // Add validation listeners to registration form
+    if (registerForm) {
+        const nameInput = registerForm.querySelector('input[name="name"]');
+        const phoneInput = registerForm.querySelector('input[name="phone"]');
+        const emailInput = registerForm.querySelector('input[name="email"]');
+        const passwordInput = registerForm.querySelector('input[name="password"]');
+        
+        // Name validation
+        if (nameInput) {
+            nameInput.addEventListener('input', function() {
+                if (!validateName(this.value)) {
+                    showError(this, 'Name must contain only letters and spaces (2-60 characters)');
+                } else {
+                    clearError(this);
+                }
+            });
+        }
+        
+        // Phone validation
+        if (phoneInput) {
+            phoneInput.addEventListener('input', function() {
+                if (!validatePhone(this.value)) {
+                    showError(this, 'Phone must be exactly 10 digits');
+                } else {
+                    clearError(this);
+                }
+            });
+        }
+        
+        // Email validation
+        if (emailInput) {
+            emailInput.addEventListener('input', function() {
+                if (!validateEmail(this.value)) {
+                    showError(this, 'Please enter a valid email address');
+                } else {
+                    clearError(this);
+                }
+            });
+        }
+        
+        // Password validation
+        if (passwordInput) {
+            passwordInput.addEventListener('input', function() {
+                if (!validatePassword(this.value)) {
+                    showError(this, 'Password must be at least 8 characters with at least one letter and one number');
+                } else {
+                    clearError(this);
+                }
+            });
+        }
+        
+        // Form submission
+        registerForm.addEventListener('submit', function(event) {
+            let isValid = true;
+            
+            // Validate all fields
+            if (nameInput && !validateName(nameInput.value)) {
+                showError(nameInput, 'Name must contain only letters and spaces (2-60 characters)');
+                isValid = false;
+            }
+            
+            if (phoneInput && !validatePhone(phoneInput.value)) {
+                showError(phoneInput, 'Phone must be exactly 10 digits');
+                isValid = false;
+            }
+            
+            if (emailInput && !validateEmail(emailInput.value)) {
+                showError(emailInput, 'Please enter a valid email address');
+                isValid = false;
+            }
+            
+            if (passwordInput && !validatePassword(passwordInput.value)) {
+                showError(passwordInput, 'Password must be at least 8 characters with at least one letter and one number');
+                isValid = false;
+            }
+            
+            if (!isValid) {
+                event.preventDefault(); // Prevent submission if validation fails
+            }
+        });
+    }
     
     // CAPTCHA refresh functionality (keep if used on login or other forms)
     const captchaImage = document.getElementById('captcha-image');
@@ -57,7 +144,6 @@ document.addEventListener('DOMContentLoaded', function() {
         refreshButton.addEventListener('click', function(event) {
             event.preventDefault();
             // Ensure the path is correct for where captcha is displayed
-            // It might be /captcha.php or /api/captcha depending on the form
             const captchaSrc = captchaImage.src.split('?')[0]; 
             captchaImage.src = captchaSrc + '?t=' + new Date().getTime();
         });

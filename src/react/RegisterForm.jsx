@@ -89,57 +89,42 @@ function RegisterForm({ csrfToken }) {
     }
 
     setIsSubmitting(true);
-    
-    const formData = new FormData();
-    formData.append('name', name);
-    formData.append('phone', phone);
-    formData.append('email', email);
-    formData.append('password', password);
-    formData.append('csrf_token', csrfToken); 
 
     try {
-      // IMPORTANT: Adjust '/register-post' if your backend endpoint is different
-      const response = await fetch('/api/register', { // Corrected URL
+      // Use the full path to the API endpoint
+      const response = await fetch('/prin/x8m18/kill%20me/advanced-web-tech-final/public/api/register', {
         method: 'POST',
-        // body: formData, // Sending as form data, adjust if backend expects JSON - REMOVED
-        body: JSON.stringify({ 
-            name: name,
-            phone: phone,
-            email: email,
-            password: password,
-            // Assuming CSRF token needs to be sent if applicable; how it's obtained (prop?) needs confirmation
-            // csrf_token: csrfToken 
+        body: JSON.stringify({
+          name,
+          phone,
+          email,
+          password,
+          csrf_token: csrfToken
         }),
         headers: {
-            // Add 'Accept': 'application/json' if your backend responds with JSON
-            'Accept': 'application/json', // Added Accept header
-            'Content-Type': 'application/json' // Set Content-Type to JSON
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         }
       });
 
-      if (response.ok) {
-        // Option 1: Redirect (if backend handles redirect)
-        if (response.redirected) {
-           window.location.href = response.url;
-        } else {
-           // Option 2: Manually redirect or show success message
-           // Check if backend sends a specific success indicator
-           const result = await response.json(); // Assuming backend sends JSON
-           if(result.success) {
-              window.location.href = result.redirectUrl || '/login'; // Redirect to login or specified URL
-           } else {
-              setSubmitError(result.message || 'Registration failed. Please try again.');
-           }
-        }
+      // Parse the response as JSON
+      let result;
+      try {
+        result = await response.json();
+      } catch (error) {
+        console.error('Failed to parse JSON response:', error);
+        // If we can't parse JSON, try to get the text response
+        const text = await response.text();
+        console.error('Response text:', text);
+        throw new Error('Invalid response format from server');
+      }
+
+      if (response.ok && result.success) {
+        // Registration succeeded, redirect to login using URL from server if available
+        window.location.href = result.redirectUrl || './login';
       } else {
-        let errorMessage = `Registration failed. Status: ${response.status}`;
-        try {
-           const errorData = await response.json(); 
-           errorMessage = errorData.message || errorMessage; 
-        } catch (jsonError) {
-           console.error("Could not parse error response:", jsonError);
-        }
-        setSubmitError(errorMessage);
+        // Show the error message from the server
+        setSubmitError(result.message || 'Registration failed. Please try again.');
       }
     } catch (error) {
       console.error('Registration request failed:', error);

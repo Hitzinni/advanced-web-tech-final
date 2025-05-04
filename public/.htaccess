@@ -4,6 +4,10 @@ RewriteEngine On
 # Include the full path with proper encoding for spaces
 RewriteBase /prin/x8m18/kill%20me/advanced-web-tech-final/public/
 
+# Handle requests to /api/register from the root URL
+RewriteCond %{REQUEST_URI} ^/api/register/?$ [NC]
+RewriteRule ^ /prin/x8m18/kill%20me/advanced-web-tech-final/public/api/register/ [L,R=307]
+
 # Block direct access to template files in src/views
 RewriteCond %{THE_REQUEST} ^.*/src/views/.*\.php [NC]
 RewriteRule ^ - [F,L]
@@ -15,6 +19,9 @@ RewriteRule ^ - [L]
 
 # Allow direct access to assets in specific directories
 RewriteRule ^(css|js|images|assets)/(.*)$ - [L]
+
+# If the request is for the API, pass it to the appropriate PHP file
+RewriteRule ^api/register/?$ api/register/index.php [L,QSA]
 
 # For all other requests, route through index.php
 # Including query string parameters with QSA flag

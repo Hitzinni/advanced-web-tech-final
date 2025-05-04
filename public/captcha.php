@@ -1,210 +1,99 @@
 <?php
-declare(strict_types=1);
+// Simple CAPTCHA generator
+session_start();
 
-// Enable error reporting
-error_reporting(E_ALL);
-ini_set('display_errors', 0);
-ini_set('log_errors', 1);
-ini_set('error_log', dirname(__DIR__) . '/logs/php_errors.log');
-
-// Define base path
-define('BASE_PATH', dirname(__DIR__));
-
-// Start session
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+// Create a random 4-character code
+$code = '';
+$possible_characters = '23456789ABCDEFGHJKLMNPQRTUVWXY'; // Omitting confusing characters
+for ($i = 0; $i < 4; $i++) {
+    $code .= $possible_characters[random_int(0, strlen($possible_characters) - 1)];
 }
 
-try {
-    // Generate a random 6-character string
-    $characters = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789';
-    $captchaText = '';
-    for ($i = 0; $i < 6; $i++) {
-        $captchaText .= $characters[random_int(0, strlen($characters) - 1)];
-    }
+// Store in session
+$_SESSION['captcha'] = $code;
+
+// Create image
+$width = 150;
+$height = 50;
+$image = imagecreate($width, $height);
+
+// Define colors
+$background = imagecolorallocate($image, 250, 250, 250); // Almost white
+$text_color = imagecolorallocate($image, 0, 0, 128);     // Navy blue
+$border_color = imagecolorallocate($image, 220, 220, 220); // Light gray
+$line_color1 = imagecolorallocate($image, 230, 230, 250); // Very light blue
+$line_color2 = imagecolorallocate($image, 240, 240, 210); // Very light yellow
+
+// Add border
+imagerectangle($image, 0, 0, $width - 1, $height - 1, $border_color);
+
+// Add decorative lines
+// Horizontal wavy line
+$y = rand(15, $height - 15);
+for ($x = 0; $x < $width; $x += 3) {
+    $y_offset = rand(-2, 2);
+    imageline($image, $x, $y + $y_offset, $x + 2, $y + $y_offset, $line_color1);
+}
+
+// Diagonal line
+$x1 = rand(5, 20);
+$y1 = rand(5, 15);
+$x2 = rand($width - 20, $width - 5);
+$y2 = rand($height - 15, $height - 5);
+imageline($image, $x1, $y1, $x2, $y2, $line_color2);
+
+// Prepare to draw characters
+$total_width = 0;
+$font_sizes = [];
+$char_widths = [];
+
+// Determine random font sizes and calculate total width
+for ($i = 0; $i < strlen($code); $i++) {
+    // Use font sizes 3-5 for good readability with variation
+    $font_sizes[$i] = rand(3, 5);
+    $char_widths[$i] = imagefontwidth($font_sizes[$i]);
+    $total_width += $char_widths[$i];
+}
+
+// Add spacing between characters (10-15px total)
+$spacing = 12;
+$total_width += $spacing * (strlen($code) - 1);
+
+// Calculate starting position to center the text
+$start_x = ($width - $total_width) / 2;
+$current_x = $start_x;
+
+// Draw each character with varied styling
+for ($i = 0; $i < strlen($code); $i++) {
+    // Get font size and calculate vertical position
+    $font_size = $font_sizes[$i];
+    $char_height = imagefontheight($font_size);
     
-    // Store the CAPTCHA text in the session
-    $_SESSION['captcha'] = $captchaText;
+    // Center character vertically with random offset
+    $y = ($height - $char_height) / 2 + rand(-3, 3);
     
-    // Create an image with larger dimensions for better readability and distortion
-    $width = 180;
-    $height = 60;
-    $image = imagecreatetruecolor($width, $height);
-    
-    // If image creation failed, output an error message and exit
-    if ($image === false) {
-        throw new Exception("Failed to create image with imagecreatetruecolor()");
-    }
-    
-    // Create a more complex background
-    $bgColor = imagecolorallocate($image, 245, 245, 245);
-    
-    // Create a gradient background
-    $gradientColors = [];
-    for ($i = 0; $i < $height; $i++) {
-        $intensity = (int)(245 - ($i * 20 / $height));
-        $gradientColors[$i] = imagecolorallocate($image, $intensity, $intensity, (int)($intensity+10));
-    }
-    
-    // Fill with gradient
-    for ($i = 0; $i < $height; $i++) {
-        imageline($image, 0, $i, $width, $i, $gradientColors[$i]);
-    }
-    
-    // Add background patterns
-    for ($i = 0; $i < 10; $i++) {
-        $circleColor = imagecolorallocate($image, 
-            random_int(200, 240), 
-            random_int(200, 240), 
-            random_int(200, 240)
-        );
-        
-        // Draw random ellipses in the background
-        imageellipse(
-            $image, 
-            random_int(0, $width), 
-            random_int(0, $height), 
-            random_int(20, 70), 
-            random_int(20, 70), 
-            $circleColor
-        );
-    }
-    
-    // Add random noise dots
-    for ($i = 0; $i < 250; $i++) {
-        $noiseColor = imagecolorallocate($image, 
-            random_int(150, 200), 
-            random_int(150, 200), 
-            random_int(150, 200)
-        );
-        
-        imagesetpixel(
-            $image,
-            random_int(0, $width),
-            random_int(0, $height),
-            $noiseColor
-        );
-    }
-    
-    // Add confusing lines across the image
-    for ($i = 0; $i < 6; $i++) {
-        $lineColor = imagecolorallocate($image, 
-            random_int(120, 180), 
-            random_int(120, 180), 
-            random_int(120, 180)
-        );
-        
-        // Create curved lines using bezier curves
-        $x1 = random_int(0, $width / 4);
-        $y1 = random_int(0, $height);
-        $x2 = random_int($width / 4, $width / 2);
-        $y2 = random_int(0, $height);
-        $x3 = random_int($width / 2, 3 * $width / 4);
-        $y3 = random_int(0, $height);
-        $x4 = random_int(3 * $width / 4, $width);
-        $y4 = random_int(0, $height);
-        
-        // Draw a bezier curve would be ideal, but PHP GD doesn't have native bezier
-        // So we'll use multiple connected lines to simulate a curve
-        $points = [$x1, $y1, $x2, $y2, $x3, $y3, $x4, $y4];
-        imagepolygon($image, $points, 4, $lineColor);
-    }
-    
-    // Set up fonts
-    $fontPath = BASE_PATH . '/public/assets/fonts/';
-    $fonts = ['arial.ttf', 'times.ttf', 'verdana.ttf'];
-    
-    // Add the text with visual distortions
-    $x = 15; // Starting position
-    for ($i = 0; $i < strlen($captchaText); $i++) {
-        $letter = $captchaText[$i];
-        
-        // Randomize text color for each character
-        $textColor = imagecolorallocate($image, 
-            random_int(0, 100), 
-            random_int(0, 100), 
-            random_int(0, 100)
-        );
-        
-        // Randomize font for each character
-        $font = $fontPath . $fonts[array_rand($fonts)];
-        
-        // Randomize size for each character
-        $size = random_int(18, 24);
-        
-        // Randomize angle for each character
-        $angle = random_int(-20, 20);
-        
-        // Randomize y position with slight vertical offset
-        $y = random_int($height / 2, $height - 10);
-        
-        // Validate font exists
-        if (!file_exists($font)) {
-            // Fall back to built-in font if TTF not found
-            imagestring($image, 5, $x, ($height - 20) / 2, $letter, $textColor);
-        } else {
-            // Use TTF for better distortion
-            imagettftext($image, $size, $angle, $x, $y, $textColor, $font, $letter);
-        }
-        
-        // Increment x position, vary spacing slightly for added difficulty
-        $x += 20 + random_int(0, 10);
-    }
-    
-    // Add a few foreground confusing elements over the text
-    for ($i = 0; $i < 50; $i++) {
-        $fgNoiseColor = imagecolorallocate($image, 
-            random_int(80, 150), 
-            random_int(80, 150), 
-            random_int(80, 150)
-        );
-        
-        // Add larger noise dots on top
-        imagefilledellipse(
-            $image,
-            random_int(0, $width),
-            random_int(0, $height),
-            random_int(1, 3),
-            random_int(1, 3),
-            $fgNoiseColor
-        );
-    }
-    
-    // Log session info
-    error_log("CAPTCHA generated: " . $captchaText . " | Session ID: " . session_id());
-    
-    // Output the image
-    header('Content-Type: image/png');
-    header('Cache-Control: no-store, no-cache, must-revalidate');
-    header('Cache-Control: post-check=0, pre-check=0', false);
-    header('Pragma: no-cache');
-    
-    imagepng($image);
-    imagedestroy($image);
-    exit;
-} catch (Throwable $e) {
-    // Log the exception
-    error_log("CAPTCHA generation error: " . $e->getMessage());
-    
-    // Output a simple error image
-    header('Content-Type: image/png');
-    $width = 150;
-    $height = 50;
-    $image = imagecreatetruecolor($width, $height);
-    
-    if ($image !== false) {
-        $bgColor = imagecolorallocate($image, 255, 200, 200);
-        $textColor = imagecolorallocate($image, 255, 0, 0);
-        
-        imagefilledrectangle($image, 0, 0, $width, $height, $bgColor);
-        imagestring($image, 3, 5, 5, "ERROR", $textColor);
-        imagestring($image, 2, 5, 25, "See error log", $textColor);
-        
-        imagepng($image);
-        imagedestroy($image);
+    // Alternating styling
+    if ($i % 2 == 0) {
+        // Style 1: With shadow
+        $shadow_color = imagecolorallocate($image, 200, 200, 230);
+        imagechar($image, $font_size, $current_x + 1, $y + 1, $code[$i], $shadow_color);
+        imagechar($image, $font_size, $current_x, $y, $code[$i], $text_color);
     } else {
-        header('Content-Type: text/plain');
-        echo "Critical Error: " . $e->getMessage();
+        // Style 2: Bold effect
+        imagechar($image, $font_size, $current_x, $y, $code[$i], $text_color);
+        imagechar($image, $font_size, $current_x + 1, $y, $code[$i], $text_color);
     }
-    exit;
-} 
+    
+    // Move to next character position
+    $current_x += $char_widths[$i] + $spacing;
+}
+
+// Set headers
+header('Content-Type: image/png');
+header('Cache-Control: no-store, no-cache, must-revalidate');
+header('Pragma: no-cache');
+
+// Output image
+imagepng($image);
+imagedestroy($image);
+?> 

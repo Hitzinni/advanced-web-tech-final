@@ -40,7 +40,7 @@ class AuthController
         // Check if the user is already logged in based on session data.
         if (isset($_SESSION['user_id'])) {
             // If logged in, redirect to the homepage.
-            header('Location: /');
+            header('Location: ' . View::url(''));
             exit;
         }
         
@@ -77,7 +77,7 @@ class AuthController
         if (!CSRFProtection::verifyToken($_POST['csrf_token'] ?? null)) {
             // If token is invalid, set an error message and redirect back to login form.
             $this->setLoginError('Security token invalid. Please try again.');
-            header('Location: /login');
+            header('Location: ' . View::url('login'));
             exit;
         }
         
@@ -91,7 +91,7 @@ class AuthController
         if ($expectedCaptcha === null || strtolower((string)$expectedCaptcha) !== strtolower((string)$captcha)) {
             // If CAPTCHA fails, set error and redirect back.
             $this->setLoginError('CAPTCHA verification failed. Please try again.');
-            header('Location: /login');
+            header('Location: ' . View::url('login'));
             exit;
         }
         
@@ -102,7 +102,7 @@ class AuthController
         if (!Validators::email($email) || empty($password)) {
             // If validation fails, set error and redirect back.
             $this->setLoginError('Invalid email or password format.');
-            header('Location: /login');
+            header('Location: ' . View::url('login'));
             exit;
         }
         
@@ -113,7 +113,7 @@ class AuthController
             // If credentials don't match, set error and redirect back.
             // Use a generic error message for security.
             $this->setLoginError('Invalid credentials. Please try again.');
-            header('Location: /login');
+            header('Location: ' . View::url('login'));
             exit;
         }
         
@@ -127,7 +127,7 @@ class AuthController
         $_SESSION['role'] = $user['role']; // Store user role
         
         // Redirect the user to the homepage after successful login.
-        header('Location: /');
+        header('Location: ' . View::url(''));
         exit;
     }
     
@@ -145,7 +145,7 @@ class AuthController
             // Check if the user is already logged in.
             if (isset($_SESSION['user_id'])) {
                 // Redirect to homepage if logged in.
-                header('Location: /');
+                header('Location: ' . View::url(''));
                 exit;
             }
             
@@ -268,7 +268,7 @@ class AuthController
             if (!CSRFProtection::verifyToken($_POST['csrf_token'] ?? null)) {
                 error_log("CSRF validation failed");
                 $this->setRegisterError('Security token invalid. Please try again.');
-                header('Location: /register');
+                header('Location: ' . View::url('register'));
                 exit;
             }
             
@@ -297,25 +297,25 @@ class AuthController
             if (!Validators::name($name)) {
                 error_log("Invalid name format: {$name}");
                 $this->setRegisterError('Invalid name format.');
-                header('Location: /register');
+                header('Location: ' . View::url('register'));
                 exit;
             }
             if (!Validators::phone($phone)) {
                 error_log("Invalid phone format: {$phone}");
                 $this->setRegisterError('Phone number must be exactly 10 digits.');
-                header('Location: /register');
+                header('Location: ' . View::url('register'));
                 exit;
             }
             if (!Validators::email($email)) {
                 error_log("Invalid email format: {$email}");
                 $this->setRegisterError('Invalid email format.');
-                header('Location: /register');
+                header('Location: ' . View::url('register'));
                 exit;
             }
             if (!Validators::password($password)) {
                 error_log("Invalid password format");
                 $this->setRegisterError('Password must be at least 8 characters with at least one letter and one number.');
-                header('Location: /register');
+                header('Location: ' . View::url('register'));
                 exit;
             }
             // --- End Input Validation ---
@@ -324,7 +324,7 @@ class AuthController
             if ($this->userModel->isEmailTaken($email)) {
                 error_log("Email already taken: {$email}");
                 $this->setRegisterError('Email already in use. Please use a different email or login.');
-                header('Location: /register');
+                header('Location: ' . View::url('register'));
                 exit;
             }
             
@@ -345,13 +345,13 @@ class AuthController
                 $_SESSION['login_success'] = 'Account created successfully. Please login.';
                 
                 // Redirect the user to the login page.
-                header('Location: /login');
+                header('Location: ' . View::url('login'));
                 exit;
             } catch (\Exception $e) {
                 // Catch errors specifically from the user creation process (e.g., DB error).
                 error_log("Failed to create user: " . $e->getMessage());
                 $this->setRegisterError('An error occurred during registration. Please try again.');
-                header('Location: /register');
+                header('Location: ' . View::url('register'));
                 exit;
             }
         } catch (\Exception $e) {
@@ -359,7 +359,7 @@ class AuthController
             error_log("Unhandled exception in registration: " . $e->getMessage());
             error_log("Stack trace: " . $e->getTraceAsString());
             $this->setRegisterError('An unexpected error occurred. Please try again later.');
-            header('Location: /register');
+            header('Location: ' . View::url('register'));
             exit;
         }
     }
@@ -377,7 +377,7 @@ class AuthController
         session_destroy();
         
         // Redirect the user to the login page.
-        header('Location: /login');
+        header('Location: ' . View::url('login'));
         exit;
     }
     

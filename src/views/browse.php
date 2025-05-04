@@ -451,11 +451,23 @@ document.addEventListener('DOMContentLoaded', function() {
                     const productName = card.querySelector('.card-title').textContent.trim();
                     
                     // Update modal content
-                    document.getElementById('modal-product-name').textContent = productName;
-                    document.getElementById('modal-quantity').textContent = quantity;
+                    const modalProductName = document.getElementById('modal-product-name');
+                    const modalQuantity = document.getElementById('modal-quantity');
+                    
+                    if (modalProductName) {
+                        modalProductName.textContent = productName;
+                    }
+                    
+                    if (modalQuantity) {
+                        modalQuantity.textContent = quantity;
+                    }
                     
                     // Get updated cart data
-                    fetch('<?= \App\Helpers\View::url('api/cart/info.php') ?>?t=' + new Date().getTime(), {
+                    const baseUrl = window.location.origin + window.location.pathname.split('index.php')[0] + 'index.php';
+                    const apiUrl = baseUrl + '?route=api/cart/count';
+                    console.log('Using cart count API URL:', apiUrl);
+                    
+                    fetch(apiUrl + '&t=' + new Date().getTime(), {
                         method: 'GET',
                         headers: {
                             'Accept': 'application/json',
@@ -471,28 +483,65 @@ document.addEventListener('DOMContentLoaded', function() {
                     .then(cartData => {
                         console.log('Cart data received:', cartData);
                         if (cartData && typeof cartData === 'object') {
-                            document.getElementById('modal-cart-count').textContent = cartData.itemCount || '0';
-                            document.getElementById('modal-cart-total').textContent = '$' + (parseFloat(cartData.total) || 0).toFixed(2);
+                            // Add null checks for DOM elements
+                            const modalCartCount = document.getElementById('modal-cart-count');
+                            const modalCartTotal = document.getElementById('modal-cart-total');
+                            
+                            if (modalCartCount) {
+                                modalCartCount.textContent = cartData.itemCount || '0';
+                            }
+                            
+                            if (modalCartTotal) {
+                                modalCartTotal.textContent = '$' + (parseFloat(cartData.total) || 0).toFixed(2);
+                            }
                         } else {
                             console.error('Invalid cart data format received:', cartData);
-                            document.getElementById('modal-cart-count').textContent = '0';
-                            document.getElementById('modal-cart-total').textContent = '$0.00';
+                            
+                            // Add null checks here too
+                            const modalCartCount = document.getElementById('modal-cart-count');
+                            const modalCartTotal = document.getElementById('modal-cart-total');
+                            
+                            if (modalCartCount) {
+                                modalCartCount.textContent = '0';
+                            }
+                            
+                            if (modalCartTotal) {
+                                modalCartTotal.textContent = '$0.00';
+                            }
                         }
                         
                         // Show the modal
                         const cartModal = document.getElementById('cartModal');
-                        const bsModal = new bootstrap.Modal(cartModal);
-                        bsModal.show();
+                        if (cartModal) {
+                            const bsModal = new bootstrap.Modal(cartModal);
+                            bsModal.show();
+                        } else {
+                            // If modal doesn't exist, show a simple alert instead
+                            alert('Product added to cart successfully!');
+                        }
                     })
                     .catch(error => {
                         console.error('Error fetching cart info:', error);
                         // Still show the modal with default values
-                        document.getElementById('modal-cart-count').textContent = '0';
-                        document.getElementById('modal-cart-total').textContent = '$0.00';
+                        const modalCartCount = document.getElementById('modal-cart-count');
+                        const modalCartTotal = document.getElementById('modal-cart-total');
+                        
+                        if (modalCartCount) {
+                            modalCartCount.textContent = '0';
+                        }
+                        
+                        if (modalCartTotal) {
+                            modalCartTotal.textContent = '$0.00';
+                        }
                         
                         const cartModal = document.getElementById('cartModal');
-                        const bsModal = new bootstrap.Modal(cartModal);
-                        bsModal.show();
+                        if (cartModal) {
+                            const bsModal = new bootstrap.Modal(cartModal);
+                            bsModal.show();
+                        } else {
+                            // If modal doesn't exist, show a simple alert instead
+                            alert('Product added to cart successfully!');
+                        }
                     });
                 } else {
                     alert(data.message || 'Failed to add item to cart.');

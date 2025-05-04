@@ -551,15 +551,51 @@ class CartController
     public function getCartCount(): void
     {
         header('Content-Type: application/json');
+        header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+        header('Pragma: no-cache');
         
-        if (!isset($_SESSION['user_id'])) {
-            echo json_encode(['count' => 0]);
-            exit;
+        try {
+            // Default response
+            $response = [
+                'itemCount' => 0,
+                'total' => 0.00
+            ];
+            
+            // Get count from session cart if user not logged in
+            if (!isset($_SESSION['user_id'])) {
+                if (isset($_SESSION['cart']) && isset($_SESSION['cart']['items'])) {
+                    $itemCount = 0;
+                    foreach ($_SESSION['cart']['items'] as $item) {
+                        $itemCount += isset($item['quantity']) ? (int)$item['quantity'] : 1;
+                    }
+                    $response['itemCount'] = $itemCount;
+                    $response['total'] = isset($_SESSION['cart']['total']) ? (float)$_SESSION['cart']['total'] : 0.00;
+                }
+                
+                echo json_encode($response);
+                exit;
+            }
+            
+            // Get data for logged in user
+            $userId = (int)$_SESSION['user_id'];
+            $count = $this->cartModel->getCartItemCount($userId);
+            
+            // Get cart total
+            $total = 0.00;
+            $cartItems = $this->cartModel->getCartItems($userId);
+            if (!empty($cartItems)) {
+                foreach ($cartItems as $item) {
+                    $total += ((float)$item['price'] * (int)$item['quantity']);
+                }
+            }
+            
+            $response['itemCount'] = $count;
+            $response['total'] = $total;
+            
+            echo json_encode($response);
+        } catch (\Exception $e) {
+            error_log('CartController::getCartCount - Error: ' . $e->getMessage());
+            echo json_encode(['itemCount' => 0, 'total' => 0.00]);
         }
-        
-        $userId = (int)$_SESSION['user_id'];
-        $count = $this->cartModel->getCartItemCount($userId);
-        
-        echo json_encode(['count' => $count]);
     }
 } 

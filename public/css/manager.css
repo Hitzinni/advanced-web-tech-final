@@ -1,0 +1,46 @@
+/* Manager page styles */
+
+/* Fix for dropdown menus - ensure they appear as overlays rather than pushing content */
+.dropdown-menu {
+    position: fixed !important;
+    z-index: 1050 !important; /* Higher z-index to ensure it's above other elements */
+}
+
+/* Add a maximum height to dropdowns with many items and enable scrolling */
+.dropdown-menu.scrollable {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+/* Style adjustments for manager pages */
+.table-responsive {
+    overflow-x: auto;
+    position: relative;
+}
+
+/* Ensure proper dropdown positioning */
+.table .dropdown-menu {
+    margin-top: 0 !important;
+    transform: none !important;
+}
+
+/* Fix for dropdown container to prevent impact on page layout */
+.btn-group {
+    position: relative !important;
+}
+
+/* Ensure dropdown menu has correct positioning */
+.btn-group .dropdown-menu {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Position dropdowns at the bottom of the viewport upward */
+.dropdown-menu-up {
+    margin-bottom: 0.125rem !important;
+}
+
+/* Use fixed positioning to prevent page scrolling */
+.table .btn-group .dropdown-menu {
+    position: fixed !important;
+    /* Positioning will be set by JavaScript */
+} 

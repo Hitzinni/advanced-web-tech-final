@@ -186,6 +186,7 @@ if (empty($cartItems)) {
                                             $<?= $formattedTotal ?>
                                         </td>
                                         <td class="text-center align-middle">
+                                            <!-- AJAX method -->
                                             <form action="javascript:void(0);" class="remove-form d-inline">
                                                 <input type="hidden" name="csrf_token" value="<?= $csrfToken ?>">
                                                 <input type="hidden" name="product_id" value="<?= $itemId ?>">
@@ -193,6 +194,22 @@ if (empty($cartItems)) {
                                                     <i class="bi bi-trash"></i>
                                                 </button>
                                             </form>
+                                            
+                                            <!-- Direct method as fallback -->
+                                            <form action="cart_delete.php" method="POST" class="d-none direct-remove-form">
+                                                <input type="hidden" name="product_id" value="<?= $itemId ?>">
+                                                <input type="hidden" name="csrf_token" value="<?= $csrfToken ?>">
+                                                <button type="submit" class="btn btn-sm btn-warning">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </form>
+                                            
+                                            <!-- Fallback direct link -->
+                                            <a href="cart_delete.php?product_id=<?= $itemId ?>" 
+                                               class="d-none btn btn-sm btn-outline-danger"
+                                               onclick="return confirm('Are you sure you want to remove this item?');">
+                                                <i class="bi bi-trash"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 <?php
@@ -223,12 +240,30 @@ if (empty($cartItems)) {
                     </div>
                     <div class="d-flex justify-content-between mb-2">
                         <span>Shipping:</span>
-                        <span class="fw-bold text-success">Free</span>
+                        <?php
+                        // Minimum order for free delivery
+                        $minOrderForFreeDelivery = 25.00;
+                        $deliveryFee = 5.00;
+                        
+                        if ($cartTotal >= $minOrderForFreeDelivery) {
+                            echo '<span class="fw-bold text-success">Free</span>';
+                            $totalWithDelivery = $cartTotal;
+                        } else {
+                            echo '<span class="fw-bold">$' . number_format($deliveryFee, 2) . '</span>';
+                            $totalWithDelivery = $cartTotal + $deliveryFee;
+                            
+                            // Show message about free delivery threshold
+                            $amountMore = $minOrderForFreeDelivery - $cartTotal;
+                            echo '</div><div class="small text-muted mb-2">
+                                Add $' . number_format($amountMore, 2) . ' more to qualify for free delivery
+                            </div><div class="d-flex justify-content-between mb-2">';
+                        }
+                        ?>
                     </div>
                     <hr>
                     <div class="d-flex justify-content-between mb-4">
                         <span class="h5">Total:</span>
-                        <span class="h5 fw-bold" id="cart-total">$<?= number_format($cartTotal, 2) ?></span>
+                        <span class="h5 fw-bold" id="cart-total">$<?= number_format($totalWithDelivery, 2) ?></span>
                     </div>
                     <a href="<?= $checkoutUrl ?>" class="btn btn-success w-100 btn-lg">
                         <i class="bi bi-credit-card me-2"></i>Proceed to Checkout
@@ -245,14 +280,22 @@ if (empty($cartItems)) {
     document.addEventListener('DOMContentLoaded', function() {
         console.log('Cart page loaded');
         
-        // Handle remove item forms
-        const removeItemForms = document.querySelectorAll('.remove-form');
-        removeItemForms.forEach(form => {
-            form.addEventListener('submit', function(e) {
+        // Debug element count
+        console.log('Remove buttons found:', document.querySelectorAll('.remove-form').length);
+        
+        // Handle remove item forms with direct button click handler
+        const removeButtons = document.querySelectorAll('.remove-form button');
+        removeButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
                 e.preventDefault();
+                console.log('Delete button clicked');
                 
+                const form = this.closest('.remove-form');
                 const productId = form.querySelector('input[name="product_id"]').value;
                 const csrf = form.querySelector('input[name="csrf_token"]').value;
+                
+                console.log('Removing product ID:', productId);
+                
                 const formData = new FormData();
                 formData.append('product_id', productId);
                 formData.append('csrf_token', csrf);
@@ -265,6 +308,10 @@ if (empty($cartItems)) {
                 // Send remove request
                 fetch(apiUrl, {
                     method: 'POST',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'Accept': 'application/json'
+                    },
                     body: formData
                 })
                 .then(response => {
@@ -272,43 +319,70 @@ if (empty($cartItems)) {
                     if (!response.ok) {
                         throw new Error('Network response was not ok: ' + response.status);
                     }
-                    // Try to parse as JSON, but handle cases where it might not be JSON
-                    return response.text().then(text => {
-                        try {
-                            console.log('Response text:', text.substring(0, 100) + '...');  // Log first 100 chars
-                            return JSON.parse(text);
-                        } catch (e) {
-                            console.error('Error parsing JSON:', e);
-                            throw new Error('Invalid JSON response: ' + text.substring(0, 100));
+                    return response.text();
+                })
+                .then(text => {
+                    console.log('Raw response:', text);
+                    try {
+                        return JSON.parse(text);
+                    } catch (e) {
+                        console.error('Error parsing JSON:', e);
+                        console.log('Invalid JSON response:', text);
+                        // If not valid JSON but contains success indication, still reload
+                        if (text.includes('success') && !text.includes('false')) {
+                            console.log('Delete successful, forcing page reload...');
+                            const reloadUrl = window.location.href.split('?')[0] + '?route=cart&t=' + new Date().getTime();
+                            window.location.href = reloadUrl;
+                            throw new Error('Non-JSON success response received, reloading page');
                         }
-                    });
+                        throw new Error('Invalid JSON response: ' + text.substring(0, 100));
+                    }
                 })
                 .then(data => {
+                    console.log('Parsed response data:', data);
                     if (data.success) {
-                        // Remove the row from the table
-                        const row = form.closest('tr');
-                        row.parentNode.removeChild(row);
+                        // Force a complete reload with cache busting to ensure we get fresh content
+                        console.log('Delete successful, forcing page reload...');
                         
-                        // Update cart count and total
-                        document.getElementById('cart-item-count').textContent = data.itemCount;
-                        document.getElementById('cart-subtotal').textContent = '$' + parseFloat(data.cartTotal).toFixed(2);
-                        document.getElementById('cart-total').textContent = '$' + parseFloat(data.cartTotal).toFixed(2);
-                        
-                        // If no items left, reload page to show empty cart message
-                        if (data.itemCount === 0) {
-                            window.location.reload();
+                        // New approach: Instead of reloading, submit the direct form
+                        const form = button.closest('tr').querySelector('.direct-remove-form');
+                        if (form) {
+                            console.log('Submitting direct form as fallback...');
+                            form.classList.remove('d-none');
+                            form.submit();
+                        } else {
+                            // Fallback to reload if form not found
+                            const reloadUrl = window.location.href.split('?')[0] + '?route=cart&t=' + new Date().getTime();
+                            window.location.href = reloadUrl;
                         }
-                        
-                        // Show success message
-                        alert('Item removed from cart');
                     } else {
                         alert('Failed to remove item: ' + data.message);
                     }
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    alert('An error occurred while removing the item.');
+                    
+                    // On error, try the direct form method
+                    const form = button.closest('tr').querySelector('.direct-remove-form');
+                    if (form) {
+                        console.log('Error occurred with AJAX, falling back to direct form submission');
+                        form.classList.remove('d-none');
+                        form.submit();
+                    } else {
+                        alert('An error occurred while removing the item: ' + error.message);
+                    }
                 });
+            });
+        });
+        
+        // Remove the original form submit handler that might conflict
+        const removeItemForms = document.querySelectorAll('.remove-form');
+        removeItemForms.forEach(form => {
+            // Replace the submit handler with one that delegates to the button click
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                console.log('Form submitted, triggering button click');
+                form.querySelector('button').click();
             });
         });
         
@@ -340,6 +414,9 @@ if (empty($cartItems)) {
                 // Send update request
                 fetch(apiUrl, {
                     method: 'POST',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
                     body: formData
                 })
                 .then(response => {
@@ -373,7 +450,47 @@ if (empty($cartItems)) {
                         
                         // Update cart total
                         document.getElementById('cart-subtotal').textContent = '$' + parseFloat(data.cartTotal).toFixed(2);
-                        document.getElementById('cart-total').textContent = '$' + parseFloat(data.cartTotal).toFixed(2);
+                        
+                        // Handle delivery fee
+                        const minOrderForFreeDelivery = 25.00;
+                        const deliveryFee = 5.00;
+                        let totalWithDelivery = parseFloat(data.cartTotal);
+                        
+                        // Get the message container for free delivery notification
+                        const deliveryMessageContainer = document.querySelector('.small.text-muted.mb-2');
+                        
+                        if (totalWithDelivery >= minOrderForFreeDelivery) {
+                            // Free delivery
+                            const shippingElement = document.querySelector('.d-flex.justify-content-between.mb-2:nth-of-type(2) .fw-bold');
+                            if (shippingElement) {
+                                shippingElement.textContent = 'Free';
+                                shippingElement.className = 'fw-bold text-success';
+                            }
+                            
+                            // Remove delivery message if it exists
+                            if (deliveryMessageContainer) {
+                                deliveryMessageContainer.style.display = 'none';
+                            }
+                        } else {
+                            // Paid delivery
+                            const shippingElement = document.querySelector('.d-flex.justify-content-between.mb-2:nth-of-type(2) .fw-bold');
+                            if (shippingElement) {
+                                shippingElement.textContent = '$' + deliveryFee.toFixed(2);
+                                shippingElement.className = 'fw-bold';
+                            }
+                            
+                            totalWithDelivery += deliveryFee;
+                            
+                            // Update or create delivery message
+                            const amountMore = (minOrderForFreeDelivery - parseFloat(data.cartTotal)).toFixed(2);
+                            if (deliveryMessageContainer) {
+                                deliveryMessageContainer.textContent = `Add $${amountMore} more to qualify for free delivery`;
+                                deliveryMessageContainer.style.display = 'block';
+                            }
+                        }
+                        
+                        // Update final total with delivery fee included
+                        document.getElementById('cart-total').textContent = '$' + totalWithDelivery.toFixed(2);
                         
                         // Success - no alert needed
                     } else {
@@ -409,6 +526,9 @@ if (empty($cartItems)) {
                 // Send clear cart request
                 fetch(apiUrl, {
                     method: 'POST',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
                     body: formData
                 })
                 .then(response => {
@@ -439,6 +559,19 @@ if (empty($cartItems)) {
                     console.error('Error:', error);
                     alert('An error occurred while clearing the cart.');
                 });
+            });
+        }
+    });
+    
+    // Fallback mechanism for browsers with JavaScript issues
+    window.addEventListener('error', function(e) {
+        if (e.message && (e.message.includes('fetch') || e.message.includes('FormData'))) {
+            console.log('Modern JavaScript feature failed, activating fallback links');
+            document.querySelectorAll('.remove-form').forEach(form => {
+                form.classList.add('d-none');
+            });
+            document.querySelectorAll('.d-none.btn-outline-danger').forEach(link => {
+                link.classList.remove('d-none');
             });
         }
     });

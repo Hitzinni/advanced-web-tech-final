@@ -5,6 +5,7 @@ namespace App\Controllers;
 
 use App\Models\Review;
 use App\Helpers\Validators;
+use App\Helpers\View;
 
 class ReviewController
 {
@@ -23,19 +24,19 @@ class ReviewController
         // Check if the user is logged in
         if (!isset($_SESSION['user_id'])) {
             $_SESSION['error'] = "You need to be logged in to submit a review.";
-            header('Location: /login');
+            header('Location: ' . View::url('login'));
             exit;
         }
         
         // Fetch user's existing reviews
         $userReviews = $this->reviewModel->getByUserId($_SESSION['user_id']);
         
-        // Render view
-        $pageTitle = "Write a Review";
-        $metaDescription = "Share your experience with our grocery store";
-        
-        // Include the view
-        require_once __DIR__ . '/../views/review-form.php';
+        // Render view using View helper
+        View::output('review-form', [
+            'pageTitle' => "Write a Review",
+            'metaDescription' => "Share your experience with our grocery store",
+            'userReviews' => $userReviews
+        ]);
     }
     
     /**
@@ -46,7 +47,7 @@ class ReviewController
         // Check if the user is logged in
         if (!isset($_SESSION['user_id'])) {
             $_SESSION['error'] = "You need to be logged in to submit a review.";
-            header('Location: /login');
+            header('Location: ' . View::url('login'));
             exit;
         }
         
@@ -77,11 +78,11 @@ class ReviewController
                 
                 if ($result) {
                     $_SESSION['success'] = "Your review has been submitted. Thank you for your feedback!";
-                    header('Location: /');
+                    header('Location: ' . View::url('home'));
                     exit;
                 } else {
                     $_SESSION['error'] = "There was an error submitting your review. Please try again.";
-                    header('Location: /review');
+                    header('Location: ' . View::url('review'));
                     exit;
                 }
             } else {
@@ -91,12 +92,12 @@ class ReviewController
                     'rating' => $rating,
                     'content' => $content
                 ];
-                header('Location: /review');
+                header('Location: ' . View::url('review'));
                 exit;
             }
         } else {
             // Not a POST request
-            header('Location: /review');
+            header('Location: ' . View::url('review'));
             exit;
         }
     }
@@ -109,7 +110,7 @@ class ReviewController
         // Check if the user is logged in
         if (!isset($_SESSION['user_id'])) {
             $_SESSION['error'] = "You need to be logged in to delete a review.";
-            header('Location: /login');
+            header('Location: ' . View::url('login'));
             exit;
         }
         
@@ -127,7 +128,7 @@ class ReviewController
         }
         
         // Redirect back to reviews page
-        header('Location: /review');
+        header('Location: ' . View::url('review'));
         exit;
     }
 } 

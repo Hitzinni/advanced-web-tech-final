@@ -272,13 +272,24 @@ class OrderController
                 // Store order ID in session for receipt page
                 $_SESSION['last_order_id'] = $orderId;
                 
-                // Clear the cart
+                // Clear the session cart
                 $_SESSION['cart'] = [
                     'items' => [],
                     'total' => 0,
                     'subtotal' => 0,
                     'shipping' => 0
                 ];
+                
+                // Also clear the database cart if user is logged in
+                if (isset($_SESSION['user_id']) && $this->cartModel) {
+                    try {
+                        $userId = (int)$_SESSION['user_id'];
+                        $this->cartModel->clearCart($userId);
+                        error_log("OrderController::processCheckout - Cleared database cart for user ID: " . $userId);
+                    } catch (\Exception $e) {
+                        error_log("OrderController::processCheckout - Error clearing database cart: " . $e->getMessage());
+                    }
+                }
                 
                 // Set success message
                 $_SESSION['flash_message'] = [

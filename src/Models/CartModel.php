@@ -224,14 +224,42 @@ class CartModel
     public function clearCart(int $userId): bool
     {
         try {
-            // SQL query to delete all cart items associated with the user's cart
-            $stmt = $this->db->prepare('
-                DELETE ci FROM cart_item ci
-                JOIN cart c ON ci.cart_id = c.id
-                WHERE c.user_id = ?
-            ');
-            // Execute the deletion
-            return $stmt->execute([$userId]);
+            // Get the cart ID first
+            $stmt = $this->db->prepare('SELECT id FROM cart WHERE user_id = ?');
+            $stmt->execute([$userId]);
+            $cart = $stmt->fetch(\PDO::FETCH_ASSOC);
+            
+            if (!$cart) {
+                // No cart found, so technically it's already "cleared"
+                return true;
+            }
+            
+            $cartId = (int)$cart['id'];
+            
+            // Try JOIN deletion first
+            try {
+                $stmt = $this->db->prepare('
+                    DELETE ci FROM cart_item ci
+                    JOIN cart c ON ci.cart_id = c.id
+                    WHERE c.user_id = ?
+                ');
+                $success = $stmt->execute([$userId]);
+                
+                if ($success && $stmt->rowCount() > 0) {
+                    error_log("CartModel::clearCart - Cleared cart with JOIN method, deleted " . $stmt->rowCount() . " items");
+                    return true;
+                }
+            } catch (\PDOException $e) {
+                // Log the error but continue to the fallback method
+                error_log("CartModel::clearCart - JOIN delete failed: " . $e->getMessage());
+            }
+            
+            // Fallback to direct cart ID deletion
+            $stmt = $this->db->prepare('DELETE FROM cart_item WHERE cart_id = ?');
+            $success = $stmt->execute([$cartId]);
+            error_log("CartModel::clearCart - Cleared cart with direct method, deleted " . $stmt->rowCount() . " items");
+            
+            return $success;
         } catch (\PDOException $e) {
             // Log database errors
             error_log("Error clearing cart: " . $e->getMessage());

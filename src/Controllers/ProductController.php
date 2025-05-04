@@ -24,22 +24,47 @@ class ProductController
         error_log("ProductController::browse - SCRIPT_NAME: " . $_SERVER['SCRIPT_NAME']);
         error_log("ProductController::browse - Current route path: " . ($_GET['route'] ?? 'not set in GET'));
         
-        $selectedCategory = $_GET['category'] ?? '';
+        // Log full GET parameters
+        error_log("ProductController::browse - GET parameters: " . print_r($_GET, true));
+        
+        // Handle both old and new URL formats
+        // Check if the 'category' parameter is appended directly to the route
+        $routeParam = $_GET['route'] ?? '';
+        $selectedCategory = '';
+        
+        // Parse ?route=products?category=xyz format
+        if (strpos($routeParam, '?category=') !== false) {
+            $parts = explode('?category=', $routeParam);
+            if (count($parts) > 1) {
+                $selectedCategory = urldecode($parts[1]);
+            }
+        } 
+        // Standard &category= format
+        else if (isset($_GET['category'])) {
+            $selectedCategory = trim($_GET['category']);
+        }
+        
         $selectedProductId = isset($_GET['product_id']) ? (int)$_GET['product_id'] : null;
         
         error_log("ProductController::browse - Selected category: " . $selectedCategory);
+        error_log("ProductController::browse - Selected product ID: " . ($selectedProductId ?? 'none'));
         
         // Validate category if one is selected
         if (!empty($selectedCategory) && !Validators::category($selectedCategory)) {
+            error_log("ProductController::browse - Invalid category: " . $selectedCategory);
             $selectedCategory = '';
-            error_log("ProductController::browse - Invalid category, reset to empty");
+            $_SESSION['flash_message'] = [
+                'type' => 'warning',
+                'text' => 'Invalid category selected.'
+            ];
         }
         
         try {
             $categories = $this->productModel->getCategories();
             error_log("ProductController::browse - Retrieved " . count($categories) . " categories");
             
-            $products = $selectedCategory 
+            // Fetch products based on selected category
+            $products = !empty($selectedCategory) 
                 ? $this->productModel->getByCategory($selectedCategory)
                 : [];
                 
@@ -69,15 +94,13 @@ class ProductController
             
             error_log("ProductController::browse - View rendered successfully");
         } catch (\Exception $e) {
-            error_log("ProductController::browse - ERROR: " . $e->getMessage());
-            error_log("ProductController::browse - Stack trace: " . $e->getTraceAsString());
-            
-            // Display error to user
-            echo '<div style="background: #f8d7da; color: #721c24; padding: 20px; margin: 20px; border-radius: 5px; font-family: sans-serif;">';
-            echo '<h1>Something went wrong</h1>';
-            echo '<p>We encountered an error while loading the products. Please try again later.</p>';
-            echo '<p><a href="' . View::url('home') . '" style="color: #721c24;">Return to Home</a></p>';
-            echo '</div>';
+            error_log("ProductController::browse - Exception: " . $e->getMessage());
+            $_SESSION['flash_message'] = [
+                'type' => 'danger',
+                'text' => 'An error occurred while loading products.'
+            ];
+            header('Location: ' . View::url('home'));
+            exit;
         }
     }
     

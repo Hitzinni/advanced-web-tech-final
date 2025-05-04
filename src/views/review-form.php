@@ -49,7 +49,7 @@
                         </div>
                     <?php endif; ?>
                     
-                    <form action="/review-submit" method="post" id="review-form">
+                    <form action="index.php?route=review-submit" method="post" id="review-form">
                         <div class="mb-4">
                             <label class="form-label fw-bold">Your Rating</label>
                             <div class="mb-3">
@@ -126,7 +126,7 @@
                                             <?= date('M j, Y', strtotime($review['created_at'])) ?>
                                         </span>
                                     </div>
-                                    <form action="/review-delete" method="post" onsubmit="return confirm('Are you sure you want to delete this review?')">
+                                    <form action="index.php?route=review-delete" method="post" onsubmit="return confirm('Are you sure you want to delete this review?')">
                                         <input type="hidden" name="review_id" value="<?= (int)$review['id'] ?>">
                                         <button type="submit" class="btn btn-sm btn-outline-danger">
                                             <i class="bi bi-trash me-1"></i>Delete

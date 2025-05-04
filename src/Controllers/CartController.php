@@ -368,8 +368,11 @@ class CartController
         header('Pragma: no-cache');
         
         try {
-            // Log the request for debugging
-            error_log('CartController::removeCartItem - Request: ' . json_encode($_POST) . ' | GET: ' . json_encode($_GET));
+            // Log all details of the request
+            error_log('CartController::removeCartItem - Headers: ' . json_encode(getallheaders()));
+            error_log('CartController::removeCartItem - POST: ' . json_encode($_POST));
+            error_log('CartController::removeCartItem - GET: ' . json_encode($_GET));
+            error_log('CartController::removeCartItem - HTTP_X_REQUESTED_WITH: ' . ($_SERVER['HTTP_X_REQUESTED_WITH'] ?? 'not set'));
             
             // Initialize cart in session if it doesn't exist
             if (!isset($_SESSION['cart'])) {
@@ -379,20 +382,29 @@ class CartController
                 ];
             }
             
-            // Check if this is an AJAX request
-            $isAjax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && 
-                    strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
+            // Check if this is an AJAX request - always proceed regardless
+            $isAjax = true;
             
-            // Get product ID
+            // Get product ID with more debug info
             $productId = filter_input(INPUT_POST, 'product_id', FILTER_VALIDATE_INT);
+            error_log('CartController::removeCartItem - POST product_id: ' . ($productId ?? 'null'));
+            
             if (!$productId) {
                 $productId = filter_input(INPUT_GET, 'product_id', FILTER_VALIDATE_INT);
+                error_log('CartController::removeCartItem - GET product_id: ' . ($productId ?? 'null'));
+            }
+            
+            // Last resort, check raw POST data
+            if (!$productId && isset($_POST['product_id'])) {
+                $productId = (int)$_POST['product_id'];
+                error_log('CartController::removeCartItem - Direct POST product_id: ' . $productId);
             }
             
             // Log the product ID
-            error_log('CartController::removeCartItem - Product ID: ' . ($productId ?? 'null'));
+            error_log('CartController::removeCartItem - Final Product ID: ' . ($productId ?? 'null'));
             
             if (!$productId) {
+                error_log('CartController::removeCartItem - Invalid product ID');
                 $response = ['success' => false, 'message' => 'Invalid product ID'];
                 echo json_encode($response);
                 exit;
@@ -407,10 +419,13 @@ class CartController
                 $updatedItems = [];
                 $cartTotal = 0;
                 
+                error_log('CartController::removeCartItem - Original items count: ' . count($cartItems));
+                
                 foreach ($cartItems as $item) {
                     if (isset($item['id']) && (int)$item['id'] == $productId) {
                         $removed = true;
                         $removedItemName = $item['name'] ?? 'Product';
+                        error_log('CartController::removeCartItem - Removing item: ' . $removedItemName . ' (ID: ' . $productId . ')');
                         continue; // Skip this item
                     }
                     
@@ -425,6 +440,12 @@ class CartController
                 // Update cart
                 $_SESSION['cart']['items'] = $updatedItems;
                 $_SESSION['cart']['total'] = $cartTotal;
+                
+                error_log('CartController::removeCartItem - New items count: ' . count($updatedItems));
+                
+                // Force session write to ensure changes are saved
+                session_write_close();
+                session_start();
             }
             
             // Try to remove from database cart if user is logged in
@@ -432,9 +453,66 @@ class CartController
                 try {
                     $userId = (int)$_SESSION['user_id'];
                     $success = $this->cartModel->removeItem($userId, $productId);
+                    error_log('CartController::removeCartItem - Database removal result: ' . ($success ? 'success' : 'failed'));
                     
-                    if ($success) {
+                    // Direct database fallback if the model method failed
+                    if (!$success && isset($this->db)) {
+                        error_log('CartController::removeCartItem - Attempting direct database removal');
+                        try {
+                            // First get the cart ID
+                            $stmt = $this->db->prepare("SELECT id FROM cart WHERE user_id = ?");
+                            $stmt->execute([$userId]);
+                            $cartRow = $stmt->fetch();
+                            
+                            if ($cartRow && isset($cartRow['id'])) {
+                                $cartId = (int)$cartRow['id'];
+                                // Delete the item directly
+                                $stmt = $this->db->prepare("DELETE FROM cart_item WHERE cart_id = ? AND product_id = ?");
+                                $result = $stmt->execute([$cartId, $productId]);
+                                error_log('CartController::removeCartItem - Direct DB removal result: ' . ($result ? 'success' : 'failed') . ', rows: ' . $stmt->rowCount());
+                                
+                                if ($stmt->rowCount() > 0) {
+                                    $removed = true;
+                                }
+                            }
+                        } catch (\Exception $e) {
+                            error_log('CartController::removeCartItem - Error in direct DB removal: ' . $e->getMessage());
+                        }
+                    }
+                    
+                    // If database removal was successful, make sure to resync session with database
+                    if ($success || $removed) {
                         $removed = true;
+                        
+                        // After database update, refresh session cart from database to ensure consistency
+                        try {
+                            $dbCartItems = $this->cartModel->getCartItems($userId);
+                            $cartItems = [];
+                            $cartTotal = 0;
+                            
+                            foreach ($dbCartItems as $item) {
+                                $cartItems[] = [
+                                    'id' => (int)$item['product_id'],
+                                    'name' => $item['name'],
+                                    'price' => (float)$item['price'],
+                                    'quantity' => (int)$item['quantity'],
+                                    'category' => $item['category'],
+                                    'image_url' => $item['image_url']
+                                ];
+                                
+                                $cartTotal += (float)$item['price'] * (int)$item['quantity'];
+                            }
+                            
+                            // Update session cart with fresh DB data
+                            $_SESSION['cart'] = [
+                                'items' => $cartItems,
+                                'total' => $cartTotal
+                            ];
+                            
+                            error_log('CartController::removeCartItem - Session cart resynced with database, ' . count($cartItems) . ' items');
+                        } catch (\Exception $e) {
+                            error_log('CartController::removeCartItem - Error resyncing with DB: ' . $e->getMessage());
+                        }
                     }
                 } catch (\Exception $e) {
                     error_log('CartController::removeCartItem - Error removing from DB: ' . $e->getMessage());
@@ -462,7 +540,13 @@ class CartController
                 'itemCount' => $itemCount
             ];
             
+            error_log('CartController::removeCartItem - Final cart state: ' . json_encode($_SESSION['cart']));
             echo json_encode($response);
+            
+            // Ensure the response is sent immediately
+            ob_flush();
+            flush();
+            
             error_log('CartController::removeCartItem - Response: ' . json_encode($response));
         } catch (\Exception $e) {
             // Log any errors
@@ -489,6 +573,7 @@ class CartController
         try {
             // Log the request for debugging
             error_log('CartController::clearCart - Request: ' . json_encode($_POST) . ' | GET: ' . json_encode($_GET));
+            error_log('CartController::clearCart - Original cart state: ' . json_encode($_SESSION['cart'] ?? []));
             
             // Initialize response
             $response = [
@@ -506,15 +591,24 @@ class CartController
                 'total' => 0
             ];
             
+            // Store user ID before potentially clearing session
+            $userId = isset($_SESSION['user_id']) ? (int)$_SESSION['user_id'] : 0;
+            
             // Try to clear database cart if user is logged in
-            if (isset($_SESSION['user_id'])) {
+            if ($userId > 0) {
                 try {
-                    $userId = (int)$_SESSION['user_id'];
                     $success = $this->cartModel->clearCart($userId);
                     
                     if (!$success) {
                         error_log('CartController::clearCart - Failed to clear database cart for user: ' . $userId);
+                    } else {
+                        error_log('CartController::clearCart - Successfully cleared database cart for user: ' . $userId);
                     }
+                    
+                    // Force session write to ensure changes are saved
+                    session_write_close();
+                    session_start();
+                    
                 } catch (\Exception $e) {
                     error_log('CartController::clearCart - Error clearing DB cart: ' . $e->getMessage());
                     // Continue with session cart clearing
@@ -527,11 +621,19 @@ class CartController
                 'text' => 'Your cart has been cleared.'
             ];
             
+            // Verify and log the final cart state
+            error_log('CartController::clearCart - Final cart state: ' . json_encode($_SESSION['cart'] ?? []));
+            
             // Update response
             $response['success'] = true;
             $response['message'] = 'Cart cleared successfully';
             
             echo json_encode($response);
+            
+            // Ensure the response is sent immediately
+            ob_flush();
+            flush();
+            
             error_log('CartController::clearCart - Response: ' . json_encode($response));
         } catch (\Exception $e) {
             // Log any errors

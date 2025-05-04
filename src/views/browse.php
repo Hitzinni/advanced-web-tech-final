@@ -50,7 +50,7 @@
             if (isset($categoryImages[$category])): 
         ?>
         <div class="col-md-4 col-lg-2-4">
-            <a href="<?= \App\Helpers\View::url('products', ['category' => $category]) ?>" class="text-decoration-none">
+            <a href="<?= rtrim(\App\Helpers\View::url('products'), '/') ?>&category=<?= urlencode($category) ?>" class="text-decoration-none">
                 <div class="category-card position-relative rounded overflow-hidden shadow h-100 <?= $selectedCategory === $category ? 'border border-primary border-3' : '' ?>">
                     <img src="<?= htmlspecialchars($categoryImages[$category]) ?>" class="img-fluid category-img w-100" alt="<?= htmlspecialchars($category) ?>" style="height: 150px; object-fit: cover;">
                     <div class="category-overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center p-3 text-white text-center" style="background: rgba(0,0,0,0.5);">
@@ -98,7 +98,7 @@
             <div class="d-flex mt-3 justify-content-center">
                 <?php foreach ($categories as $category): ?>
                     <?php if (isset($categoryImages[$category])): ?>
-                    <a href="<?= \App\Helpers\View::url('products', ['category' => $category]) ?>" class="mx-2 category-thumbnail-link">
+                    <a href="<?= rtrim(\App\Helpers\View::url('products'), '/') ?>&category=<?= urlencode($category) ?>" class="mx-2 category-thumbnail-link">
                         <div class="category-thumbnail rounded-circle overflow-hidden <?= $selectedCategory === $category ? 'border border-2 border-primary' : 'border' ?>" 
                              style="width: 50px; height: 50px; transition: transform 0.2s;">
                             <img src="<?= htmlspecialchars($categoryImages[$category]) ?>" 
@@ -341,12 +341,12 @@
             $categoryImage = $categoryImages[$category] ?? \App\Helpers\View::asset('images/products/placeholder.jpg');
         ?>
         <div class="col-md-4">
-            <a href="<?= \App\Helpers\View::url('products', ['category' => $category]) ?>" class="text-decoration-none">
+            <a href="<?= rtrim(\App\Helpers\View::url('products'), '/') ?>&category=<?= urlencode($category) ?>" class="text-decoration-none">
                 <div class="category-card position-relative rounded overflow-hidden shadow h-100">
                     <img src="<?= htmlspecialchars($categoryImage) ?>" class="img-fluid category-img w-100" alt="<?= htmlspecialchars($category) ?>" style="height: 180px; object-fit: cover;">
                     <div class="category-overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end p-4 text-white" style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);">
                         <h4 class="h5 fw-bold mb-2"><?= htmlspecialchars($category) ?></h4>
-                        <a href="<?= \App\Helpers\View::url('products', ['category' => $category]) ?>" class="btn btn-sm btn-primary stretched-link">
+                        <a href="<?= rtrim(\App\Helpers\View::url('products'), '/') ?>&category=<?= urlencode($category) ?>" class="btn btn-sm btn-primary stretched-link">
                             <i class="bi bi-arrow-right-circle me-1"></i>Explore
                         </a>
                     </div>
@@ -371,7 +371,8 @@ document.addEventListener('DOMContentLoaded', function() {
         categorySelect.addEventListener('change', function() {
             const category = this.value;
             if (category) {
-                window.location.href = '<?= \App\Helpers\View::url('products') ?>?category=' + encodeURIComponent(category);
+                // Fix URL structure to use & for additional parameters instead of ?
+                window.location.href = '<?= rtrim(\App\Helpers\View::url('products'), '/') ?>&category=' + encodeURIComponent(category);
             } else {
                 window.location.href = '<?= \App\Helpers\View::url('products') ?>';
             }
@@ -383,10 +384,23 @@ document.addEventListener('DOMContentLoaded', function() {
         productSelect.addEventListener('change', function() {
             const productId = this.value;
             if (productId) {
-                window.location.href = '<?= \App\Helpers\View::url('product') ?>?id=' + encodeURIComponent(productId);
+                // Fix URL structure to use & for additional parameters instead of ?
+                window.location.href = '<?= rtrim(\App\Helpers\View::url('product'), '/') ?>&id=' + encodeURIComponent(productId);
             }
         });
     }
+    
+    // Add direct selection for category thumbnails to ensure they work
+    const categoryThumbnailLinks = document.querySelectorAll('.category-thumbnail-link');
+    categoryThumbnailLinks.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const href = this.getAttribute('href');
+            if (href) {
+                window.location.href = href;
+            }
+        });
+    });
     
     // Quantity adjustment
     const decreaseButtons = document.querySelectorAll('.quantity-decrease');

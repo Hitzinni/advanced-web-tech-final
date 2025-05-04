@@ -1,3 +1,6 @@
+<!-- Custom CSS for manager pages -->
+<link rel="stylesheet" href="<?= \App\Helpers\View::asset('css/manager.css') ?>">
+
 <!-- Page Header Section -->
 <div class="category-header position-relative mb-4 bg-primary text-white p-4 rounded shadow">
     <div class="row align-items-center">
@@ -148,7 +151,7 @@
                                         <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
                                             <i class="bi bi-gear-fill me-1"></i> Update Status
                                         </button>
-                                        <ul class="dropdown-menu">
+                                        <ul class="dropdown-menu scrollable">
                                             <li><h6 class="dropdown-header">Change Status</h6></li>
                                             <li><a class="dropdown-item <?= ($status === 'Pending') ? 'active' : '' ?>" href="update-order-status?id=<?= $order['id'] ?>&status=pending&redirect=manager">Pending</a></li>
                                             <li><a class="dropdown-item <?= ($status === 'Processing') ? 'active' : '' ?>" href="update-order-status?id=<?= $order['id'] ?>&status=processing&redirect=manager">Processing</a></li>
@@ -203,5 +206,66 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem('showOrderFilters', 'true');
         });
     }
+    
+    // Custom dropdown handling for status updates
+    const statusButtons = document.querySelectorAll('.table .dropdown-toggle');
+    
+    statusButtons.forEach(button => {
+        // Remove Bootstrap data attribute to prevent default behavior
+        button.removeAttribute('data-bs-toggle');
+        
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Get the dropdown menu
+            const menu = this.nextElementSibling;
+            
+            // Toggle visibility
+            const isVisible = menu.classList.contains('show');
+            
+            // Close any open dropdowns first
+            document.querySelectorAll('.dropdown-menu.show').forEach(openMenu => {
+                openMenu.classList.remove('show');
+            });
+            
+            if (!isVisible) {
+                // Get position of button for accurate placement
+                const buttonRect = this.getBoundingClientRect();
+                
+                // Calculate if we have enough space below
+                const spaceBelow = window.innerHeight - buttonRect.bottom;
+                const menuHeight = Math.min(menu.scrollHeight, 300); // Max 300px
+                
+                // Position the menu
+                menu.classList.add('show');
+                
+                if (spaceBelow >= menuHeight) {
+                    // Position below button
+                    menu.style.top = `${buttonRect.bottom}px`;
+                    menu.style.left = `${buttonRect.left}px`;
+                    menu.style.maxHeight = '300px';
+                } else {
+                    // Position above button
+                    menu.style.bottom = `${window.innerHeight - buttonRect.top}px`;
+                    menu.style.left = `${buttonRect.left}px`;
+                    menu.style.top = 'auto';
+                    menu.style.maxHeight = '300px';
+                }
+                
+                // Stop menu clicks from closing it
+                menu.addEventListener('click', function(event) {
+                    event.stopPropagation();
+                }, { once: true });
+            }
+        });
+    });
+    
+    // Close dropdowns when clicking elsewhere
+    document.addEventListener('click', function() {
+        document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+            menu.classList.remove('show');
+        });
+    });
 });
 </script> 

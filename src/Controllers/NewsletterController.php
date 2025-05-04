@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use App\Models\Newsletter;
+use App\Helpers\View;
 
 class NewsletterController
 {
@@ -22,7 +23,7 @@ class NewsletterController
         // Check if the request is a POST
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             $_SESSION['newsletter_error'] = "Invalid request method.";
-            header('Location: /');
+            header('Location: ' . View::url('home'));
             exit;
         }
         
@@ -31,13 +32,13 @@ class NewsletterController
         
         if (empty($email)) {
             $_SESSION['newsletter_error'] = "Please provide an email address.";
-            header('Location: /');
+            header('Location: ' . View::url('home'));
             exit;
         }
         
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $_SESSION['newsletter_error'] = "Please provide a valid email address.";
-            header('Location: /');
+            header('Location: ' . View::url('home'));
             exit;
         }
         
@@ -51,7 +52,7 @@ class NewsletterController
         }
         
         // Redirect back to the home page
-        header('Location: /');
+        header('Location: ' . View::url('home'));
         exit;
     }
 } 

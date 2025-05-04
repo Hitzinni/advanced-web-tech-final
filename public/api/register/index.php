@@ -117,7 +117,7 @@ try {
     echo json_encode([
         'success' => true, 
         'message' => 'Registration successful. Please login.',
-        'redirectUrl' => '/prin/x8m18/kill%20me/advanced-web-tech-final/public/login'
+        'redirectUrl' => '/prin/x8m18/advwebtec/advanced-web-tech-final/public/login'
     ]);
     
 } catch (Exception $e) {

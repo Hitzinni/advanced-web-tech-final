@@ -11,7 +11,7 @@
             console.log("Intercepted registration API call to:", url);
             
             // Replace with the full path to your API endpoint - using HTTPS
-            const newUrl = 'https://teach.scam.keele.ac.uk/prin/x8m18/kill%20me/advanced-web-tech-final/public/api/register';
+            const newUrl = 'https://teach.scam.keele.ac.uk/prin/x8m18/advwebtec/advanced-web-tech-final/public/api/register';
             console.log("Redirecting to:", newUrl);
             
             // Call the original fetch with the new URL

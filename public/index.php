@@ -209,7 +209,7 @@ if (empty($route)) {
     $uriPath = parse_url($requestUri, PHP_URL_PATH);
     
     // On the teaching server, the path might include the full directory structure
-    // like /prin/x8m18/kill%20me/advanced-web-tech-final/public/products
+    // like /prin/x8m18/advwebtec/advanced-web-tech-final/public/products
     // We need to extract just the part after "public/"
     
     // First, lowercase for easier matching

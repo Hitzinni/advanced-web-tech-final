@@ -2,11 +2,11 @@ RewriteEngine On
 
 # Set the base URL path for the application
 # Include the full path with proper encoding for spaces
-RewriteBase /prin/x8m18/kill%20me/advanced-web-tech-final/public/
+RewriteBase /prin/x8m18/advwebtec/advanced-web-tech-final/public/
 
 # Handle requests to /api/register from the root URL
 RewriteCond %{REQUEST_URI} ^/api/register/?$ [NC]
-RewriteRule ^ /prin/x8m18/kill%20me/advanced-web-tech-final/public/api/register/ [L,R=307]
+RewriteRule ^ /prin/x8m18/advwebtec/advanced-web-tech-final/public/api/register/ [L,R=307]
 
 # Block direct access to template files in src/views
 RewriteCond %{THE_REQUEST} ^.*/src/views/.*\.php [NC]

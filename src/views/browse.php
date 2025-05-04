@@ -438,56 +438,61 @@ document.addEventListener('DOMContentLoaded', function() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
-                    'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                 },
-                body: 'product_id=' + encodeURIComponent(productId) + '&quantity=' + encodeURIComponent(quantity)
+                body: 'product_id=' + encodeURIComponent(productId) + 
+                      '&quantity=' + encodeURIComponent(quantity) + 
+                      '&csrf_token=<?= $_SESSION['csrf_token'] ?>'
             })
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    // Show success notification
+                    // Get the product name for the modal
                     const card = button.closest('.product-card');
                     const productName = card.querySelector('.card-title').textContent.trim();
                     
-                    // Create notification
-                    const notification = document.createElement('div');
-                    notification.className = 'toast show position-fixed bottom-0 end-0 m-3';
-                    notification.style.zIndex = 1050;
-                    notification.innerHTML = `
-                        <div class="toast-header bg-success text-white">
-                            <i class="bi bi-check-circle me-2"></i>
-                            <strong class="me-auto">Added to Cart</strong>
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
-                        </div>
-                        <div class="toast-body">
-                            ${productName} was added to your cart.
-                            <div class="mt-2 pt-2 border-top">
-                                <a href="<?= \App\Helpers\View::url('cart') ?>" class="btn btn-success btn-sm">View Cart</a>
-                                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Continue Shopping</button>
-                            </div>
-                        </div>
-                    `;
+                    // Update modal content
+                    document.getElementById('modal-product-name').textContent = productName;
+                    document.getElementById('modal-quantity').textContent = quantity;
                     
-                    document.body.appendChild(notification);
-                    
-                    // Remove after 5 seconds
-                    setTimeout(() => {
-                        notification.remove();
-                    }, 5000);
-                    
-                    // Close button functionality
-                    const closeButton = notification.querySelector('.btn-close');
-                    if (closeButton) {
-                        closeButton.addEventListener('click', function() {
-                            notification.remove();
-                        });
-                    }
-                    
-                    // Update any cart counters
-                    const cartCounters = document.querySelectorAll('.cart-count');
-                    cartCounters.forEach(counter => {
-                        let count = parseInt(counter.textContent, 10) || 0;
-                        counter.textContent = count + 1;
+                    // Get updated cart data
+                    fetch('<?= \App\Helpers\View::url('api/cart/info.php') ?>?t=' + new Date().getTime(), {
+                        method: 'GET',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Cache-Control': 'no-cache'
+                        }
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(cartData => {
+                        console.log('Cart data received:', cartData);
+                        if (cartData && typeof cartData === 'object') {
+                            document.getElementById('modal-cart-count').textContent = cartData.itemCount || '0';
+                            document.getElementById('modal-cart-total').textContent = '$' + (parseFloat(cartData.total) || 0).toFixed(2);
+                        } else {
+                            console.error('Invalid cart data format received:', cartData);
+                            document.getElementById('modal-cart-count').textContent = '0';
+                            document.getElementById('modal-cart-total').textContent = '$0.00';
+                        }
+                        
+                        // Show the modal
+                        const cartModal = document.getElementById('cartModal');
+                        const bsModal = new bootstrap.Modal(cartModal);
+                        bsModal.show();
+                    })
+                    .catch(error => {
+                        console.error('Error fetching cart info:', error);
+                        // Still show the modal with default values
+                        document.getElementById('modal-cart-count').textContent = '0';
+                        document.getElementById('modal-cart-total').textContent = '$0.00';
+                        
+                        const cartModal = document.getElementById('cartModal');
+                        const bsModal = new bootstrap.Modal(cartModal);
+                        bsModal.show();
                     });
                 } else {
                     alert(data.message || 'Failed to add item to cart.');

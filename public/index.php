@@ -60,10 +60,16 @@ if (isset($_GET['debug']) && $_GET['debug'] === 'info') {
     exit;
 }
 
-session_start();
-
 // Define base path
 define('BASE_PATH', dirname(__DIR__));
+
+// Start the session at the very beginning
+session_start();
+
+// Initialize CSRF token if it doesn't exist
+if (!isset($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
 
 // Autoload classes
 require_once BASE_PATH . '/vendor/autoload.php';
@@ -254,11 +260,6 @@ if (isset($_GET['debug'])) {
 
 // Display for debugging - uncomment if needed
 // echo "<pre>ROUTE: " . $route . "</pre>";
-
-// Initialize CSRF token if it doesn't exist
-if (empty($_SESSION['csrf_token'])) {
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-}
 
 // Routes
 switch ($route) {

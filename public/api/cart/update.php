@@ -32,7 +32,7 @@ if (!$productId || !$quantity || $quantity < 1) {
             'type' => 'danger',
             'text' => 'Invalid parameters provided.'
         ];
-        header('Location: /cart');
+        header('Location: ../../index.php?route=cart');
         exit;
     }
 }
@@ -82,6 +82,6 @@ if ($isAjax) {
     ]);
 } else {
     // Redirect back to cart page
-    header('Location: /cart');
+    header('Location: ../../index.php?route=cart');
 }
 exit; 

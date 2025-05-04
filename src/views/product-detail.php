@@ -278,15 +278,21 @@ document.addEventListener('DOMContentLoaded', function() {
         const productId = this.dataset.productId;
         const quantity = quantityInput.value;
         const name = this.dataset.productName;
+        const csrfToken = '<?= $_SESSION['csrf_token'] ?>';
         
         console.log(`Adding to cart: ${name} (ID: ${productId}), Quantity: ${quantity}`);
+        console.log(`CSRF Token: ${csrfToken}`);
+        
+        // Create form data for POST request
+        const formData = new FormData();
+        formData.append('product_id', productId);
+        formData.append('quantity', quantity);
+        formData.append('csrf_token', csrfToken);
         
         // Add to cart via AJAX
-        fetch(`cart/add-to-cart.php?product_id=${productId}&quantity=${quantity}`, {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json'
-            }
+        fetch('api/cart/add', {
+            method: 'POST',
+            body: formData
         })
         .then(response => {
             console.log('Response status:', response.status);
@@ -300,7 +306,7 @@ document.addEventListener('DOMContentLoaded', function() {
             modalQuantity.textContent = quantity;
             
             // Get cart data from session via a new endpoint
-            fetch('cart/info.php?t=' + new Date().getTime(), {
+            fetch('api/cart/info.php?t=' + new Date().getTime(), {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',

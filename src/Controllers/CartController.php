@@ -41,9 +41,50 @@ class CartController
                 ];
             }
             
-            // Get cart data from session
-            $cartItems = $_SESSION['cart']['items'];
-            $cartTotal = $_SESSION['cart']['total'];
+            // First try to get cart data from database if user is logged in
+            $cartItems = [];
+            $cartTotal = 0;
+            
+            if (isset($_SESSION['user_id'])) {
+                try {
+                    // Try to get items from DB
+                    $dbCartItems = $this->cartModel->getCartItems((int)$_SESSION['user_id']);
+                    
+                    if (!empty($dbCartItems)) {
+                        // Transform DB items to match session format
+                        foreach ($dbCartItems as $item) {
+                            $cartItems[] = [
+                                'id' => (int)$item['product_id'],
+                                'name' => $item['name'],
+                                'price' => (float)$item['price'],
+                                'quantity' => (int)$item['quantity'],
+                                'category' => $item['category'],
+                                'image_url' => $item['image_url']
+                            ];
+                            
+                            $cartTotal += (float)$item['price'] * (int)$item['quantity'];
+                        }
+                        
+                        // Update session cart with DB items
+                        $_SESSION['cart'] = [
+                            'items' => $cartItems,
+                            'total' => $cartTotal
+                        ];
+                        
+                        error_log("CartController::viewCart - Loaded " . count($cartItems) . " items from database");
+                    }
+                } catch (\Exception $e) {
+                    error_log("CartController::viewCart - Error loading from DB: " . $e->getMessage());
+                    // Fall back to session cart
+                }
+            }
+            
+            // If no DB items, use session cart
+            if (empty($cartItems)) {
+                $cartItems = $_SESSION['cart']['items'];
+                $cartTotal = $_SESSION['cart']['total'];
+                error_log("CartController::viewCart - Using session cart with " . count($cartItems) . " items");
+            }
             
             // Render the cart view using the enhanced View helper
             View::output('cart', [
@@ -199,97 +240,121 @@ class CartController
      */
     public function updateCartItem(): void
     {
-        // Initialize response
-        $response = [
-            'success' => false,
-            'message' => 'Failed to update cart item'
-        ];
+        // Set content type to JSON and prevent caching
+        header('Content-Type: application/json');
+        header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+        header('Pragma: no-cache');
         
-        // Check if this is an AJAX request
-        $isAjax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && 
-                 strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
-        
-        // If AJAX, set content type to JSON
-        if ($isAjax) {
-            header('Content-Type: application/json');
-        }
-        
-        // Support both GET and POST requests
-        $productId = filter_input(INPUT_POST, 'product_id', FILTER_VALIDATE_INT);
-        $quantity = filter_input(INPUT_POST, 'quantity', FILTER_VALIDATE_INT);
-        
-        // If not found in POST, try GET
-        if (!$productId) {
-            $productId = filter_input(INPUT_GET, 'product_id', FILTER_VALIDATE_INT);
-        }
-        
-        if (!$quantity || $quantity < 1) {
-            $quantity = filter_input(INPUT_GET, 'quantity', FILTER_VALIDATE_INT);
-        }
-        
-        // Validate parameters
-        if (!$productId || !$quantity || $quantity < 1) {
-            if ($isAjax) {
-                echo json_encode(['success' => false, 'message' => 'Invalid parameters']);
-                exit;
-            } else {
-                $_SESSION['flash_message'] = [
-                    'type' => 'danger',
-                    'text' => 'Invalid parameters provided.'
+        try {
+            // Log the request for debugging
+            error_log('CartController::updateCartItem - Request: ' . json_encode($_POST) . ' | GET: ' . json_encode($_GET));
+            
+            // Initialize cart in session if it doesn't exist
+            if (!isset($_SESSION['cart'])) {
+                $_SESSION['cart'] = [
+                    'items' => [],
+                    'total' => 0
                 ];
-                header('Location: ' . View::url('cart'));
+            }
+            
+            // Check if this is an AJAX request
+            $isAjax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && 
+                    strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
+            
+            // Get product ID and quantity
+            $productId = filter_input(INPUT_POST, 'product_id', FILTER_VALIDATE_INT);
+            $quantity = filter_input(INPUT_POST, 'quantity', FILTER_VALIDATE_INT);
+            
+            // If not found in POST, try GET
+            if (!$productId) {
+                $productId = filter_input(INPUT_GET, 'product_id', FILTER_VALIDATE_INT);
+            }
+            
+            if (!$quantity || $quantity < 1) {
+                $quantity = filter_input(INPUT_GET, 'quantity', FILTER_VALIDATE_INT);
+            }
+            
+            // Log the parameters
+            error_log('CartController::updateCartItem - Product ID: ' . ($productId ?? 'null') . ', Quantity: ' . ($quantity ?? 'null'));
+            
+            // Validate parameters
+            if (!$productId || !$quantity || $quantity < 1) {
+                $response = ['success' => false, 'message' => 'Invalid parameters provided'];
+                echo json_encode($response);
                 exit;
             }
-        }
-        
-        // Update cart in session
-        $updated = false;
-        
-        if (isset($_SESSION['cart']) && isset($_SESSION['cart']['items']) && is_array($_SESSION['cart']['items'])) {
-            $cartItems = &$_SESSION['cart']['items']; // Reference to modify original
-            $cartTotal = 0;
             
-            foreach ($cartItems as &$item) {
-                if (isset($item['id']) && $item['id'] == $productId) {
-                    $item['quantity'] = $quantity;
-                    $updated = true;
+            // Update cart in session
+            $updated = false;
+            
+            if (isset($_SESSION['cart']) && isset($_SESSION['cart']['items']) && is_array($_SESSION['cart']['items'])) {
+                $cartItems = &$_SESSION['cart']['items']; // Reference to modify original
+                $cartTotal = 0;
+                
+                foreach ($cartItems as &$item) {
+                    if (isset($item['id']) && (int)$item['id'] == $productId) {
+                        $item['quantity'] = $quantity;
+                        $updated = true;
+                    }
+                    
+                    // Recalculate total
+                    $itemPrice = isset($item['price']) && is_numeric($item['price']) ? (float)$item['price'] : 0;
+                    $itemQuantity = isset($item['quantity']) && is_numeric($item['quantity']) ? (int)$item['quantity'] : 1;
+                    $cartTotal += $itemPrice * $itemQuantity;
                 }
                 
-                // Recalculate total
-                $itemPrice = isset($item['price']) && is_numeric($item['price']) ? (float)$item['price'] : 0;
-                $itemQuantity = isset($item['quantity']) && is_numeric($item['quantity']) ? (int)$item['quantity'] : 1;
-                $cartTotal += $itemPrice * $itemQuantity;
+                // Update cart total
+                $_SESSION['cart']['total'] = $cartTotal;
             }
             
-            // Update cart total
-            $_SESSION['cart']['total'] = $cartTotal;
-        }
-        
-        // Set success message
-        $_SESSION['flash_message'] = [
-            'type' => $updated ? 'success' : 'danger',
-            'text' => $updated ? 'Cart updated successfully.' : 'Failed to update cart.'
-        ];
-        
-        // If AJAX request, return JSON
-        if ($isAjax) {
+            // Try to update in database if user is logged in
+            if (isset($_SESSION['user_id'])) {
+                try {
+                    $userId = (int)$_SESSION['user_id'];
+                    $cartId = $this->cartModel->getOrCreateCart($userId);
+                    $success = $this->cartModel->updateItemQuantity($cartId, $productId, $quantity);
+                    
+                    if ($success) {
+                        $updated = true;
+                    }
+                } catch (\Exception $e) {
+                    error_log('CartController::updateCartItem - Error updating in DB: ' . $e->getMessage());
+                    // Continue with session cart update
+                }
+            }
+            
+            // Set flash message
+            $_SESSION['flash_message'] = [
+                'type' => $updated ? 'success' : 'danger',
+                'text' => $updated ? 'Cart updated successfully.' : 'Failed to update cart.'
+            ];
+            
             // Calculate total quantity
             $itemCount = 0;
             foreach ($_SESSION['cart']['items'] as $item) {
                 $itemCount += isset($item['quantity']) ? (int)$item['quantity'] : 1;
             }
             
-            echo json_encode([
+            // Return response
+            $response = [
                 'success' => $updated,
                 'message' => $updated ? 'Cart updated successfully' : 'Failed to update cart',
                 'cartTotal' => $_SESSION['cart']['total'] ?? 0,
                 'itemCount' => $itemCount
+            ];
+            
+            echo json_encode($response);
+            error_log('CartController::updateCartItem - Response: ' . json_encode($response));
+        } catch (\Exception $e) {
+            // Log any errors
+            error_log('CartController::updateCartItem - Error: ' . $e->getMessage());
+            
+            // Return error response
+            echo json_encode([
+                'success' => false,
+                'message' => 'An error occurred: ' . $e->getMessage()
             ]);
-        } else {
-            // Redirect back to cart
-            header('Location: ' . View::url('cart'));
         }
-        exit;
     }
     
     /**
@@ -297,141 +362,187 @@ class CartController
      */
     public function removeCartItem(): void
     {
-        // Initialize response
-        $response = [
-            'success' => false,
-            'message' => 'Failed to remove item from cart'
-        ];
+        // Set content type to JSON and prevent caching
+        header('Content-Type: application/json');
+        header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+        header('Pragma: no-cache');
         
-        // Check if this is an AJAX request
-        $isAjax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && 
-                 strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
-        
-        // If AJAX, set content type to JSON
-        if ($isAjax) {
-            header('Content-Type: application/json');
-        }
-        
-        // Support both GET and POST requests
-        $productId = filter_input(INPUT_POST, 'product_id', FILTER_VALIDATE_INT);
-        
-        // If not found in POST, try GET
-        if (!$productId) {
-            $productId = filter_input(INPUT_GET, 'product_id', FILTER_VALIDATE_INT);
-        }
-        
-        // Validate product ID
-        if (!$productId) {
-            if ($isAjax) {
-                echo json_encode(['success' => false, 'message' => 'Invalid product ID']);
-                exit;
-            } else {
-                $_SESSION['flash_message'] = [
-                    'type' => 'danger',
-                    'text' => 'Invalid product ID provided.'
+        try {
+            // Log the request for debugging
+            error_log('CartController::removeCartItem - Request: ' . json_encode($_POST) . ' | GET: ' . json_encode($_GET));
+            
+            // Initialize cart in session if it doesn't exist
+            if (!isset($_SESSION['cart'])) {
+                $_SESSION['cart'] = [
+                    'items' => [],
+                    'total' => 0
                 ];
-                header('Location: ' . View::url('cart'));
+            }
+            
+            // Check if this is an AJAX request
+            $isAjax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && 
+                    strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
+            
+            // Get product ID
+            $productId = filter_input(INPUT_POST, 'product_id', FILTER_VALIDATE_INT);
+            if (!$productId) {
+                $productId = filter_input(INPUT_GET, 'product_id', FILTER_VALIDATE_INT);
+            }
+            
+            // Log the product ID
+            error_log('CartController::removeCartItem - Product ID: ' . ($productId ?? 'null'));
+            
+            if (!$productId) {
+                $response = ['success' => false, 'message' => 'Invalid product ID'];
+                echo json_encode($response);
                 exit;
             }
-        }
-        
-        // Remove item from session cart
-        $removed = false;
-        
-        if (isset($_SESSION['cart']) && isset($_SESSION['cart']['items']) && is_array($_SESSION['cart']['items'])) {
-            $cartItems = $_SESSION['cart']['items'];
-            $updatedItems = [];
-            $cartTotal = 0;
             
-            foreach ($cartItems as $item) {
-                if (isset($item['id']) && $item['id'] == $productId) {
-                    $removed = true;
-                    continue; // Skip this item
+            // Remove item from session cart
+            $removed = false;
+            $removedItemName = '';
+            
+            if (isset($_SESSION['cart']) && isset($_SESSION['cart']['items']) && is_array($_SESSION['cart']['items'])) {
+                $cartItems = $_SESSION['cart']['items'];
+                $updatedItems = [];
+                $cartTotal = 0;
+                
+                foreach ($cartItems as $item) {
+                    if (isset($item['id']) && (int)$item['id'] == $productId) {
+                        $removed = true;
+                        $removedItemName = $item['name'] ?? 'Product';
+                        continue; // Skip this item
+                    }
+                    
+                    $updatedItems[] = $item;
+                    
+                    // Recalculate total
+                    $itemPrice = isset($item['price']) && is_numeric($item['price']) ? (float)$item['price'] : 0;
+                    $itemQuantity = isset($item['quantity']) && is_numeric($item['quantity']) ? (int)$item['quantity'] : 1;
+                    $cartTotal += $itemPrice * $itemQuantity;
                 }
                 
-                $updatedItems[] = $item;
-                
-                // Recalculate total
-                $itemPrice = isset($item['price']) && is_numeric($item['price']) ? (float)$item['price'] : 0;
-                $itemQuantity = isset($item['quantity']) && is_numeric($item['quantity']) ? (int)$item['quantity'] : 1;
-                $cartTotal += $itemPrice * $itemQuantity;
+                // Update cart
+                $_SESSION['cart']['items'] = $updatedItems;
+                $_SESSION['cart']['total'] = $cartTotal;
             }
             
-            // Update cart
-            $_SESSION['cart']['items'] = $updatedItems;
-            $_SESSION['cart']['total'] = $cartTotal;
-        }
-        
-        // Set flash message
-        $_SESSION['flash_message'] = [
-            'type' => $removed ? 'success' : 'danger',
-            'text' => $removed ? 'Item removed successfully.' : 'Failed to remove item from cart.'
-        ];
-        
-        // If AJAX request, return JSON
-        if ($isAjax) {
+            // Try to remove from database cart if user is logged in
+            if (isset($_SESSION['user_id'])) {
+                try {
+                    $userId = (int)$_SESSION['user_id'];
+                    $success = $this->cartModel->removeItem($userId, $productId);
+                    
+                    if ($success) {
+                        $removed = true;
+                    }
+                } catch (\Exception $e) {
+                    error_log('CartController::removeCartItem - Error removing from DB: ' . $e->getMessage());
+                    // Continue with session cart removal
+                }
+            }
+            
+            // Set flash message
+            $_SESSION['flash_message'] = [
+                'type' => $removed ? 'success' : 'danger',
+                'text' => $removed ? ($removedItemName . ' was removed from your cart.') : 'Failed to remove item from cart.'
+            ];
+            
             // Calculate total quantity
             $itemCount = 0;
             foreach ($_SESSION['cart']['items'] as $item) {
                 $itemCount += isset($item['quantity']) ? (int)$item['quantity'] : 1;
             }
             
-            echo json_encode([
+            // Return response
+            $response = [
                 'success' => $removed,
                 'message' => $removed ? 'Item removed successfully' : 'Failed to remove item',
                 'cartTotal' => $_SESSION['cart']['total'] ?? 0,
                 'itemCount' => $itemCount
+            ];
+            
+            echo json_encode($response);
+            error_log('CartController::removeCartItem - Response: ' . json_encode($response));
+        } catch (\Exception $e) {
+            // Log any errors
+            error_log('CartController::removeCartItem - Error: ' . $e->getMessage());
+            
+            // Return error response
+            echo json_encode([
+                'success' => false,
+                'message' => 'An error occurred: ' . $e->getMessage()
             ]);
-        } else {
-            // Redirect back to cart
-            header('Location: ' . View::url('cart'));
         }
-        exit;
     }
     
     /**
-     * Clear the cart via AJAX or direct request
+     * Clear the entire cart
      */
     public function clearCart(): void
     {
-        // Initialize response array
-        $response = [
-            'success' => false,
-            'message' => 'Failed to clear cart'
-        ];
+        // Set content type to JSON and prevent caching
+        header('Content-Type: application/json');
+        header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+        header('Pragma: no-cache');
         
-        // Check if this is an AJAX request
-        $isAjax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && 
-                 strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
-        
-        // If AJAX, set content type to JSON
-        if ($isAjax) {
-            header('Content-Type: application/json');
-        }
-        
-        // Skip authentication and CSRF validation for now to ensure cart can be cleared
-        // Clear the cart in session
-        $_SESSION['cart'] = [
-            'items' => [],
-            'total' => 0
-        ];
-        
-        // Set success message
-        $_SESSION['flash_message'] = [
-            'type' => 'success',
-            'text' => 'Your cart has been cleared.'
-        ];
-        
-        // If this is an AJAX request, return JSON
-        if ($isAjax) {
+        try {
+            // Log the request for debugging
+            error_log('CartController::clearCart - Request: ' . json_encode($_POST) . ' | GET: ' . json_encode($_GET));
+            
+            // Initialize response
+            $response = [
+                'success' => false,
+                'message' => 'Failed to clear cart'
+            ];
+            
+            // Check if this is an AJAX request
+            $isAjax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && 
+                    strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
+            
+            // Clear session cart
+            $_SESSION['cart'] = [
+                'items' => [],
+                'total' => 0
+            ];
+            
+            // Try to clear database cart if user is logged in
+            if (isset($_SESSION['user_id'])) {
+                try {
+                    $userId = (int)$_SESSION['user_id'];
+                    $success = $this->cartModel->clearCart($userId);
+                    
+                    if (!$success) {
+                        error_log('CartController::clearCart - Failed to clear database cart for user: ' . $userId);
+                    }
+                } catch (\Exception $e) {
+                    error_log('CartController::clearCart - Error clearing DB cart: ' . $e->getMessage());
+                    // Continue with session cart clearing
+                }
+            }
+            
+            // Set flash message
+            $_SESSION['flash_message'] = [
+                'type' => 'success',
+                'text' => 'Your cart has been cleared.'
+            ];
+            
+            // Update response
             $response['success'] = true;
             $response['message'] = 'Cart cleared successfully';
+            
             echo json_encode($response);
-        } else {
-            // Otherwise redirect back to cart page
-            header('Location: ' . View::url('cart'));
+            error_log('CartController::clearCart - Response: ' . json_encode($response));
+        } catch (\Exception $e) {
+            // Log any errors
+            error_log('CartController::clearCart - Error: ' . $e->getMessage());
+            
+            // Return error response
+            echo json_encode([
+                'success' => false,
+                'message' => 'An error occurred: ' . $e->getMessage()
+            ]);
         }
-        exit;
     }
     
     /**

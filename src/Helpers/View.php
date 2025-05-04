@@ -51,6 +51,11 @@ class View
                     self::$baseUrl = "$scheme://$httpHost$basePath/";
                     error_log("Fallback path from script name: $basePath");
                 }
+                
+                // Ensure we're using index.php for routing all requests
+                if (strpos(self::$baseUrl, 'index.php') === false) {
+                    error_log("Base URL is: " . self::$baseUrl . " - ensuring we use index.php for routing");
+                }
             } else {
                 // For other environments
                 $basePath = dirname($scriptName);
@@ -66,6 +71,9 @@ class View
             if (substr(self::$baseUrl, -1) !== '/') {
                 self::$baseUrl .= '/';
             }
+            
+            // Force HTTPS in the URL
+            self::$baseUrl = str_replace('http://', 'https://', self::$baseUrl);
             
             error_log("View::getBaseUrl - Calculated base URL: " . self::$baseUrl);
         }
@@ -105,15 +113,29 @@ class View
         // Ensure route doesn't start with a slash
         $route = ltrim($route, '/');
         
-        // Create the full URL
-        $url = $baseUrl . $route;
+        // For API routes, use direct paths
+        $isApiRoute = strpos($route, 'api/') === 0;
+        
+        // Create the full URL - use index.php?route= for non-API routes
+        if ($isApiRoute) {
+            $url = $baseUrl . $route;
+            error_log("API URL generated: $url for route: $route");
+        } else {
+            // Add index.php?route= for non-API routes
+            $url = $baseUrl . 'index.php?route=' . $route;
+            error_log("Route URL generated: $url for route: $route");
+        }
         
         // Add query parameters if provided
         if (!empty($params)) {
-            $url .= '?' . http_build_query($params);
+            $separator = strpos($url, '?') !== false ? '&' : '?';
+            $url .= $separator . http_build_query($params);
         }
         
-        error_log("URL generated: $url for route: $route");
+        // Force HTTPS in the URL
+        $url = str_replace('http://', 'https://', $url);
+        
+        error_log("Final URL generated: $url for route: $route");
         
         return $url;
     }

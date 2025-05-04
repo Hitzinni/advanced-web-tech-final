@@ -68,6 +68,9 @@ define('BASE_PATH', dirname(__DIR__));
 // Autoload classes
 require_once BASE_PATH . '/vendor/autoload.php';
 
+// Load config file with database credentials
+require_once BASE_PATH . '/config.php';
+
 // Load environment variables
 if (file_exists(BASE_PATH . '/.env')) {
     $dotenv = Dotenv\Dotenv::createImmutable(BASE_PATH);

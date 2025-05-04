@@ -14,6 +14,11 @@ class Database
     {
         if (self::$instance === null) {
             try {
+                // Load config file if not already included
+                if (!defined('DB_HOST')) {
+                    require_once dirname(dirname(__DIR__)) . '/config.php';
+                }
+                
                 // Teaching server specific settings
                 // Extracting username from the path to determine database credentials
                 $scriptPath = $_SERVER['SCRIPT_FILENAME'] ?? '';
@@ -38,7 +43,7 @@ class Database
                 error_log("Script path: $scriptPath");
                 
                 // Use extracted username for database credentials on teaching server
-                // or fall back to environment variables/defaults
+                // or fall back to config.php values
                 if (!empty($username)) {
                     $host = 'localhost';
                     $name = $username;
@@ -46,11 +51,11 @@ class Database
                     $pass = $username . $username; // Username twice for teaching server password
                     error_log("Using teaching server credentials - User: $user, DB: $name, Pass: [hidden]");
                 } else {
-                    // Default/local development settings
-                    $host = $_ENV['DB_HOST'] ?? 'localhost';
-                    $name = $_ENV['DB_NAME'] ?? 'grocery_store_dev';
-                    $user = $_ENV['DB_USER'] ?? 'root';
-                    $pass = $_ENV['DB_PASS'] ?? '';
+                    // Default/local development settings from config.php
+                    $host = defined('DB_HOST') ? DB_HOST : 'localhost';
+                    $name = defined('DB_NAME') ? DB_NAME : 'grocery_store_dev';
+                    $user = defined('DB_USER') ? DB_USER : 'root';
+                    $pass = defined('DB_PASS') ? DB_PASS : '';
                     error_log("Using default credentials - Host: $host, DB: $name, User: $user");
                 }
                 

@@ -21,11 +21,11 @@ class OrderController
     public function __construct()
     {
         // Database connection
-        $host = $_ENV['DB_HOST'] ?? 'localhost';
-        $dbname = $_ENV['DB_NAME'] ?? 'grocery_store_dev';
-        $charset = $_ENV['DB_CHARSET'] ?? 'utf8mb4';
-        $username = $_ENV['DB_USER'] ?? 'root';
-        $password = $_ENV['DB_PASS'] ?? '';
+        $host = defined('DB_HOST') ? DB_HOST : 'localhost';
+        $dbname = defined('DB_NAME') ? DB_NAME : 'grocery_store_dev';
+        $charset = defined('DB_CHARSET') ? DB_CHARSET : 'utf8mb4';
+        $username = defined('DB_USER') ? DB_USER : 'root';
+        $password = defined('DB_PASS') ? DB_PASS : '';
         
         $dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
         $options = [
@@ -360,7 +360,7 @@ class OrderController
     }
     
     /**
-     * Show user's orders
+     * Display the user's order history
      */
     public function myOrders(): void
     {
@@ -370,43 +370,113 @@ class OrderController
                 'type' => 'warning',
                 'text' => 'Please login to view your orders.'
             ];
-            header('Location: login');
+            header('Location: ' . View::url('login'));
             exit;
         }
         
-        // Get user's orders
-        $orders = $this->orderModel->getByUserId((int)$_SESSION['user_id']);
-        
-        // Group orders by date for the view
-        $groupedOrders = [];
-        foreach ($orders as $order) {
-            $orderDate = date('Y-m-d', strtotime($order['ordered_at']));
+        try {
+            // Enhanced error logging
+            error_log('OrderController::myOrders - Starting method for user ID: ' . $_SESSION['user_id']);
             
-            if (!isset($groupedOrders[$orderDate])) {
-                $groupedOrders[$orderDate] = [];
+            // Get user's orders
+            $orders = $this->orderModel->getByUserId((int)$_SESSION['user_id']);
+            error_log('OrderController::myOrders - Found ' . count($orders) . ' orders');
+            
+            // Group orders by date for the view
+            $groupedOrders = [];
+            foreach ($orders as $order) {
+                // Skip invalid orders
+                if (!isset($order['ordered_at'])) {
+                    error_log("Invalid order data found: " . json_encode($order));
+                    continue;
+                }
+                
+                $orderDate = date('Y-m-d', strtotime($order['ordered_at']));
+                
+                if (!isset($groupedOrders[$orderDate])) {
+                    $groupedOrders[$orderDate] = [];
+                }
+                
+                // For new format orders, add a summary for display
+                if (isset($order['is_new_format']) && $order['is_new_format']) {
+                    $order['price_at_order'] = $order['total_amount'] ?? 0; // For compatibility with view
+                    $order['product_name'] = 'Order #' . ($order['id'] ?? 'Unknown') . ' (' . ($order['item_count'] ?? 0) . ' items)';
+                    $order['category'] = $order['payment_method'] ?? 'Standard';
+                    $order['image_url'] = 'images/products/order-icon.jpg'; // Default image for multi-item orders
+                    
+                    // Add total field for compatibility with view if it doesn't exist
+                    if (!isset($order['total'])) {
+                        $order['total'] = $order['total_amount'] ?? 0;
+                    }
+                    
+                    // Add default status if not set
+                    if (!isset($order['status'])) {
+                        $order['status'] = 'completed';
+                    }
+                    
+                    // Load order items if available and needed for display
+                    if (!isset($order['items']) && isset($order['id'])) {
+                        try {
+                            $fullOrder = $this->orderModel->getById((int)$order['id']);
+                            if ($fullOrder && isset($fullOrder['items'])) {
+                                $order['items'] = $fullOrder['items'];
+                            } else {
+                                $order['items'] = [];
+                            }
+                        } catch (\Exception $itemError) {
+                            error_log("Error loading order items: " . $itemError->getMessage());
+                            $order['items'] = [];
+                        }
+                    }
+                }
+                
+                $groupedOrders[$orderDate][] = $order;
             }
             
-            // For new format orders, add a summary for display
-            if (isset($order['is_new_format']) && $order['is_new_format']) {
-                $order['price_at_order'] = $order['total_amount']; // For compatibility with view
-                $order['product_name'] = 'Order #' . $order['id'] . ' (' . $order['item_count'] . ' items)';
-                $order['category'] = $order['payment_method'];
-                $order['image_url'] = 'images/products/order-icon.jpg'; // Default image for multi-item orders
-            }
+            // Sort by date descending (newest first)
+            krsort($groupedOrders);
             
-            $groupedOrders[$orderDate][] = $order;
+            // Check if the view file exists before rendering
+            $viewPath = BASE_PATH . '/src/views/my-orders.php';
+            if (!file_exists($viewPath)) {
+                error_log("OrderController::myOrders - View file not found: $viewPath");
+                throw new \Exception("View file 'my-orders.php' not found");
+            }
+            error_log("OrderController::myOrders - View file exists: $viewPath");
+            
+            // Display orders
+            error_log("OrderController::myOrders - Rendering view with " . count($groupedOrders) . " grouped date entries");
+            View::output('my-orders', [
+                'pageTitle' => 'My Orders',
+                'metaDescription' => 'View your order history',
+                'orders' => $orders,
+                'groupedOrders' => $groupedOrders
+            ]);
+        } catch (\Exception $e) {
+            // Log the error with more details
+            error_log('Error in OrderController::myOrders: ' . $e->getMessage());
+            error_log('Exception trace: ' . $e->getTraceAsString());
+            
+            // Check if headers are already sent
+            if (!headers_sent()) {
+                // Display error message to user
+                $_SESSION['flash_message'] = [
+                    'type' => 'danger',
+                    'text' => 'An error occurred while loading your orders: ' . $e->getMessage()
+                ];
+                
+                // Redirect to home page
+                header('Location: ' . View::url('home') . '');
+                exit;
+            } else {
+                // Output error directly if headers already sent
+                echo '<div class="alert alert-danger">';
+                echo '<h3>Error Loading Orders</h3>';
+                echo '<p>' . htmlspecialchars($e->getMessage()) . '</p>';
+                echo '<p><a href="' . View::url('home') . '" class="btn btn-primary">Return to Home</a></p>';
+                echo '</div>';
+            }
         }
-        
-        // Sort by date descending (newest first)
-        krsort($groupedOrders);
-        
-        // Display orders
-        View::output('my-orders', [
-            'pageTitle' => 'My Orders',
-            'metaDescription' => 'View your order history',
-            'orders' => $orders,
-            'groupedOrders' => $groupedOrders
-        ]);
     }
     
     /**

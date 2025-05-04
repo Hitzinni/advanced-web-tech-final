@@ -118,7 +118,7 @@ class Order extends BaseModel
             // Attempt to find the order in the new `orders` table first
             $sql = "SELECT o.*, o.shipping_address, o.payment_method, u.name as user_name, u.email, u.phone
                    FROM `orders` o
-                   JOIN user u ON o.user_id = u.id
+                   LEFT JOIN user u ON o.user_id = u.id
                    WHERE o.id = ? LIMIT 1";
             $stmt = $this->db->prepare($sql);
             $stmt->execute([$id]);
@@ -126,14 +126,19 @@ class Order extends BaseModel
             
             // If found in the new table
             if ($order) {
-                // Fetch associated items from `order_items`
-                $itemsSql = "SELECT oi.*, p.category, p.image_url 
-                            FROM `order_items` oi
-                            JOIN product p ON oi.product_id = p.id
-                            WHERE oi.order_id = ?";
-                $itemsStmt = $this->db->prepare($itemsSql);
-                $itemsStmt->execute([$id]);
-                $order['items'] = $itemsStmt->fetchAll();
+                try {
+                    // Fetch associated items from `order_items`
+                    $itemsSql = "SELECT oi.*, p.category, p.image_url 
+                                FROM `order_items` oi
+                                LEFT JOIN product p ON oi.product_id = p.id
+                                WHERE oi.order_id = ?";
+                    $itemsStmt = $this->db->prepare($itemsSql);
+                    $itemsStmt->execute([$id]);
+                    $order['items'] = $itemsStmt->fetchAll();
+                } catch (\PDOException $itemErr) {
+                    error_log("Error fetching order items: " . $itemErr->getMessage());
+                    $order['items'] = []; // Empty array if items can't be fetched
+                }
                 
                 // Add a flag indicating this uses the new multi-item format
                 $order['is_new_format'] = true;
@@ -143,22 +148,27 @@ class Order extends BaseModel
             }
             
             // If not found in the new table, fall back to the legacy `order` table
-            $sql = "SELECT o.*, p.name as product_name, p.category, p.image_url 
-                    FROM `order` o
-                    JOIN product p ON o.product_id = p.id
-                    WHERE o.id = ? LIMIT 1";
-            $stmt = $this->db->prepare($sql);
-            $stmt->execute([$id]);
-            
-            // Fetch the legacy order data
-            $order = $stmt->fetch();
-            if ($order) {
-                // Add a flag indicating this uses the legacy format
-                $order['is_new_format'] = false;
+            try {
+                $sql = "SELECT o.*, p.name as product_name, p.category, p.image_url 
+                        FROM `order` o
+                        LEFT JOIN product p ON o.product_id = p.id
+                        WHERE o.id = ? LIMIT 1";
+                $stmt = $this->db->prepare($sql);
+                $stmt->execute([$id]);
+                
+                // Fetch the legacy order data
+                $order = $stmt->fetch();
+                if ($order) {
+                    // Add a flag indicating this uses the legacy format
+                    $order['is_new_format'] = false;
+                }
+                
+                // Return the legacy order data or null if not found
+                return $order ?: null;
+            } catch (\PDOException $legacyErr) {
+                error_log("Error fetching legacy order: " . $legacyErr->getMessage());
+                return null;
             }
-            
-            // Return the legacy order data or null if not found in either table
-            return $order ?: null;
         } catch (\PDOException $e) {
             // Log any database errors during fetching
             error_log("Error fetching order: " . $e->getMessage());
@@ -221,55 +231,94 @@ class Order extends BaseModel
             
             // If the new table exists, fetch orders from it
             if ($ordersTableExists) {
-                // SQL to get orders from the new structure, including item count
-                $sql = "SELECT o.*, COUNT(oi.id) as item_count
-                       FROM `orders` o
-                       LEFT JOIN order_items oi ON o.id = oi.order_id
-                       WHERE o.user_id = ?
-                       GROUP BY o.id
-                       ORDER BY o.ordered_at DESC";
-                $stmt = $this->db->prepare($sql);
-                $stmt->execute([$userId]);
-                $newOrders = $stmt->fetchAll();
-                
-                // Mark these orders with the 'is_new_format' flag
-                foreach ($newOrders as &$order) {
-                    $order['is_new_format'] = true;
+                try {
+                    // SQL to get orders from the new structure, including item count
+                    $sql = "SELECT o.*, COUNT(oi.id) as item_count
+                           FROM `orders` o
+                           LEFT JOIN order_items oi ON o.id = oi.order_id
+                           WHERE o.user_id = ?
+                           GROUP BY o.id
+                           ORDER BY o.ordered_at DESC";
+                    $stmt = $this->db->prepare($sql);
+                    $stmt->execute([$userId]);
+                    $newOrders = $stmt->fetchAll();
+                    
+                    // Mark these orders with the 'is_new_format' flag
+                    foreach ($newOrders as &$order) {
+                        $order['is_new_format'] = true;
+                        // Ensure ordered_at exists
+                        if (!isset($order['ordered_at'])) {
+                            $order['ordered_at'] = date('Y-m-d H:i:s');
+                        }
+                    }
+                    
+                    // Add new orders to the result array
+                    $result = array_merge($result, $newOrders);
+                } catch (\PDOException $e) {
+                    error_log("Error fetching new format orders: " . $e->getMessage());
+                    // Continue with legacy orders
                 }
-                
-                // Add new orders to the result array
-                $result = array_merge($result, $newOrders);
             }
             
-            // Fetch orders from the legacy `order` table
-            $sql = "SELECT o.*, p.name as product_name, p.category, p.image_url 
-                    FROM `order` o
-                    JOIN product p ON o.product_id = p.id
-                    WHERE o.user_id = ?
-                    ORDER BY o.ordered_at DESC";
-            $stmt = $this->db->prepare($sql);
-            $stmt->execute([$userId]);
-            $legacyOrders = $stmt->fetchAll();
+            // Check if legacy order table exists
+            $tableCheck = $this->db->query("SHOW TABLES LIKE 'order'");
+            $legacyTableExists = $tableCheck->rowCount() > 0;
             
-            // Mark these orders with the 'is_new_format' flag set to false
-            foreach ($legacyOrders as &$order) {
-                $order['is_new_format'] = false;
+            // Fetch orders from the legacy `order` table if it exists
+            if ($legacyTableExists) {
+                try {
+                    $sql = "SELECT o.*, p.name as product_name, p.category, p.image_url 
+                            FROM `order` o
+                            LEFT JOIN product p ON o.product_id = p.id
+                            WHERE o.user_id = ?
+                            ORDER BY o.ordered_at DESC";
+                    $stmt = $this->db->prepare($sql);
+                    $stmt->execute([$userId]);
+                    $legacyOrders = $stmt->fetchAll();
+                    
+                    // Mark legacy orders and ensure required fields exist
+                    foreach ($legacyOrders as &$order) {
+                        $order['is_new_format'] = false;
+                        
+                        // Provide defaults for required fields
+                        if (!isset($order['product_name'])) {
+                            $order['product_name'] = 'Unknown Product';
+                        }
+                        
+                        if (!isset($order['ordered_at'])) {
+                            $order['ordered_at'] = date('Y-m-d H:i:s');
+                        }
+                        
+                        // Ensure price consistency for view
+                        if (isset($order['price_at_order'])) {
+                            $order['total'] = $order['price_at_order'];
+                        } elseif (isset($order['total'])) {
+                            $order['price_at_order'] = $order['total'];
+                        } else {
+                            $order['total'] = $order['price_at_order'] = 0;
+                        }
+                    }
+                    
+                    // Add legacy orders to the result array
+                    $result = array_merge($result, $legacyOrders);
+                } catch (\PDOException $e) {
+                    error_log("Error fetching legacy orders: " . $e->getMessage());
+                }
             }
             
-            // Combine both new and legacy orders into one array
-            $result = array_merge($result, $legacyOrders);
-            
-            // Sort the combined results by order date (descending)
+            // Sort all orders by ordered_at date, newest first
             usort($result, function($a, $b) {
-                return strtotime($b['ordered_at']) - strtotime($a['ordered_at']);
+                // Use default dates if ordered_at is missing
+                $dateA = $a['ordered_at'] ?? date('Y-m-d H:i:s');
+                $dateB = $b['ordered_at'] ?? date('Y-m-d H:i:s');
+                return strtotime($dateB) - strtotime($dateA);
             });
             
-            // Return the sorted list of all orders
             return $result;
-        } catch (\PDOException $e) {
-            // Log errors encountered during fetching
-            error_log('Order Model - getByUserId - Error: ' . $e->getMessage());
-            // Return an empty array on error
+            
+        } catch (\Exception $e) {
+            // Log the error and return an empty array
+            error_log("Error in getByUserId: " . $e->getMessage());
             return [];
         }
     }

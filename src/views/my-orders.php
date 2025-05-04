@@ -8,7 +8,7 @@
         <div class="col-lg-6 text-lg-end">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb justify-content-lg-end mb-0">
-                    <li class="breadcrumb-item"><a href="home" class="text-white">Home</a></li>
+                    <li class="breadcrumb-item"><a href="<?= \App\Helpers\View::url('home') ?>" class="text-white">Home</a></li>
                     <li class="breadcrumb-item active text-white-50" aria-current="page">My Orders</li>
                 </ol>
             </nav>
@@ -35,7 +35,7 @@
             </div>
             <h2 class="h4 mb-3">You haven't placed any orders yet</h2>
             <p class="text-muted mb-4">Start shopping to see your order history here.</p>
-            <a href="products" class="btn btn-primary">
+            <a href="<?= \App\Helpers\View::url('products') ?>" class="btn btn-primary">
                 <i class="bi bi-basket me-2"></i>Browse Products
             </a>
         </div>
@@ -52,7 +52,9 @@
                     $dateTotal = 0;
                     $totalItems = count($orders);
                     foreach ($orders as $order) {
-                        $dateTotal += (float)$order['price_at_order'];
+                        $orderPrice = isset($order['price_at_order']) ? (float)$order['price_at_order'] : 
+                                      (isset($order['total']) ? (float)$order['total'] : 0);
+                        $dateTotal += $orderPrice;
                     }
                     
                     // Format date for display
@@ -67,69 +69,65 @@
                     // Create a unique ID for the accordion item
                     $accordionId = 'order-' . str_replace('-', '', $date);
                 ?>
-                <div class="accordion-item mb-3 border rounded shadow-sm">
-                    <h2 class="accordion-header" id="heading-<?= $accordionId ?>">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-<?= $accordionId ?>" aria-expanded="true" aria-controls="collapse-<?= $accordionId ?>">
-                            <div class="d-flex w-100 justify-content-between align-items-center">
+                <div class="accordion-item mb-4 border-0 shadow">
+                    <h2 class="accordion-header" id="heading<?= $accordionId ?>">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" 
+                                data-bs-target="#collapse<?= $accordionId ?>" aria-expanded="true" 
+                                aria-controls="collapse<?= $accordionId ?>">
+                            <div class="d-flex align-items-center justify-content-between w-100">
                                 <div>
-                                    <span class="fw-bold"><?= htmlspecialchars($formattedDate) ?></span>
-                                    <span class="badge bg-primary ms-2"><?= $totalItems ?> <?= $totalItems === 1 ? 'item' : 'items' ?></span>
+                                    <i class="bi bi-calendar3 me-2"></i>
+                                    <span class="fw-bold"><?= $formattedDate ?></span>
+                                    <span class="badge bg-secondary ms-2"><?= $totalItems ?> <?= $totalItems === 1 ? 'order' : 'orders' ?></span>
                                 </div>
-                                <div class="text-end">
+                                <div class="text-success ms-auto me-3">
                                     <span class="fw-bold">$<?= number_format($dateTotal, 2) ?></span>
                                 </div>
                             </div>
                         </button>
                     </h2>
-                    <div id="collapse-<?= $accordionId ?>" class="accordion-collapse collapse show" aria-labelledby="heading-<?= $accordionId ?>" data-bs-parent="#ordersAccordion">
+                    <div id="collapse<?= $accordionId ?>" class="accordion-collapse collapse show" 
+                         aria-labelledby="heading<?= $accordionId ?>">
                         <div class="accordion-body p-0">
                             <div class="table-responsive">
-                                <table class="table table-hover mb-0">
-                                    <thead class="table-light">
-                                        <tr>
-                                            <th scope="col">Product</th>
-                                            <th scope="col" class="text-center">Price</th>
-                                            <th scope="col" class="text-end">Actions</th>
-                                        </tr>
-                                    </thead>
+                                <table class="table align-middle mb-0">
                                     <tbody>
                                         <?php foreach ($orders as $order): ?>
-                                            <?php 
-                                                // Fix image path handling
-                                                $imagePath = $order['image_url'] ?? '';
+                                            <?php
+                                                // Ensure required order properties exist
+                                                $orderId = $order['id'] ?? 0;
+                                                $orderPrice = isset($order['price_at_order']) ? (float)$order['price_at_order'] : 
+                                                            (isset($order['total']) ? (float)$order['total'] : 0);
                                                 
-                                                // Remove 'public/' prefix if it exists
-                                                if (strpos($imagePath, 'public/') === 0) {
-                                                    $imagePath = substr($imagePath, 7); // Remove 'public/'
+                                                // Determine the display image and icon
+                                                $imagePath = isset($order['image_url']) && !empty($order['image_url']) 
+                                                    ? htmlspecialchars($order['image_url']) 
+                                                    : 'images/products/placeholder.jpg';
+                                                
+                                                // Set icon class based on category
+                                                $iconClass = 'bag';
+                                                if (isset($order['category'])) {
+                                                    $category = strtolower($order['category']);
+                                                    if (strpos($category, 'fruit') !== false) {
+                                                        $iconClass = 'apple';
+                                                    } elseif (strpos($category, 'veg') !== false) {
+                                                        $iconClass = 'flower2';
+                                                    } elseif (strpos($category, 'meat') !== false) {
+                                                        $iconClass = 'basket';
+                                                    } elseif (strpos($category, 'dairy') !== false) {
+                                                        $iconClass = 'cup';
+                                                    }
                                                 }
                                                 
-                                                // Remove leading slash if present
-                                                if (strpos($imagePath, '/') === 0) {
-                                                    $imagePath = substr($imagePath, 1);
-                                                }
-                                                
-                                                // Default icon based on order type or category
-                                                $category = $order['category'] ?? 'Other';
-                                                $iconClass = 'box';
-                                                
-                                                if ($category === 'Fruits') {
-                                                    $iconClass = 'apple';
-                                                } elseif ($category === 'Vegetables') {
-                                                    $iconClass = 'flower3';
-                                                } elseif ($category === 'Bakery') {
-                                                    $iconClass = 'bread-slice';
-                                                } elseif ($category === 'Dairy') {
-                                                    $iconClass = 'egg-fried';
-                                                } elseif ($category === 'Beverages') {
-                                                    $iconClass = 'cup-hot';
-                                                } elseif (strpos($category, 'Cash') !== false) {
-                                                    $iconClass = 'cash';
-                                                } elseif (strpos($category, 'Credit') !== false) {
-                                                    $iconClass = 'credit-card';
-                                                }
-                                                
-                                                if (isset($order['is_new_format']) && $order['is_new_format']) {
-                                                    $iconClass = 'bag-check';
+                                                // Safely get the order time
+                                                $orderTime = 'Unknown time';
+                                                if (isset($order['ordered_at'])) {
+                                                    try {
+                                                        $orderTimeObj = new DateTime($order['ordered_at']);
+                                                        $orderTime = $orderTimeObj->format('h:i A');
+                                                    } catch (Exception $e) {
+                                                        error_log('Error formatting order time: ' . $e->getMessage());
+                                                    }
                                                 }
                                             ?>
                                             <tr>
@@ -146,47 +144,39 @@
                                                         </div>
                                                         <div>
                                                             <h6 class="mb-1"><?= htmlspecialchars($order['product_name'] ?? 'Unknown Product') ?></h6>
-                                                                <span class="badge bg-info text-white"><?= htmlspecialchars($order['category'] ?? 'Unknown') ?></span>
-                                                                <?php if (isset($order['is_new_format']) && $order['is_new_format']): ?>
-                                                                    <?php
-                                                                        $statusClass = 'bg-secondary';
-                                                                        $status = isset($order['status']) ? ucfirst($order['status']) : 'Processing';
-                                                                        
-                                                                        if ($status === 'Pending') {
-                                                                            $statusClass = 'bg-warning text-dark';
-                                                                        } elseif ($status === 'Processing') {
-                                                                            $statusClass = 'bg-info';
-                                                                        } elseif ($status === 'Shipped') {
-                                                                            $statusClass = 'bg-primary';
-                                                                        } elseif ($status === 'Delivered') {
-                                                                            $statusClass = 'bg-success';
-                                                                        } elseif ($status === 'Cancelled') {
-                                                                            $statusClass = 'bg-danger';
-                                                                        }
-                                                                    ?>
-                                                                    <span class="badge <?= $statusClass ?> ms-2"><?= $status ?></span>
-                                                                <?php endif; ?>
-                                                                <p class="text-muted small mb-0">Order #<?= htmlspecialchars($order['id'] ?? '0') ?></p>
-                                                                <p class="text-muted small mb-0"><?= isset($order['ordered_at']) ? htmlspecialchars((new DateTime($order['ordered_at']))->format('h:i A')) : 'Unknown time' ?></p>
+                                                            <span class="badge bg-info text-white"><?= htmlspecialchars($order['category'] ?? 'Unknown') ?></span>
+                                                            <?php if (isset($order['is_new_format']) && $order['is_new_format']): ?>
+                                                                <?php
+                                                                    $statusClass = 'bg-secondary';
+                                                                    $status = isset($order['status']) ? ucfirst($order['status']) : 'Processing';
+                                                                    
+                                                                    if ($status === 'Pending') {
+                                                                        $statusClass = 'bg-warning text-dark';
+                                                                    } elseif ($status === 'Processing') {
+                                                                        $statusClass = 'bg-info';
+                                                                    } elseif ($status === 'Shipped') {
+                                                                        $statusClass = 'bg-primary';
+                                                                    } elseif ($status === 'Delivered') {
+                                                                        $statusClass = 'bg-success';
+                                                                    } elseif ($status === 'Received') {
+                                                                        $statusClass = 'bg-success';
+                                                                    } elseif ($status === 'Cancelled') {
+                                                                        $statusClass = 'bg-danger';
+                                                                    }
+                                                                ?>
+                                                                <span class="badge <?= $statusClass ?> ms-2"><?= $status ?></span>
+                                                            <?php endif; ?>
+                                                            <p class="text-muted small mb-0">Order #<?= htmlspecialchars((string)$orderId) ?></p>
+                                                            <p class="text-muted small mb-0"><?= htmlspecialchars($orderTime) ?></p>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td class="text-center align-middle">
-                                                    $<?= number_format((float)($order['price_at_order'] ?? 0), 2) ?>
+                                                    $<?= number_format($orderPrice, 2) ?>
                                                 </td>
                                                 <td class="text-end align-middle">
-                                                    <a href="order-receipt?id=<?= (int)($order['id'] ?? 0) ?>" class="btn btn-sm btn-outline-primary">
+                                                    <a href="<?= \App\Helpers\View::url('order-receipt', ['id' => $orderId]) ?>" class="btn btn-sm btn-outline-primary">
                                                         <i class="bi bi-receipt me-1"></i>View Receipt
-                                                        <?php if (isset($order['is_new_format']) && $order['is_new_format'] && isset($order['status'])): ?>
-                                                            <?php if ($order['status'] === 'delivered'): ?>
-                                                                <span class="badge bg-success ms-1">Mark Received</span>
-                                                            <?php elseif (isset($_SESSION['role']) && $_SESSION['role'] === 'manager'): ?>
-                                                                <span class="badge bg-secondary ms-1">Update Status</span>
-                                                            <?php endif; ?>
-                                                        <?php endif; ?>
-                                                    </a>
-                                                    <a href="products" class="btn btn-sm btn-success">
-                                                        <i class="bi bi-cart-plus me-1"></i>Buy Again
                                                     </a>
                                                 </td>
                                             </tr>
